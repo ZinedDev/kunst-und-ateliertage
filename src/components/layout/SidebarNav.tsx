@@ -3,7 +3,7 @@ import {navItems} from "../../data/NavData.ts";
 
 export default function SidebarNav() {
     return (
-        <aside className="fixed left-0 top-0 hidden h-screen w-72 flex-col border-r border-neutral-200 bg-white/80 p-2 backdrop-blur-xl lg:flex">
+        <aside className="fixed left-0 top-0 hidden h-screen w-72 flex-col border-r-2 border-zinc-800 bg-linear-to-tr from-cyan-200 to-amber-200 p-2 backdrop-blur-xl lg:flex">
             <NavLink to="/" className="mb-10 block">
         <span className="block text-sm font-bold uppercase tracking-[0.25em] text-blue-700">
           Elbinsel
@@ -22,7 +22,7 @@ export default function SidebarNav() {
                             [
                                 "rounded-2xl px-4 py-3 text-sm font-semibold transition",
                                 isActive
-                                    ? "bg-neutral-950 text-white"
+                                    ? "bg-neutral-950 text-zinc-200"
                                     : "text-neutral-700 hover:bg-neutral-100 hover:text-neutral-950",
                             ].join(" ")
                         }
