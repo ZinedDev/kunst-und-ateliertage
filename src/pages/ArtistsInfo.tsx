@@ -9,7 +9,6 @@ import {useRef} from "react";
 
 export default function ArtistsInfo() {
 
-
     const sectionRef = useRef<HTMLDivElement>(null);
     //const bIsSmallDisplay = window.innerWidth < 640;
 
@@ -17,7 +16,7 @@ export default function ArtistsInfo() {
         <PageTransition>
             <div
                 ref={sectionRef}
-                className="space-y-6">
+                className="space-y-18">
                 <Header
                     tagline={artistsHeader.tagline}
                     title={artistsHeader.title}
@@ -41,7 +40,7 @@ export default function ArtistsInfo() {
                         <ParticipationCard key={fact.label} fact={fact}/>
                     ))}
                 </motion.div>
-                <ParticipationSteps sectionRef={sectionRef}/>
+                <ParticipationSteps/>
             </div>
         </PageTransition>
     );
