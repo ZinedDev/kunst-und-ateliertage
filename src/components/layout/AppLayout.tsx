@@ -40,7 +40,7 @@ export default function AppLayout({children}: AppLayoutProps) {
             <main
                 id="main-content"
                 tabIndex={-1}
-                className="min-h-screen outline-none px-4 pb-16 pt-24 xs:px-5 sm:px-6 md:px-8 md:pb-20 md:pt-28 lg:ml-5 lg:px-12 lg:py-12 xl:px-20 2xl:px-24 bg-linear-to-tr from-amber-600 to-green-200"
+                className="min-h-screen outline-none px-4 pb-16 pt-24 xs:px-5 sm:px-6 md:px-8 md:pb-20 md:pt-28 lg:ml-5 lg:px-12 lg:py-12 xl:px-20 2xl:px-24 bg-linear-to-tr from-orange-500 to-orange-500"
             >
                 <div className="mx-auto w-full max-w-6xl">{children}</div>
             </main>
