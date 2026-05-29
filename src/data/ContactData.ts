@@ -1,7 +1,7 @@
 import type {HeaderData} from "./HeaderData.ts";
 
 export const contactHeader:HeaderData = {
-    tagline: "Schreibe uns wenn du frage hast",
+    tagline: "Schreibe uns, \n wenn du Fragen hast",
     title: "Kontakt",
     description: "Für Fragen, Anfragen oder Zusammenarbeit mit den Kunst- und Ateliertagen.",
 }

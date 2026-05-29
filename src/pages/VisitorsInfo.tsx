@@ -1,4 +1,3 @@
-import { Link } from "react-router";
 import { motion } from "motion/react";
 import PageTransition from "../components/layout/PageTransitions.tsx";
 import {places, visitorHighlights, visitorHeader} from "../data/VisitorData.ts";
@@ -20,12 +19,12 @@ export default function VisitorsInfo() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.35, delay: 0.15 }}
                     >
-                        <Link
-                            to="/galerie"
-                            className="inline-flex items-center justify-center rounded-2xl bg-neutral-950 px-6 py-4 text-sm font-bold text-white transition hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
-                        >
-                            Galerie ansehen
-                        </Link>
+                        {/*<Link*/}
+                        {/*    to="/galerie"*/}
+                        {/*    className="inline-flex items-center justify-center rounded-2xl bg-neutral-950 px-6 py-4 text-sm font-bold text-white transition hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"*/}
+                        {/*>*/}
+                        {/*    Galerie ansehen*/}
+                        {/*</Link>*/}
 
                         <a
                             href="/KuA_2025_Programm_Flyer_Web-2.pdf"

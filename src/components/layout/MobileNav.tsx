@@ -2,8 +2,8 @@ import {useEffect, useState} from "react";
 import {NavLink, useLocation} from "react-router";
 import {AnimatePresence, motion} from "motion/react";
 import {Menu, X} from "lucide-react";
-import {navItems} from "../../data/NavData.ts";
-
+import {navbarItems} from "../../data/NavData.ts";
+import Logo from "../../assets/images/KuA_Logo.jpg"
 
 export default function MobileNav() {
     const [isOpen, setIsOpen] = useState(false);
@@ -15,18 +15,26 @@ export default function MobileNav() {
 
     return (
         <>
-            <header
-                className="fixed left-0 top-0 z-40 w-full border-b-2 border-zinc-800 bg-linear-to-tr from-orange-500 to-orange-400 px-4 py-3 backdrop-blur-xl sm:px-6 lg:hidden">
+            <header className="fixed left-0 top-0 z-40 w-full border-b-2 border-zinc-800 bg-linear-to-tr from-orange-500 to-orange-400 px-2 py-3 backdrop-blur-xl sm:px-6 lg:hidden">
                 <div className="flex items-center justify-between">
                     <NavLink to="/" className="group">
-                        <span className="block text-base font-black leading-tight text-neutral-950 transition group-hover:text-blue-700 sm:text-lg">
+                    <div className={"flex flex-row items-center gap-1"}>
+                        <img
+                            src={Logo}
+                            alt="Kunst- und Ateliertage Logo"
+                            className={"rounded-full"}
+                            height={50}
+                            width={50}
+                        />
+                        <span
+                            className="block text-base font-black leading-tight text-neutral-950 transition group-hover:text-blue-700 sm:text-lg">
                             Kunst- und Ateliertage
                             <br/>
                             <p className="pl-2 text-xs">
                                 auf den Elbinseln
                             </p>
-
                         </span>
+                    </div>
                     </NavLink>
 
                     <button
@@ -65,14 +73,14 @@ export default function MobileNav() {
                             }}
                         >
                             <div className="flex flex-col gap-2">
-                                {navItems.map((item) => (
+                                {navbarItems.map((item) => (
                                     <NavLink
                                         key={item.path}
                                         to={item.path}
                                         end={item.path === "/"}
                                         className={({isActive}) =>
                                             [
-                                                "rounded-2xl px-4 py-3 text-base font-semibold transition",
+                                                "rounded-2xl px-4 py-2 text-base font-semibold transition-all",
                                                 isActive
                                                     ? "bg-neutral-950 text-white"
                                                     : "text-neutral-700 hover:bg-neutral-100 hover:text-neutral-950",

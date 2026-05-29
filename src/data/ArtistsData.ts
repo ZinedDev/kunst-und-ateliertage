@@ -7,7 +7,7 @@ export const artistsHeader:HeaderData = {
 }
 
 export const prepSteps = [
-    "Anmeldung rechtzeitig absenden",
+    "Rechtzeitig anmelden",
     "Kurzbeschreibung, Bildmaterial und Kontaktdaten bereitstellen",
     "Programm, Plakate und Social Media aktiv mitverbreiten",
     "Atelier, Werkstatt oder Ausstellungsort vorbereiten",

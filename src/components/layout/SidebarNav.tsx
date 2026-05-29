@@ -1,5 +1,5 @@
 import { NavLink } from "react-router";
-import {navItems} from "../../data/NavData.ts";
+import {navbarItems,} from "../../data/NavData.ts";
 
 export default function SidebarNav() {
     return (
@@ -14,7 +14,7 @@ export default function SidebarNav() {
             </NavLink>
 
             <nav className="flex flex-col gap-2">
-                {navItems.map((item) => (
+                {navbarItems.map((item) => (
                     <NavLink
                         key={item.path}
                         to={item.path}
