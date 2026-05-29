@@ -4,16 +4,20 @@ import PageTransition from "../components/layout/PageTransitions.tsx";
 import {participationFacts, artistsHeader} from "../data/ArtistsData.ts";
 import ParticipationCard from "../components/sub/ParticipationCard.tsx";
 import Header from "../components/layout/Header.tsx";
+import {useRef} from "react";
 
 
 export default function ArtistsInfo() {
 
 
+    const sectionRef = useRef<HTMLDivElement>(null);
     //const bIsSmallDisplay = window.innerWidth < 640;
 
     return (
         <PageTransition>
-            <section className="space-y-6">
+            <div
+                ref={sectionRef}
+                className="space-y-6">
                 <Header
                     tagline={artistsHeader.tagline}
                     title={artistsHeader.title}
@@ -37,8 +41,8 @@ export default function ArtistsInfo() {
                         <ParticipationCard key={fact.label} fact={fact}/>
                     ))}
                 </motion.div>
-                <ParticipationSteps/>
-            </section>
+                <ParticipationSteps sectionRef={sectionRef}/>
+            </div>
         </PageTransition>
     );
 }
