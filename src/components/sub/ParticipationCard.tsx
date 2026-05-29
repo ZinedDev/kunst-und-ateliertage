@@ -23,7 +23,7 @@ export default function ParticipationCard({ fact }: ParticipationCardProps) {
             <p className="text-xl max-sm:text-base font-bold uppercase tracking-[0.2em] text-zinc-700">
                 {fact.label}
             </p>
-            <p className="mt-1 pl-1 text-base max-sm:text-sm font-black text-neutral-950">
+            <p className="pl-2 max-sm:pl-1 text-base max-sm:text-sm font-black text-neutral-950">
                 {fact.value}
             </p>
         </motion.article>

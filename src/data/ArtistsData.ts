@@ -3,7 +3,7 @@ import type {HeaderData} from "./HeaderData.ts";
 export const artistsHeader:HeaderData = {
     tagline:"Zeig deine Kunst dort, \n  wo sie entsteht.",
     title: "...für Künstler*innen",
-    description:"Die Kunst- und Ateliertage öffnen Ateliers, Werkstätten und kreative Räume auf den Elbinseln. Künstler*innen können ihre Arbeit präsentieren, Besucher*innen begegnen und Teil eines gemeinsamen Wochenendes für Kunst und Kultur werden."
+    description:"Während der Kunst- und Ateliertage können Künstler*innen ihre Arbeit präsentieren und Teil eines gemeinsamen Wochenendes für Kunst und Kultur werden."
 }
 
 export const prepSteps = [
