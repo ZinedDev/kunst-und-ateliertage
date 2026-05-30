@@ -1,8 +1,7 @@
-import {motion} from "framer-motion";
+import {motion, AnimatePresence} from "motion/react";
 import {prepSteps} from "../../data/ArtistsData.ts";
 import ParticipationNotice from "./ParticipationNotice.tsx";
 import {useEffect, useRef, useState} from "react";
-import {AnimatePresence} from "motion/react";
 
 
 export default function ParticipationSteps() {
@@ -63,18 +62,17 @@ export default function ParticipationSteps() {
     };
 
     return (
-        <div className="grid grid-rows max-sm:flex max-sm:flex-col">
-            <motion.article
-                className="rounded-4xl p-6 max-sm:p-4 text-neutral-950 scroll-mt-8"
-                layout
-                initial={{opacity: 0, scale: 0.5}}
-                animate={{
-                    opacity: 1,
-                    scale: 1,
-                    marginTop: expandSteps ? "4rem" : "0",
-                    marginBottom: expandSteps ? "8rem" : "0",
-                }}
-                transition={expandSteps ? {marginTop: {duration: 0.5, ease: "easeInOut"}} : {duration: 0}}
+        <motion.div
+            className="grid grid-rows max-sm:flex max-sm:flex-col"
+            initial={false}
+            animate={{
+                marginTop: expandSteps ? "8rem" : "0",
+                marginBottom: expandSteps ? "6rem" : "0",
+            }}
+            transition={expandSteps ? {marginTop: {duration: 0.5, ease: "easeInOut"}} : {duration: 0}}
+        >
+            <article
+                className="p-6 max-sm:p-4 text-neutral-950 scroll-mt-8"
             >
                 <h2 className="text-center">
                     <button
@@ -140,29 +138,28 @@ export default function ParticipationSteps() {
                                     </div>
                                 ))}
                             </div>
-                                <motion.div
-                                    key="contact-section"
-                                    className="justify-center mt-10 max-sm:mt-0 text-center"
-
+                            <div
+                                key="contact-section"
+                                className="justify-center mt-10 max-sm:mt-0 text-center"
+                            >
+                                <motion.a
+                                    initial={{opacity: 0, scale: 0.0}}
+                                    animate={expandSteps ? {opacity: 1, scale: 1} : {opacity: 0, scale: 0.0}}
+                                    transition={{duration: 0.5, type: "spring", stiffness: 100}}
+                                    href="mailto:info@kunstundateliertage.de"
+                                    className="inline-flex items-center justify-center px-6 py-2 text-sm font-bold text-neutral-950 hover:scale-105 transition-transform focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                                 >
-                                    <motion.a
-                                        initial={{opacity: 0, y: 18, scale: 0.2}}
-                                        animate={{opacity: 1, y: 0, scale: 1}}
-                                        transition={{duration: 5, delay: 0.25, ease: "easeInOut"}}
-                                        href="mailto:info@kunstundateliertage.de"
-                                        className="inline-flex items-center justify-center px-6 py-2 text-sm font-bold text-neutral-950 hover:scale-105 transition-transform focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                                    >
-                                        Kontakt aufnehmen
-                                    </motion.a>
-                                </motion.div>
+                                    Kontakt aufnehmen
+                                </motion.a>
+                            </div>
                         </div>
                         <div className="max-sm:border-y-2 max-sm:py-4">
                             <ParticipationNotice/>
                         </div>
                     </motion.div>
                 </AnimatePresence>
-            </motion.article>
-        </div>
+            </article>
+        </motion.div>
     )
         ;
 }

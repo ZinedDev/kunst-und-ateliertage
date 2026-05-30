@@ -1,4 +1,4 @@
-import {motion} from "framer-motion";
+import {motion} from "motion/react";
 import ParticipationSteps from "../components/sub/ParticipationSteps.tsx";
 import PageTransition from "../components/layout/PageTransitions.tsx";
 import {participationFacts, artistsHeader} from "../data/ArtistsData.ts";
