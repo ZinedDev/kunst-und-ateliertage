@@ -1,24 +1,25 @@
-import type {HeaderData} from "./HeaderData.ts";
+import type {HeaderData, SectionFacts} from "./Types.ts";
 
-export const visitorHeader:HeaderData = {
+export const visitorHeader: HeaderData = {
     tagline: "Kunst erleben, \n Menschen treffen, \n  Orte entdecken.",
-    title: "...für Besucher*innen",
-    description:"Die Kunst- und Ateliertage laden dazu ein, die kreative Vielfalt der Elbinseln kennenzulernen. Besucher*innen können Ateliers, Ausstellungen und Kulturorte erkunden — offen, direkt und persönlich."
+    title: "Besucher*innen",
+    description: "...können die kreative Vielfalt der Elbinseln kennenlernen."
 }
 
-export const visitorHighlights = [
+export const visitorHighlights: SectionFacts[] = [
     {
-        title: "Ateliers entdecken",
-        text: "Besuche Künstler*innen direkt an ihren Arbeitsorten und erlebe, wie Kunst entsteht.",
+        label: "Elbinseln entdecken",
+        value: "Entdecke Kunst in Wilhelmsburg, Kirchdorf, Georgswerder und auf der Veddel.",
     },
     {
-        title: "Elbinseln erleben",
-        text: "Die Veranstaltung verbindet Orte in Wilhelmsburg, Veddel, Kirchdorf und Georgswerder.",
+        label: "Künstler*innen besuchen",
+        value: "Besuche Künstler*innen direkt an den Orten ihrer kreativen Tätigkeit.",
     },
     {
-        title: "Programm folgen",
-        text: "Ausstellungen, Gespräche, Workshops, Musik und Aktionen machen das Wochenende vielseitig.",
+        label: "Programm erleben",
+        value: "Erlebe Ausstellungen, Gespräche, Workshops, Musik sowie weitere Aktionen live vor Ort.",
     },
+
 ];
 
 export const places = ["Wilhelmsburg", "Veddel", "Kirchdorf", "Georgswerder"];

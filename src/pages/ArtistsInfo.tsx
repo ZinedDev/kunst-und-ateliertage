@@ -1,47 +1,25 @@
-import {motion} from "motion/react";
-import ParticipationSteps from "../components/sub/ParticipationSteps.tsx";
 import PageTransition from "../components/layout/PageTransitions.tsx";
-import {participationFacts, artistsHeader} from "../data/ArtistsData.ts";
-import ParticipationCard from "../components/sub/ParticipationCard.tsx";
+import {artistsHeader, participationFacts} from "../data/ArtistsData.ts";
 import Header from "../components/layout/Header.tsx";
-import {useRef} from "react";
-
+import SectionFacts from "../components/sub/SectionFacts.tsx";
+import ParticipationNotice from "../components/sub/artists/ParticipationNotice.tsx";
+import SocialMediaIcons from "../components/sub/SocialMediaIcons.tsx";
 
 export default function ArtistsInfo() {
-
-    const sectionRef = useRef<HTMLDivElement>(null);
-    //const bIsSmallDisplay = window.innerWidth < 640;
-
     return (
         <PageTransition>
-            <div
-                ref={sectionRef}
-                className="space-y-18">
+            <main className="space-y-8 lg:space-y-16 flex flex-col items-center justify-center">
                 <Header
                     tagline={artistsHeader.tagline}
                     title={artistsHeader.title}
                     description={artistsHeader.description}
-                    taglineClassName={"text-blue-700"}
                 />
-                <motion.div
-                    className="pl-1 grid gap-4 max-sm:grid-cols-1 xl:grid-cols-4"
-                    initial="hidden"
-                    animate="visible"
-                    variants={{
-                        hidden: {},
-                        visible: {
-                            transition: {
-                                staggerChildren: 0.1,
-                            },
-                        },
-                    }}
-                >
-                    {participationFacts.map((fact) => (
-                        <ParticipationCard key={fact.label} fact={fact}/>
-                    ))}
-                </motion.div>
-                <ParticipationSteps/>
-            </div>
+                <section className="space-y-8 flex flex-col items-center justify-center">
+                    <SectionFacts facts={participationFacts}/>
+                    <ParticipationNotice/>
+                    <SocialMediaIcons/>
+                </section>
+            </main>
         </PageTransition>
     );
 }

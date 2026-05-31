@@ -1,5 +1,5 @@
 import type { GalleryItem } from "../components/sub/GalleryCard.tsx";
-import type {HeaderData} from "./HeaderData.ts";
+import type {HeaderData} from "./Types.ts";
 
 export const galleryHeader:HeaderData = {
     tagline: "Eindrücke von Kunst, Orten und Begegnungen.",

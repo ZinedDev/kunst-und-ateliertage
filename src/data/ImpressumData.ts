@@ -1,4 +1,4 @@
-import type {HeaderData} from "./HeaderData.ts";
+import type {HeaderData} from "./Types.ts";
 
 export const impressumHeader:HeaderData = {
     tagline: "Rechtliches",

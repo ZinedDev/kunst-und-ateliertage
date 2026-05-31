@@ -1,9 +1,9 @@
-import type {HeaderData} from "./HeaderData.ts";
+import type {HeaderData, SectionFacts} from "./Types.ts";
 
 export const artistsHeader:HeaderData = {
     tagline:"Zeig deine Kunst dort, \n  wo sie entsteht.",
-    title: "...für Künstler*innen",
-    description:"Während der Kunst- und Ateliertage können Künstler*innen ihre Arbeit präsentieren und Teil eines gemeinsamen Wochenendes für Kunst und Kultur werden."
+    title: "Künstler*innen",
+    description:"...können ihre Arbeit präsentieren und Teil eines gemeinsamen Wochenendes für Kunst und Kultur werden."
 }
 
 export const prepSteps = [
@@ -13,21 +13,17 @@ export const prepSteps = [
     "Atelier, Werkstatt oder Ausstellungsort vorbereiten",
 ];
 
-export const participationFacts = [
-    {
-        label: "Termin",
-        value: "19.–20. September 2026",
-    },
-    {
-        label: "Öffnungszeiten",
-        value: "13:00–18:00 Uhr",
-    },
+export const participationFacts:SectionFacts[] = [
     {
         label: "Anmeldung",
-        value: "bis 31.05.2026",
+        value: "Bis zum 31.05.2026 anmelden!!!\nKurzbeschreibung, Bildmaterial sowie Kontaktdaten bereitstellen. ",
     },
     {
-        label: "Teilnahmebeitrag",
-        value: "15 €",
+        label: "Vorbereitung",
+        value: "Programm über Social Media mitverbreiten.\nPlakate und Flyer verteilen.",
+    },
+    {
+        label: "Teilnahme",
+        value: "Den Ort deiner kreativen Tätigkeit einladend sowie zugänglich gestalten.",
     },
 ];

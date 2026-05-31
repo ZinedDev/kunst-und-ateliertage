@@ -1,28 +1,22 @@
-import type {HeaderData} from "./HeaderData.ts";
+import type {HeaderData, SectionFacts} from "./Types.ts";
 
 export const contactHeader:HeaderData = {
     tagline: "Schreibe uns, \n wenn du Fragen hast",
     title: "Kontakt",
-    description: "Für Fragen, Anfragen oder Zusammenarbeit mit den Kunst- und Ateliertagen.",
+    description: "...für Fragen, Anfragen und/oder Zusammenarbeit.",
 }
 
-export const contactOptions = [
+export const contactFacts:SectionFacts[] = [
     {
-        title: "Allgemeine Fragen",
-        text: "Für Fragen zur Veranstaltung, zum Programm oder zur Organisation.",
-        href: "mailto:moin@kunstundateliertage.de?subject=Frage%20zu%20den%20Kunst-%20und%20Ateliertagen",
-        label: "E-Mail schreiben",
+        label: "Allgemeine Fragen",
+        value: "Fragen zur Veranstaltung, zum Programm oder zur Organisation.",
     },
     {
-        title: "Künstler*innen-Anmeldung",
-        text: "Für Rückfragen zur Teilnahme, Anmeldung oder zu offenen Ateliers.",
-        href: "mailto:moin@kunstundateliertage.de?subject=Anmeldung%20Kunst-%20und%20Ateliertage%202026",
-        label: "Anmeldung anfragen",
+        label: "Anmeldung",
+        value: "Rückfragen zur Teilnahme oder Anmeldung.",
     },
     {
-        title: "Presse & Kooperation",
-        text: "Für Presseanfragen, Kooperationen oder Material zur Kommunikation.",
-        href: "mailto:moin@kunstundateliertage.de?subject=Presse%20und%20Kooperation",
-        label: "Kontakt aufnehmen",
+        label: "Presse & Kooperation",
+        value: "Presseanfragen, Kooperationen oder Material zur Kommunikation.",
     },
 ];

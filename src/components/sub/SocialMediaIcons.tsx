@@ -30,6 +30,7 @@ export default function SocialMediaIcons() {
             className={'flex items-center justify-center gap-x-10 lg:scale-150 text-red-600 text-shadow-lg'}>
             {socialMediaIcons.map((icon, i) => (
                 <motion.a
+                    className={"rounded-lg hover:bg-red-600 hover:text-white transition-colors duration-200"}
                     href={icon.url}
                     aria-label={icon.label}
                     key={'#' + i + '-' + icon.id}
@@ -41,7 +42,6 @@ export default function SocialMediaIcons() {
                     variants={variants}
                     whileHover={{scale: 1.1}}
                     viewport={{once: false}}
-                    className={"rounded-lg hover:bg-red-600 hover:text-white transition-colors duration-200"}
                 >
                     <icon.icon/>
                 </motion.a>

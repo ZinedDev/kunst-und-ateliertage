@@ -15,7 +15,7 @@ export default function MobileNav() {
 
     return (
         <>
-            <header className="fixed left-0 top-0 z-40 w-full border-b-2 border-zinc-800 bg-linear-to-tr from-orange-500 to-orange-400 px-2 py-3 backdrop-blur-xl sm:px-6 lg:hidden">
+            <header className="fixed left-0 top-0 z-40 w-full border-b-2 border-zinc-800 bg-linear-to-tr from-orange-500 to-orange-400 px-2 py-3 backdrop-blur-xl sm:px-6">
                 <div className="flex items-center justify-between">
                     <NavLink to="/" className="group">
                     <div className={"flex flex-row items-center gap-1"}>
@@ -55,7 +55,7 @@ export default function MobileNav() {
                         <motion.button
                             type="button"
                             aria-label="Menü schließen"
-                            className="fixed inset-0 z-30 bg-neutral-950/40 backdrop-blur-sm lg:hidden"
+                            className="fixed inset-0 z-30 bg-neutral-950/40 backdrop-blur-sm"
                             initial={{opacity: 0}}
                             animate={{opacity: 1}}
                             exit={{opacity: 0}}
@@ -63,7 +63,7 @@ export default function MobileNav() {
                         />
 
                         <motion.nav
-                            className="fixed left-4 right-4 top-20 z-50 rounded-3xl border-2 border-zinc-800 bg-linear-to-tr from-orange-500 to-orange-400 p-4 shadow-2xl sm:left-6 sm:right-6 lg:hidden"
+                            className="max-w-100 fixed left-4 right-4 top-20 z-50 rounded-3xl border-2 border-zinc-800 bg-linear-to-tr from-orange-500 to-orange-400 p-4 shadow-2xl sm:left-6 sm:right-6"
                             initial={{opacity: 0, y: -16, scale: 0.96}}
                             animate={{opacity: 1, y: 0, scale: 1}}
                             exit={{opacity: 0, y: -16, scale: 0.96}}

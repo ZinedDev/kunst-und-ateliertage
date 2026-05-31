@@ -3,3 +3,8 @@ export interface HeaderData {
     title: string;
     description: string;
 }
+
+export type SectionFacts = {
+    label: string;
+    value: string;
+}
