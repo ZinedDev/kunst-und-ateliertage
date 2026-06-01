@@ -1,5 +1,5 @@
 import {motion} from "motion/react";
-import {prepSteps} from "../../../data/ArtistsData.ts";
+import {prepSteps} from "../../data/ArtistsData.ts";
 import ParticipationNotice from "./ParticipationNotice.tsx";
 import {useRef, useState} from "react";
 

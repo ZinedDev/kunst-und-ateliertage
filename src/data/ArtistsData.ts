@@ -1,9 +1,19 @@
-import type {HeaderData, SectionFacts} from "./Types.ts";
+import type {HeaderData, NoticeData, SectionFacts} from "./Types.ts";
 
 export const artistsHeader:HeaderData = {
     tagline:"Zeig deine Kunst dort, \n  wo sie entsteht.",
     title: "Künstler*innen",
     description:"...können ihre Arbeit präsentieren und Teil eines gemeinsamen Wochenendes für Kunst und Kultur werden."
+}
+
+export const participationNotice: NoticeData = {
+    title: "Wichtig!!!",
+    text: "Gemeinsam sichtbar werden durch...\n" +
+          "Verbreitung der Infos,\n" +
+          "persönliche Einladungen,\n" +
+          "offene Türen!",
+    titleClassName: "text-green-800",
+    textClassName: "text-blue-800"
 }
 
 export const prepSteps = [

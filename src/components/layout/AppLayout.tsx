@@ -1,5 +1,7 @@
 import type {ReactNode} from "react";
 import MobileNav from "./MobileNav";
+import SidebarNav from "./SidebarNav.tsx";
+import SocialMediaIcons from "../sub/SocialMediaIcons.tsx";
 
 type AppLayoutProps = {
     children: ReactNode;
@@ -26,14 +28,14 @@ export default function AppLayout({children}: AppLayoutProps) {
             {/*</div>*/}
 
             {/* Mobile navigation */}
-            <div className="">
+            <div className="lg:hidden">
                 <MobileNav/>
             </div>
 
             {/* Desktop sidebar navigation */}
-            {/*<div className="hidden lg:block ml-10">*/}
-            {/*    <SidebarNav/>*/}
-            {/*</div>*/}
+            <div className="hidden lg:block ml-10">
+                <SidebarNav/>
+            </div>
 
             {/* Main content */}
             <main
@@ -44,6 +46,7 @@ export default function AppLayout({children}: AppLayoutProps) {
                 <div className="mx-auto w-full max-w-6xl">
                     {children}
                 </div>
+
             </main>
         </div>
     );

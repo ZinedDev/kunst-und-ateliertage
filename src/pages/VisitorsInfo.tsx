@@ -1,24 +1,26 @@
 
 import PageTransition from "../components/layout/PageTransitions.tsx";
-import {visitorHighlights, visitorHeader} from "../data/VisitorData.ts";
+import {visitorHighlights, visitorHeader, visitorNotice} from "../data/VisitorData.ts";
 import Header from "../components/layout/Header.tsx";
 import SectionFacts from "../components/sub/SectionFacts.tsx";
 import SocialMediaIcons from "../components/sub/SocialMediaIcons.tsx";
-import VisitorNotice from "../components/sub/VisitorNotice.tsx";
+import Notice from "../components/sub/Notice.tsx";
 
 
 export default function VisitorsInfo() {
     return (
         <PageTransition>
-            <main className="space-y-8 lg:space-y-16 flex flex-col items-center justify-center">
+            <main className="space-y-8 lg:space-y-16 max-sm:flex max-sm:flex-col items-center justify-start">
                 <Header
                     tagline={visitorHeader.tagline}
                     title={visitorHeader.title}
                     description={visitorHeader.description}
                 />
-                <section className="space-y-8 flex flex-col items-center justify-center">
+                <section className="space-y-8 lg:space-y-24 flex flex-col max-sm:max-items-center max-sm:justify-center">
+                    <div className="lg:flex lg:flex-row lg:items-center lg:justify-between lg:gap-x-12">
                     <SectionFacts facts={visitorHighlights}/>
-                    <VisitorNotice/>
+                    <Notice data={visitorNotice}/>
+                    </div>
                     <SocialMediaIcons/>
                 </section>
             </main>

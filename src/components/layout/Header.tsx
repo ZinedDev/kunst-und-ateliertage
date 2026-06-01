@@ -33,17 +33,17 @@ export default function Header({ tagline, title, description, taglineClassName =
                 {title}
             </motion.h1>
 
-            {description && (
-                <motion.p
-                    className="mt-4 max-sm:mt-1 whitespace-pre-wrap max-w-4xl text-lg leading-6 text-zinc-800 max-sm:text-xl"
-                    initial={{ opacity: 0, y: 18 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.35, delay: 0.1 }}
-                    hidden={!description}
-                >
-                    {description}
-                </motion.p>
-            )}
+            {/*{description && (*/}
+            {/*    <motion.p*/}
+            {/*        className="mt-4 max-sm:mt-1 whitespace-pre-wrap max-w-4xl text-lg leading-6 text-zinc-800 max-sm:text-xl"*/}
+            {/*        initial={{ opacity: 0, y: 18 }}*/}
+            {/*        animate={{ opacity: 1, y: 0 }}*/}
+            {/*        transition={{ duration: 0.35, delay: 0.1 }}*/}
+            {/*        hidden={!description}*/}
+            {/*    >*/}
+            {/*        {description}*/}
+            {/*    </motion.p>*/}
+            {/*)}*/}
 
             {children}
         </header>
