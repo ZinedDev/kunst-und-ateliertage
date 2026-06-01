@@ -178,7 +178,6 @@ export default function ParticipationSteps() {
                             </motion.div>
                         </div>
                         <div className="max-sm:border-y-2 max-sm:py-4">
-                            <ParticipationNotice/>
                         </div>
                     </motion.div>
                 </article>
