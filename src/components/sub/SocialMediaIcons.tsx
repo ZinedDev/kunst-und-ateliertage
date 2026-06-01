@@ -27,7 +27,7 @@ export default function SocialMediaIcons() {
     return (
         <div
             key="social-media"
-            className={'flex items-center justify-center gap-x-10 lg:scale-150 text-red-600 text-shadow-lg'}>
+            className={'mt-16 flex items-center justify-center gap-x-10 lg:scale-150 text-red-600 text-shadow-lg'}>
             {socialMediaIcons.map((icon, i) => (
                 <motion.a
                     className={"rounded-lg hover:bg-red-600 hover:text-white transition-colors duration-200"}

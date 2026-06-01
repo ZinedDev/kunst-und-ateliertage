@@ -1,7 +1,6 @@
 import type {ReactNode} from "react";
 import MobileNav from "./MobileNav";
 import SidebarNav from "./SidebarNav.tsx";
-import SocialMediaIcons from "../sub/SocialMediaIcons.tsx";
 
 type AppLayoutProps = {
     children: ReactNode;
@@ -18,32 +17,22 @@ export default function AppLayout({children}: AppLayoutProps) {
                 Zum Inhalt springen
             </a>
 
-            {/* Decorative background */}
-            {/*<div*/}
-            {/*    aria-hidden="true"*/}
-            {/*    className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"*/}
-            {/*>*/}
-            {/*    <div className="absolute -right-24 top-20 h-72 w-72 rounded-full bg-blue-200/40 blur-3xl"/>*/}
-            {/*    <div className="absolute -bottom-32 left-10 h-80 w-80 rounded-full bg-amber-200/40 blur-3xl"/>*/}
-            {/*</div>*/}
-
             {/* Mobile navigation */}
             <div className="lg:hidden">
                 <MobileNav/>
             </div>
 
             {/* Desktop sidebar navigation */}
-            <div className="hidden lg:block ml-10">
-                <SidebarNav/>
-            </div>
-
             {/* Main content */}
             <main
                 id="main-content"
                 tabIndex={-1}
-                className="min-h-screen outline-none pt-24 pb-6 px-2 bg-linear-to-tr from-orange-500 to-orange-500"
+                className="min-h-screen outline-none pt-20 px-2 bg-linear-to-tr from-orange-500 to-orange-500 lg:flex lg:flex-row lg:gap-x-32 lg:items-center lg:justify-between"
             >
-                <div className="mx-auto w-full max-w-6xl">
+                <div className="max-sm:hidden ">
+                    <SidebarNav/>
+                </div>
+                <div className="mx-auto w-auto">
                     {children}
                 </div>
 

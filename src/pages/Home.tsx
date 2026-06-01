@@ -12,7 +12,7 @@ export default function Home() {
 
     return (
         <PageTransition>
-            <section className="mt-10 max-sm:mt-5 flex flex-col items-center justify-center ">
+            <section className="mt-4 max-sm:mt-0 flex flex-col items-center justify-center ">
                 <AnimatePresence>
                     <div
                         key={"header-home"}
@@ -38,9 +38,7 @@ export default function Home() {
                         className={"mt-10 max-sm:mt-5"}>
                         <MainNav />
                     </div>
-                    <div
-                        key={"social-media-icons"}
-                        className="mt-20 max-sm:mt-10">
+                    <div key={"social-media-icons"}>
                         <SocialMediaIcons />
                     </div>
                 </AnimatePresence>

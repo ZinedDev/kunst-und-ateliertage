@@ -7,16 +7,15 @@ import SectionFacts from "../components/sub/SectionFacts.tsx";
 export default function Impressum() {
     return (
         <PageTransition>
-            <main className="space-y-8 lg:space-y-16 max-sm:flex max-sm:flex-col items-center justify-center">
+            <main className="max-sm:flex max-sm:flex-col items-start justify-start">
                 <Header
                     tagline={impressumHeader.tagline}
                     title={impressumHeader.title}
                     description={impressumHeader.description}
                     //taglineClassName="text-neutral-500"
                 />
-                <section
-                    className="space-y-8 lg:space-y-24 flex flex-col max-sm:max-items-center max-sm:justify-center">
-                    <div className="lg:flex lg:flex-row lg:items-center lg:justify-between lg:gap-x-12">
+                <section className="flex flex-col max-sm:max-items-center max-sm:justify-center">
+                    <div>
                         <SectionFacts facts={impressumFacts}/>
                     </div>
                 </section>
