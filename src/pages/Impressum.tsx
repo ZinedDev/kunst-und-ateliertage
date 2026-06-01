@@ -7,7 +7,7 @@ import SectionFacts from "../components/sub/SectionFacts.tsx";
 export default function Impressum() {
     return (
         <PageTransition>
-            <main className="max-sm:flex max-sm:flex-col items-start justify-start">
+            <main className="lg:pl-50 max-sm:flex max-sm:flex-col items-start justify-start">
                 <Header
                     tagline={impressumHeader.tagline}
                     title={impressumHeader.title}
@@ -21,17 +21,17 @@ export default function Impressum() {
                 </section>
 
                 <motion.div
-                    className="grid gap-6 lg:grid-cols-[1fr_0.8fr]"
+                    className="mt-12 mb-6 grid gap-6 lg:grid-cols-[1fr_0.8fr]"
                     initial={{opacity: 0, y: 24}}
                     animate={{opacity: 1, y: 0}}
                     transition={{duration: 0.35, delay: 0.15}}
                 >
-                    <article className="rounded-4xl border border-neutral-200 bg-white p-6 shadow-sm sm:p-8 md:p-10">
+                    <article className="rounded-4xl border-2 border-zinc-800 p-6 text-zinc-800 shadow-sm sm:p-8 md:p-10">
                         <h2 className="text-2xl font-black text-neutral-950">
                             Verantwortlich für die Inhalte
                         </h2>
 
-                        <div className="mt-6 space-y-2 leading-8 text-neutral-700">
+                        <div className="mt-6 space-y-2 leading-8 ">
                             <p>
                                 Für die Inhalte auf den Internetseiten{" "}
                                 <strong className="font-bold text-neutral-950">
@@ -40,7 +40,7 @@ export default function Impressum() {
                                 zeichnet im presserechtlichen Sinne verantwortlich:
                             </p>
 
-                            <div className="mt-6 rounded-3xl bg-neutral-50 p-5">
+                            <div className="mt-6 rounded-3xl p-5">
                                 <p className="font-bold text-neutral-950">
                                     Verein zur Förderung von Kunst und Kultur in den Veringhöfen
                                     e.V.
