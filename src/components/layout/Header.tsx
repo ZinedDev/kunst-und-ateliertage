@@ -9,7 +9,7 @@ interface HeaderProps {
     children?: ReactNode;
 }
 
-export default function Header({ tagline, title, description, taglineClassName = "text-blue-700", children
+export default function Header({ tagline, title, taglineClassName = "text-blue-700", children
 }: HeaderProps) {
     return (
         <header className="max-w-4xl flex flex-col mt-4">
