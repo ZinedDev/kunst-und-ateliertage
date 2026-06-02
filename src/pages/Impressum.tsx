@@ -7,14 +7,13 @@ import SectionFacts from "../components/sub/SectionFacts.tsx";
 export default function Impressum() {
     return (
         <PageTransition>
-            <main className="lg:pl-50 max-sm:flex max-sm:flex-col items-start justify-start">
+            <div>
                 <Header
                     tagline={impressumHeader.tagline}
                     title={impressumHeader.title}
                     description={impressumHeader.description}
-                    //taglineClassName="text-neutral-500"
                 />
-                <section className="flex flex-col max-sm:max-items-center max-sm:justify-center">
+                <section className="flex flex-col items-center justify-center">
                     <div>
                         <SectionFacts facts={impressumFacts}/>
                     </div>
@@ -61,7 +60,7 @@ export default function Impressum() {
                         </div>
                     </article>
                 </motion.div>
-            </main>
+            </div>
         </PageTransition>
     );
 }

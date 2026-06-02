@@ -8,20 +8,18 @@ import SocialMediaIcons from "../components/sub/SocialMediaIcons.tsx";
 export default function ContactPage() {
     return (
         <PageTransition>
-            <main className="max-sm:flex max-sm:flex-col items-start justify-start">
+            <div>
                 <Header
                     tagline={contactHeader.tagline}
                     title={contactHeader.title}
                     description={contactHeader.description}
                 />
-                <section className="flex flex-col max-sm:max-items-center max-sm:justify-center">
-                    <div>
-                        <SectionFacts facts={contactFacts}/>
-                        <Notice data={contactNotice}/>
-                    </div>
+                <section className="flex flex-col items-center justify-center">
+                    <SectionFacts facts={contactFacts}/>
+                    <Notice data={contactNotice}/>
                     <SocialMediaIcons/>
                 </section>
-            </main>
+            </div>
         </PageTransition>
     );
 }

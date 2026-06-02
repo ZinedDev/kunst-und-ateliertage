@@ -9,7 +9,7 @@ interface SectionFactsProps {
 export default function SectionFacts({ facts }: SectionFactsProps) {
     return (
         <motion.div
-            className="mt-12 pl-1 grid grid-cols-1 gap-4"
+            className="mt-8 pl-1 grid grid-cols-1 gap-y-4"
             initial="hidden"
             animate="visible"
             variants={{

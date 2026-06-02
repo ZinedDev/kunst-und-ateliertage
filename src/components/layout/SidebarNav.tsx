@@ -4,7 +4,7 @@ import Logo from "../../assets/images/KuA_Logo.jpg";
 
 export default function SidebarNav() {
     return (
-        <aside className="fixed left-0 top-0 hidden h-screen w-72 flex-col border-r-2 border-zinc-800 shadow-2xl shadow-zinc-800 bg-linear-to-tr from-orange-500 to-orange-400  p-2 backdrop-blur-xl lg:flex">
+        <aside className="fixed left-0 top-0 hidden h-screen w-74 flex-col border-r-2 border-zinc-800 shadow-2xl shadow-zinc-800 bg-linear-to-tr from-orange-500 to-orange-400  p-2 backdrop-blur-xl lg:flex">
             <NavLink to="/" className="group">
                 <div className={"flex flex-row items-center gap-x-2"}>
                     <img
@@ -15,7 +15,7 @@ export default function SidebarNav() {
                         width={50}
                     />
                     <span
-                        className="block text-base font-black leading-tight text-neutral-950 transition group-hover:text-blue-700 sm:text-lg">
+                        className="block text-base font-black leading-tight text-neutral-950 transition sm:text-lg">
                             Kunst- und Ateliertage
                             <br/>
                             <p className="pl-2 text-xs">

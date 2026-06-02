@@ -8,20 +8,18 @@ import SocialMediaIcons from "../components/sub/SocialMediaIcons.tsx";
 export default function ArtistsInfo() {
     return (
         <PageTransition>
-            <main className="max-sm:flex max-sm:flex-col items-start justify-start">
-            <Header
+            <div>
+                <Header
                     tagline={artistsHeader.tagline}
                     title={artistsHeader.title}
                     description={artistsHeader.description}
                 />
-                <section className="flex flex-col max-sm:max-items-center max-sm:justify-center">
-                    <div>
-                        <SectionFacts facts={participationFacts}/>
-                        <Notice data={participationNotice}/>
-                    </div>
+                <section className="flex flex-col items-center justify-center">
+                    <SectionFacts facts={participationFacts}/>
+                    <Notice data={participationNotice}/>
                     <SocialMediaIcons/>
                 </section>
-            </main>
+            </div>
         </PageTransition>
     );
 }
