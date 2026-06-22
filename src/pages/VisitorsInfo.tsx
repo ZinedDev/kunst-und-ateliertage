@@ -2,7 +2,7 @@ import PageTransition from "../components/layout/PageTransitions.tsx";
 import {visitorHighlights, visitorHeader, flyerData} from "../data/VisitorData.ts";
 import Header from "../components/layout/Header.tsx";
 import SectionFacts from "../components/sub/SectionFacts.tsx";
-import SocialMediaIcons from "../components/sub/SocialMediaIcons.tsx";
+// import SocialMediaIcons from "../components/sub/SocialMediaIcons.tsx";
 // import Notice from "../components/sub/Notice.tsx";
 import ProgramSection from "../components/sub/ProgramSection.tsx";
 import FlyerDownload from "../components/sub/FlyerDownload.tsx";
