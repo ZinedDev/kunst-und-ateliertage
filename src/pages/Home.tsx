@@ -21,7 +21,7 @@ export default function Home() {
                     </div>
                     <motion.img
                         key="logo"
-                        className={"mt-5 rounded-full border-2 border-zinc-800"}
+                        className={"mt-5 rounded-br-full border-2 border-zinc-800"}
                         initial={{opacity: 0, scale: 0.5}}
                         animate={{opacity: 1, scale: 1}}
                         transition={{duration: 0.5, type: "spring", stiffness: 100, damping: 10, delay: 0.1,}}
