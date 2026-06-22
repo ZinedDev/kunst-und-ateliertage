@@ -1,14 +1,16 @@
 export const navbarItems = [
     { path: "/", label: "Home" },
-    { path: "/kuenstlerinnen", label: "Künstler*innen" },
-    { path: "/besucherinnen", label: "Besucher*innen" },
+    // { path: "/programm", label: "Programm" },
+    // { path: "/kuenstlerinnen", label: "Künstler*innen" },
+    { path: "/besucherinnen", label: "Programm" },
     // { path: "/galerie", label: "Galerie" },
     { path: "/kontakt", label: "Kontakt" },
     { path: "/impressum", label: "Impressum" },
 ];
 
 export const mainNavItems = [
-    { path: "/kuenstlerinnen", label: "Zeig deine Kunst dort, \n wo sie entsteht." },
+    // { path: "/programm", label: "Hier findet \n was statt."},
+    // { path: "/kuenstlerinnen", label: "Zeig deine Kunst dort, \n wo sie entsteht." },
     { path: "/besucherinnen", label: "Kunst erleben, \n Menschen treffen, \n  Orte entdecken."},
     // { path: "/galerie", label: "Galerie" },
     { path: "/kontakt", label: "Schreibe uns, \n wenn du Fragen hast" },

@@ -7,7 +7,7 @@ export const contactHeader:HeaderData = {
 }
 
 export const contactNotice: NoticeData = {
-    title: "Direktkontakt",
+    title: "Kontakt",
     text: "PR-AG des Atelierhaus 23",
     link: {
         label: "moin@kunstundateliertage.de",

@@ -1,9 +1,11 @@
 import PageTransition from "../components/layout/PageTransitions.tsx";
-import {visitorHighlights, visitorHeader, visitorNotice} from "../data/VisitorData.ts";
+import {visitorHighlights, visitorHeader, flyerData} from "../data/VisitorData.ts";
 import Header from "../components/layout/Header.tsx";
 import SectionFacts from "../components/sub/SectionFacts.tsx";
 import SocialMediaIcons from "../components/sub/SocialMediaIcons.tsx";
-import Notice from "../components/sub/Notice.tsx";
+// import Notice from "../components/sub/Notice.tsx";
+import ProgramSection from "../components/sub/ProgramSection.tsx";
+import FlyerDownload from "../components/sub/FlyerDownload.tsx";
 
 
 export default function VisitorsInfo() {
@@ -17,8 +19,14 @@ export default function VisitorsInfo() {
                 />
                 <section className="flex flex-col items-center justify-center">
                     <SectionFacts facts={visitorHighlights}/>
-                    <Notice data={visitorNotice}/>
-                    <SocialMediaIcons/>
+                    <ProgramSection />
+                    <FlyerDownload
+                        label={flyerData.label}
+                        href={flyerData.href}
+                    />
+                    {/*<Notice data={visitorNotice}/>*/}
+
+                    {/*<SocialMediaIcons/>*/}
                 </section>
             </div>
         </PageTransition>

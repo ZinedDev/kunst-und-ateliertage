@@ -1,10 +1,11 @@
-import { NavLink } from "react-router";
+import {NavLink} from "react-router";
 import {navbarItems,} from "../../data/NavData.ts";
 import Logo from "../../assets/images/KuA_Logo.jpg";
 
 export default function SidebarNav() {
     return (
-        <aside className="fixed left-0 top-0 hidden h-screen w-74 flex-col border-r-2 border-zinc-800 shadow-2xl shadow-zinc-800 bg-linear-to-tr from-orange-500 to-orange-400  p-2 backdrop-blur-xl lg:flex">
+        <aside
+            className="hidden fixed left-0 top-0 p-2 z-50 h-screen w-74 flex-col lg:flex border-r-2 border-zinc-800 shadow-2xl shadow-zinc-800 bg-linear-to-tr from-orange-500 to-orange-400 backdrop-blur-xl pointer-events-auto">
             <NavLink to="/" className="group">
                 <div className={"flex flex-row items-center gap-x-2"}>
                     <img
@@ -21,7 +22,7 @@ export default function SidebarNav() {
                             <p className="pl-2 text-xs">
                                 auf den Elbinseln
                             </p>
-                        </span>
+                    </span>
                 </div>
             </NavLink>
 
@@ -30,7 +31,7 @@ export default function SidebarNav() {
                     <NavLink
                         key={item.path}
                         to={item.path}
-                        className={({ isActive }) =>
+                        className={({isActive}) =>
                             [
                                 "rounded-2xl px-4 py-3 text-sm font-semibold transition",
                                 isActive

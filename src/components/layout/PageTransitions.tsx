@@ -15,6 +15,7 @@ export default function PageTransition({children}: PageTransitionProps) {
                 duration: 0.5,
                 ease: "easeInOut"
             }}
+            className=""
         >
             {children}
         </motion.div>

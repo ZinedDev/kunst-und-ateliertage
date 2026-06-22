@@ -22,7 +22,7 @@ export default function AppLayout({children}: AppLayoutProps) {
                 <MobileNav/>
             </div>
 
-            <div className="max-sm:hidden ">
+            <div className="hidden lg:block">
                 <SidebarNav/>
             </div>
 
@@ -31,7 +31,7 @@ export default function AppLayout({children}: AppLayoutProps) {
             <main
                 id="main-content"
                 tabIndex={-1}
-                className="min-h-screen outline-none pt-14 max-lg:pt-20 px-2 bg-linear-to-tr from-orange-500 to-orange-500 flex flex-col justify-start items-start"
+                className="min-h-screen outline-none pt-20 lg:pt-10 px-2 lg:px-10 bg-linear-to-tr from-orange-500 to-orange-500 flex flex-col justify-start items-start"
             >
                 <div className="mx-auto w-auto">
                     {children}

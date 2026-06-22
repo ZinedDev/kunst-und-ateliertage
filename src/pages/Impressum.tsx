@@ -7,7 +7,7 @@ import SectionFacts from "../components/sub/SectionFacts.tsx";
 export default function Impressum() {
     return (
         <PageTransition>
-            <div>
+            <div className="lg:pl-80">
                 <Header
                     tagline={impressumHeader.tagline}
                     title={impressumHeader.title}

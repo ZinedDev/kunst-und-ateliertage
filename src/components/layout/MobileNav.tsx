@@ -1,5 +1,5 @@
-import {useEffect, useState} from "react";
-import {NavLink, useLocation} from "react-router";
+import {useState} from "react";
+import {NavLink} from "react-router";
 import {AnimatePresence, motion} from "motion/react";
 import {Menu, X} from "lucide-react";
 import {navbarItems} from "../../data/NavData.ts";
@@ -7,17 +7,16 @@ import Logo from "../../assets/images/KuA_Logo.jpg"
 
 export default function MobileNav() {
     const [isOpen, setIsOpen] = useState(false);
-    const location = useLocation();
-
-    useEffect(() => {
-        setIsOpen(false);
-    }, [location.pathname]);
 
     return (
         <>
             <header className="fixed left-0 top-0 z-40 w-full border-b-2 border-zinc-800 bg-linear-to-tr from-orange-500 to-orange-400 px-2 py-3 backdrop-blur-xl sm:px-6">
                 <div className="flex items-center justify-between">
-                    <NavLink to="/" className="group">
+                    <NavLink
+                        to="/"
+                        className="group"
+                        onClick={() => setIsOpen(false)}
+                    >
                     <div className={"flex flex-row items-center gap-1"}>
                         <img
                             src={Logo}
@@ -77,6 +76,7 @@ export default function MobileNav() {
                                     <NavLink
                                         key={item.path}
                                         to={item.path}
+                                        onClick={() => setIsOpen(false)}
                                         end={item.path === "/"}
                                         className={({isActive}) =>
                                             [

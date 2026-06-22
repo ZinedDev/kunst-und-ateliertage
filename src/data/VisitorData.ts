@@ -1,18 +1,19 @@
 import type {HeaderData, NoticeData, SectionFacts} from "./Types.ts";
 
 export const visitorHeader: HeaderData = {
-    tagline: "Orte entdecken, \n Menschen treffen, \n  Kunst erleben .",
-    title: "Besucher*innen",
+    tagline: "Orte entdecken, \n Menschen treffen, \n  Kunst erleben.",
+    title: "Programm",
     description: "...können die kreative Vielfalt der Elbinseln kennenlernen."
 }
 
 export const visitorNotice: NoticeData = {
     title: "Programm",
-    text: "(...für 2026 noch in Arbeit!)",
-    link: {
-        label: "Programm/Flyer 2025",
-        href: "/KuA_2025_Programm_Flyer_Web-2.pdf"
-    }
+    text: "(...Flyer für 2026 noch in Arbeit!)",
+}
+
+export const flyerData = {
+    label: "Programm/Flyer 2025",
+    href: "/KuA_2025_Programm_Flyer_Web-2.pdf"
 }
 
 export const visitorHighlights: SectionFacts[] = [
@@ -31,4 +32,3 @@ export const visitorHighlights: SectionFacts[] = [
 
 ];
 
-export const places = ["Wilhelmsburg", "Veddel", "Kirchdorf", "Georgswerder"];
