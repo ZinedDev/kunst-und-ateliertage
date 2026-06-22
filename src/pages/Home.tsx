@@ -1,15 +1,12 @@
 import PageTransition from "../components/layout/PageTransitions.tsx";
 import Header from "../components/layout/Header.tsx";
 import {AnimatePresence, motion} from "motion/react";
-import Logo from "../assets/images/KuA_Logo.jpg";
+import Logo from "../assets/images/260317_kunst_ateliertage2026_logo_cmyk_kat_2026_logo_cmyk.jpg";
 import SocialMediaIcons from "../components/sub/SocialMediaIcons.tsx";
 import MainNav from "../components/sub/MainNav.tsx";
 
 
 export default function Home() {
-
-
-
     return (
         <PageTransition>
             <section className="mt-4 max-sm:mt-0 flex flex-col items-center justify-center ">
@@ -30,8 +27,8 @@ export default function Home() {
                         transition={{duration: 0.5, type: "spring", stiffness: 100, damping: 10, delay: 0.1,}}
                         src={Logo}
                         alt="Kunst- und Ateliertage Logo"
-                        height={200}
-                        width={200}
+                        height={400}
+                        width={400}
                     />
                     <div
                         key={"main-nav"}

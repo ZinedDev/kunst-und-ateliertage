@@ -80,7 +80,7 @@ export default function ProgramSection() {
                                                 aria-expanded={showLocations}
                                                 className={`flex items-center py-1 gap-2 text-xl max-sm:text-base font-semibold text-black rounded-md hover:scale-105 transition-all duration-200 ${showLocations ? 'scale-105' : ''}`}
                                             >
-                                                <span>Orte</span>
+                                                <span className={showLocations ? 'underline underline-offset-4' : ''}>Orte</span>
                                                 <motion.span
                                                     animate={{ rotate: showLocations ? 180 : 0 }}
                                                     className="text-xs"
@@ -118,7 +118,7 @@ export default function ProgramSection() {
                                                     aria-expanded={showArtists}
                                                     className={`flex items-center py-1 gap-2 text-xl max-sm:text-base font-semibold text-black rounded-lg hover:scale-105 transition-all duration-200 ${showArtists ? 'scale-105' : ''}`}
                                                 >
-                                                    <span>Künstler*innen</span>
+                                                    <span className={showArtists ? 'underline underline-offset-4' : ''}>Künstler*innen</span>
                                                     <motion.span
                                                         animate={{ rotate: showArtists ? 180 : 0 }}
                                                         className="text-xs"

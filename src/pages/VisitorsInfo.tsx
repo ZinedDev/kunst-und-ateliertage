@@ -6,6 +6,7 @@ import SectionFacts from "../components/sub/SectionFacts.tsx";
 // import Notice from "../components/sub/Notice.tsx";
 import ProgramSection from "../components/sub/ProgramSection.tsx";
 import FlyerDownload from "../components/sub/FlyerDownload.tsx";
+import SocialMediaIcons from "../components/sub/SocialMediaIcons.tsx";
 
 
 export default function VisitorsInfo() {
@@ -19,14 +20,15 @@ export default function VisitorsInfo() {
                 />
                 <section className="flex flex-col items-center justify-center">
                     <SectionFacts facts={visitorHighlights}/>
-                    <ProgramSection />
                     <FlyerDownload
                         label={flyerData.label}
                         href={flyerData.href}
                     />
+                    <ProgramSection />
+
                     {/*<Notice data={visitorNotice}/>*/}
 
-                    {/*<SocialMediaIcons/>*/}
+                    <SocialMediaIcons/>
                 </section>
             </div>
         </PageTransition>
