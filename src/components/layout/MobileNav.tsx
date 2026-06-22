@@ -3,7 +3,7 @@ import {NavLink} from "react-router";
 import {AnimatePresence, motion} from "motion/react";
 import {Menu, X} from "lucide-react";
 import {navbarItems} from "../../data/NavData.ts";
-import Logo from "../../assets/images/KuA_Logo.jpg"
+import Logo from "../../assets/images/260317_kunst_ateliertage2026_logo_cmyk_kat_2026_logo_cmyk.jpg"
 
 export default function MobileNav() {
     const [isOpen, setIsOpen] = useState(false);
@@ -21,9 +21,9 @@ export default function MobileNav() {
                         <img
                             src={Logo}
                             alt="Kunst- und Ateliertage Logo"
-                            className={"rounded-full"}
-                            height={50}
-                            width={50}
+                            className={""}
+                            height={100}
+                            width={100}
                         />
                         <span
                             className="block text-base font-black leading-tight text-neutral-950 transition group-hover:text-blue-700 sm:text-lg">

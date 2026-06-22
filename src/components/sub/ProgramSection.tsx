@@ -33,7 +33,7 @@ export default function ProgramSection() {
     };
 
     return (
-        <section className="mt-8 flex flex-col gap-1 mx-auto lg:mx-0">
+        <section className="mt-8 flex flex-col mx-auto lg:mx-0">
             {neighborhoodLocations.map((neighborhood) => {
                 const artistsForNeighborhood = neighborhoodArtists.find(
                     (na) => na.name === neighborhood.name
@@ -47,14 +47,14 @@ export default function ProgramSection() {
                         <button
                             onClick={() => toggleNeighborhood(neighborhood.name)}
                             aria-expanded={isExpanded}
-                            className={`flex items-center gap-2 w-full py-1 px-2 text-left hover:bg-white/5 hover:scale-105 transition-all duration-200 group rounded-md ${isExpanded ? 'bg-white/5 scale-105' : 'bg-transparent'}`}
+                            className={`flex items-center w-full px-2 text-left hover:bg-white/5 hover:scale-105 transition-all duration-200 group rounded-md ${isExpanded ? 'bg-white/5 scale-105' : 'bg-transparent'}`}
                         >
-                            <h2 className="text-xl max-sm:text-base uppercase tracking-[0.3em] text-zinc-700 font-bold">
+                            <h2 className="text-xl max-sm:text-base uppercase tracking-[0.2em] text-zinc-700 font-bold">
                                 {neighborhood.name}
                             </h2>
                             <motion.span
                                 animate={{ rotate: isExpanded ? 180 : 0 }}
-                                className="text-2xl text-zinc-700"
+                                className="pl-1 text-2xl text-zinc-700"
                             >
                                 ↓
                             </motion.span>
@@ -66,7 +66,7 @@ export default function ProgramSection() {
                                     initial={{ height: 0, opacity: 0 }}
                                     animate={{ height: "auto", opacity: 1 }}
                                     exit={{ height: 0, opacity: 0 }}
-                                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                                    transition={{ duration: 0.5, ease: "easeInOut" }}
                                 >
                                     <div className="pl-6 flex flex-col">
                                         {/* Locations Section */}
@@ -89,7 +89,7 @@ export default function ProgramSection() {
                                                 </motion.span>
                                             </button>
                                             <AnimatePresence>
-                                                {isExpanded && showLocations && (
+                                                {showLocations && (
                                                     <motion.ul
                                                         initial={{ height: 0, opacity: 0 }}
                                                         animate={{ height: "auto", opacity: 1, marginBottom: '1rem'}}
@@ -130,8 +130,8 @@ export default function ProgramSection() {
                                                     {showArtists && (
                                                         <motion.ul
                                                             initial={{ height: 0, opacity: 0 }}
-                                                            animate={{ height: "auto", opacity: 1 }}
-                                                            exit={{ height: 0, opacity: 0 }}
+                                                            animate={{ height: "auto", opacity: 1, marginBottom: '1rem' }}
+                                                            exit={{ height: 0, opacity: 0, marginBottom: 0 }}
                                                             className="flex flex-col gap-1 overflow-hidden pl-2 max-sm:pl-1"
                                                         >
                                                             {artistsForNeighborhood.artists.map((artist) => (

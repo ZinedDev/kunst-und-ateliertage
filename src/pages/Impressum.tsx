@@ -27,7 +27,7 @@ export default function Impressum() {
                 >
                     <article className="rounded-4xl border-2 border-zinc-800 p-6 text-zinc-800 shadow-sm sm:p-8 md:p-10">
                         <h2 className="text-2xl font-black text-neutral-950">
-                            Verantwortlich für die Inhalte
+                            Verantwortlichkeit
                         </h2>
 
                         <div className="mt-6 space-y-2 leading-8 ">

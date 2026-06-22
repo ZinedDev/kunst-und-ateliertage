@@ -7,16 +7,15 @@ import ProgramSection from "../components/sub/ProgramSection.tsx";
 export default function ProgramPage() {
     return (
         <PageTransition>
-            <div className="flex flex-col gap-12 pb-20">
+            <div>
                 <Header
                     tagline={programHeader.tagline}
                     title={programHeader.title}
                     description={programHeader.description}
                 />
 
-                <ProgramSection />
-
                 <section className="flex flex-col items-center justify-center">
+                    <ProgramSection />
                     <SocialMediaIcons/>
                 </section>
             </div>

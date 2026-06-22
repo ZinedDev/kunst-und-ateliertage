@@ -12,7 +12,7 @@ import SocialMediaIcons from "../components/sub/SocialMediaIcons.tsx";
 export default function VisitorsInfo() {
     return (
         <PageTransition>
-            <div>
+            <div className="mb-8">
                 <Header
                     tagline={visitorHeader.tagline}
                     title={visitorHeader.title}
@@ -25,9 +25,7 @@ export default function VisitorsInfo() {
                         href={flyerData.href}
                     />
                     <ProgramSection />
-
                     {/*<Notice data={visitorNotice}/>*/}
-
                     <SocialMediaIcons/>
                 </section>
             </div>
