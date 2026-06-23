@@ -9,7 +9,7 @@ import MainNav from "../components/sub/MainNav.tsx";
 export default function Home() {
     return (
         <PageTransition>
-            <div className="mt-4 mb-4 max-sm:mt-0 flex flex-col items-center justify-center">
+            <div className="mt-8 max-sm:mt-4 mb-4 flex flex-col items-center justify-center">
                 <AnimatePresence>
                     <div
                         key={"header-home"}
@@ -21,7 +21,7 @@ export default function Home() {
                     </div>
                     <motion.img
                         key="logo"
-                        className={"mt-2 rounded-full border-2 border-zinc-800"}
+                        className={"mt-4 rounded-full border-2 border-zinc-800"}
                         initial={{opacity: 0, scale: 0.5}}
                         animate={{opacity: 1, scale: 1}}
                         transition={{duration: 0.5, type: "spring", stiffness: 100, damping: 10, delay: 0.1,}}
@@ -32,7 +32,7 @@ export default function Home() {
                     />
                     <div
                         key={"main-nav"}
-                        className={"mt-24 max-sm:mt-12"}>
+                        className={"mt-24 max-sm:mt-8"}>
                         <MainNav />
                     </div>
                     <div

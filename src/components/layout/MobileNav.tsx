@@ -10,7 +10,7 @@ export default function MobileNav() {
 
     return (
         <>
-            <header className="fixed left-0 top-0 z-40 w-full border-b-2 border-zinc-800 bg-linear-to-tr from-orange-500 to-orange-400 px-2 py-3 backdrop-blur-xl sm:px-6">
+            <header className="fixed left-0 top-0 z-40 w-full border-b-2 border-zinc-800 bg-linear-to-tr from-white to-white px-2 py-3 backdrop-blur-xl sm:px-6">
                 <div className="flex items-center justify-between">
                     <NavLink
                         to="/"
@@ -22,17 +22,17 @@ export default function MobileNav() {
                             src={Logo}
                             alt="Kunst- und Ateliertage Logo"
                             className={""}
-                            height={100}
-                            width={100}
+                            height={150}
+                            width={150}
                         />
-                        <span
-                            className="block text-base font-black leading-tight text-neutral-950 transition group-hover:text-blue-700 sm:text-lg">
-                            Kunst- und Ateliertage
-                            <br/>
-                            <p className="pl-2 text-xs">
-                                auf den Elbinseln
-                            </p>
-                        </span>
+                        {/*<span*/}
+                        {/*    className="block text-base font-black leading-tight text-neutral-950 transition group-hover:text-blue-700 sm:text-lg">*/}
+                        {/*    Kunst- und Ateliertage*/}
+                        {/*    <br/>*/}
+                        {/*    <p className="pl-2 text-xs">*/}
+                        {/*        auf den Elbinseln*/}
+                        {/*    </p>*/}
+                        {/*</span>*/}
                     </div>
                     </NavLink>
 
@@ -62,7 +62,7 @@ export default function MobileNav() {
                         />
 
                         <motion.nav
-                            className="max-w-100 fixed left-4 right-4 top-20 z-50 rounded-3xl border-2 border-zinc-800 bg-linear-to-tr from-orange-500 to-orange-400 p-4 shadow-2xl sm:left-6 sm:right-6"
+                            className="max-w-100 fixed left-4 right-4 top-25 z-50 rounded-3xl border-2 border-zinc-800 bg-white p-4 shadow-2xl sm:left-6 sm:right-6"
                             initial={{opacity: 0, y: -16, scale: 0.96}}
                             animate={{opacity: 1, y: 0, scale: 1}}
                             exit={{opacity: 0, y: -16, scale: 0.96}}

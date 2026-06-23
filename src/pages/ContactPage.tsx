@@ -8,7 +8,7 @@ import SocialMediaIcons from "../components/sub/SocialMediaIcons.tsx";
 export default function ContactPage() {
     return (
         <PageTransition>
-            <div>
+            <div className={"mt-8"}>
                 <Header
                     tagline={contactHeader.tagline}
                     title={contactHeader.title}

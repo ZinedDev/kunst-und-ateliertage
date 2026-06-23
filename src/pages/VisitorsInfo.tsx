@@ -12,7 +12,7 @@ import SocialMediaIcons from "../components/sub/SocialMediaIcons.tsx";
 export default function VisitorsInfo() {
     return (
         <PageTransition>
-            <div className="mb-8">
+            <div className="mb-8 mt-8">
                 <Header
                     tagline={visitorHeader.tagline}
                     title={visitorHeader.title}

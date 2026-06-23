@@ -7,7 +7,7 @@ import SectionFacts from "../components/sub/SectionFacts.tsx";
 export default function Impressum() {
     return (
         <PageTransition>
-            <div className="lg:pl-80">
+            <div className="lg:pl-80 mt-8">
                 <Header
                     tagline={impressumHeader.tagline}
                     title={impressumHeader.title}
@@ -20,7 +20,7 @@ export default function Impressum() {
                 </section>
 
                 <motion.div
-                    className="mt-12 mb-6 grid gap-6 lg:grid-cols-[1fr_0.8fr]"
+                    className="mt-8 mb-8 grid gap-6 lg:grid-cols-[1fr_0.8fr]"
                     initial={{opacity: 0, y: 24}}
                     animate={{opacity: 1, y: 0}}
                     transition={{duration: 0.35, delay: 0.15}}
@@ -30,7 +30,7 @@ export default function Impressum() {
                             Verantwortlichkeit
                         </h2>
 
-                        <div className="mt-6 space-y-2 leading-8 ">
+                        <div className="mt-2 space-y-1 leading-8 ">
                             <p>
                                 Für die Inhalte auf den Internetseiten{" "}
                                 <strong className="font-bold text-neutral-950">
@@ -39,7 +39,7 @@ export default function Impressum() {
                                 zeichnet im presserechtlichen Sinne verantwortlich:
                             </p>
 
-                            <div className="mt-6 rounded-3xl p-5">
+                            <div className="mt-2 rounded-3xl p-5">
                                 <p className="font-bold text-neutral-950">
                                     Verein zur Förderung von Kunst und Kultur in den Veringhöfen
                                     e.V.
@@ -48,7 +48,7 @@ export default function Impressum() {
                                 <p>21107 Hamburg</p>
                             </div>
 
-                            <div className="mt-6">
+                            <div className="mt-2">
                                 <p className="font-bold text-neutral-950">E-Mail</p>
                                 <a
                                     href="mailto:moin@kunst-und-ateliertage.de"
