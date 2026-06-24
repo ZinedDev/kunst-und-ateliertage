@@ -6,7 +6,7 @@ export default function MainNav() {
     return (
         <div
             key="main-nav"
-            className="flex flex-col gap-y-6">
+            className="flex flex-col gap-y-6 max-sm:gap-y-2">
             {mainNavItems.map((item, i) => (
                 <motion.div
                     key={i + "-" + item.label}
