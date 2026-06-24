@@ -5,7 +5,7 @@ import Logo from "../../assets/images/260317_kunst_ateliertage2026_logo_cmyk_kat
 export default function SidebarNav() {
     return (
         <aside
-            className="hidden fixed left-0 top-0 p-2 z-50 h-screen w-74 flex-col lg:flex border-r-2 border-zinc-800 shadow-2xl shadow-zinc-800 bg-linear-to-tr from-orange-500 to-orange-400 backdrop-blur-xl pointer-events-auto">
+            className="hidden fixed left-0 top-0 p-2 z-50 h-screen w-74 flex-col lg:flex border-r-2 border-zinc-800 shadow-2xl shadow-zinc-800 bg-white backdrop-blur-xl pointer-events-auto">
             <NavLink to="/" className="group">
                 <div className={"flex flex-row items-center gap-x-2"}>
                     <img

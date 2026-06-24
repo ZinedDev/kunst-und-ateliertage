@@ -14,7 +14,7 @@ export default function Header({ tagline, title, taglineClassName = "text-blue-7
     return (
         <header className="max-w-4xl flex flex-col mt-4">
             <motion.p
-                className={`mb-1 text-lg max-sm:text-sm font-bold uppercase tracking-[0.3em] whitespace-pre-wrap ${taglineClassName}`}
+                className={`mb-1 text-2xl max-sm:text-sm font-bold uppercase tracking-[0.3em] whitespace-pre-wrap ${taglineClassName}`}
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.25 }}
@@ -24,7 +24,7 @@ export default function Header({ tagline, title, taglineClassName = "text-blue-7
             </motion.p>
 
             <motion.h1
-                className="pl-2 text-4xl font-black tracking-tight text-neutral-950 max-sm:text-3xl md:text-6xl lg:text-7xl"
+                className="pl-2 font-black tracking-tight text-neutral-950 max-sm:text-3xl md:text-6xl lg:text-8xl"
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35, delay: 0.05 }}

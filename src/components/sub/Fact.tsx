@@ -20,10 +20,10 @@ export default function Fact({ fact }: ParticipationCardProps) {
             }}
             transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
         >
-            <p className="text-xl max-sm:text-base uppercase tracking-[0.3em] text-zinc-700">
+            <p className="text-2xl max-sm:text-base uppercase tracking-[0.3em] text-zinc-700">
                 {fact.label}
             </p>
-            <p className="pl-2 max-sm:pl-1.5 text-base max-sm:text-sm text-neutral-950">
+            <p className="pl-2 max-sm:pl-1.5 text-lg max-sm:text-sm text-neutral-950">
                 {fact.value}
             </p>
         </motion.article>

@@ -43,18 +43,18 @@ export default function ProgramSection() {
                 const showArtists = expandedSections[`${neighborhood.name}-artists`];
 
                 return (
-                    <div key={neighborhood.name} className="flex flex-col bg-transparent ">
+                    <div key={neighborhood.name} className="flex flex-col bg-transparent py-2 max-sm:py-1 ">
                         <button
                             onClick={() => toggleNeighborhood(neighborhood.name)}
                             aria-expanded={isExpanded}
-                            className={`flex items-center w-full px-2 text-left hover:bg-white/5 hover:scale-105 transition-all duration-200 group rounded-md ${isExpanded ? 'bg-white/5 scale-105' : 'bg-transparent'}`}
+                            className={`flex items-center w-full px-2 text-left hover:bg-white/5 hover:scale-105 hover:cursor-pointer transition-all duration-200 group rounded-md ${isExpanded ? 'bg-white/5 scale-105' : 'bg-transparent'}`}
                         >
                             <h2 className="text-xl max-sm:text-base uppercase tracking-[0.2em] text-zinc-700 font-bold">
                                 {neighborhood.name}
                             </h2>
                             <motion.span
                                 animate={{ rotate: isExpanded ? 180 : 0 }}
-                                className="pl-1 text-2xl text-zinc-700"
+                                className="pl-1 text-xl text-zinc-700"
                             >
                                 ↓
                             </motion.span>
@@ -78,7 +78,7 @@ export default function ProgramSection() {
                                             <button
                                                 onClick={() => toggleSection(neighborhood.name, 'locations')}
                                                 aria-expanded={showLocations}
-                                                className={`flex items-center py-1 gap-2 text-xl max-sm:text-base font-semibold text-black rounded-md hover:scale-105 transition-all duration-200 ${showLocations ? 'scale-105' : ''}`}
+                                                className={`flex items-center py-1 gap-2 text-xl max-sm:text-base font-semibold text-black rounded-md hover:cursor-pointer hover:scale-105 transition-all duration-200 ${showLocations ? 'scale-105' : ''}`}
                                             >
                                                 <span className={showLocations ? 'underline underline-offset-4' : ''}>Orte</span>
                                                 <motion.span
@@ -97,7 +97,7 @@ export default function ProgramSection() {
                                                         className="flex flex-col gap-1 overflow-hidden pl-2 max-sm:pl-1"
                                                     >
                                                         {neighborhood.locations.map((location) => (
-                                                            <li key={location} className="text-base max-sm:text-sm text-neutral-950 font-bold">
+                                                            <li key={location} className="text-lg max-sm:text-base text-neutral-950 font-bold">
                                                                 {location}
                                                             </li>
                                                         ))}
@@ -116,7 +116,7 @@ export default function ProgramSection() {
                                                 <button
                                                     onClick={() => toggleSection(neighborhood.name, 'artists')}
                                                     aria-expanded={showArtists}
-                                                    className={`flex items-center py-1 gap-2 text-xl max-sm:text-base font-semibold text-black rounded-lg hover:scale-105 transition-all duration-200 ${showArtists ? 'scale-105' : ''}`}
+                                                    className={`flex items-center py-1 gap-2 text-xl max-sm:text-base font-semibold text-black rounded-lg hover:cursor-pointer hover:scale-105 transition-all duration-200 ${showArtists ? 'scale-105' : ''}`}
                                                 >
                                                     <span className={showArtists ? 'underline underline-offset-4' : ''}>Künstler*innen</span>
                                                     <motion.span
@@ -135,7 +135,7 @@ export default function ProgramSection() {
                                                             className="flex flex-col gap-1 overflow-hidden pl-2 max-sm:pl-1"
                                                         >
                                                             {artistsForNeighborhood.artists.map((artist) => (
-                                                                <li key={artist.name} className="text-base max-sm:text-sm text-neutral-950 font-bold">
+                                                                <li key={artist.name} className="text-lg max-sm:text-base text-neutral-950 font-bold">
                                                                     {artist.name}
                                                                 </li>
                                                             ))}

@@ -6,19 +6,19 @@ import SectionFacts from "../components/sub/SectionFacts.tsx";
 // import Notice from "../components/sub/Notice.tsx";
 import ProgramSection from "../components/sub/ProgramSection.tsx";
 import FlyerDownload from "../components/sub/FlyerDownload.tsx";
-import SocialMediaIcons from "../components/sub/SocialMediaIcons.tsx";
+// import SocialMediaIcons from "../components/sub/SocialMediaIcons.tsx";
 
 
 export default function VisitorsInfo() {
     return (
         <PageTransition>
-            <div className="mb-8 mt-8">
+            <section className="mb-8 mt-8">
                 <Header
                     tagline={visitorHeader.tagline}
                     title={visitorHeader.title}
                     description={visitorHeader.description}
                 />
-                <section className="flex flex-col items-center justify-center">
+                <section className="flex flex-col items-center justify-center gap-y-8 max-sm:gap-y-0">
                     <SectionFacts facts={visitorHighlights}/>
                     <FlyerDownload
                         label={flyerData.label}
@@ -26,9 +26,9 @@ export default function VisitorsInfo() {
                     />
                     <ProgramSection />
                     {/*<Notice data={visitorNotice}/>*/}
-                    <SocialMediaIcons/>
+                    {/*<SocialMediaIcons/>*/}
                 </section>
-            </div>
+            </section>
         </PageTransition>
     );
 }

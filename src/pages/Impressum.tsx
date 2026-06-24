@@ -39,7 +39,7 @@ export default function Impressum() {
                                 zeichnet im presserechtlichen Sinne verantwortlich:
                             </p>
 
-                            <div className="mt-2 rounded-3xl p-5">
+                            <div className="mt-2 rounded-3xl p-2">
                                 <p className="font-bold text-neutral-950">
                                     Verein zur Förderung von Kunst und Kultur in den Veringhöfen
                                     e.V.
@@ -49,7 +49,7 @@ export default function Impressum() {
                             </div>
 
                             <div className="mt-2">
-                                <p className="font-bold text-neutral-950">E-Mail</p>
+                                {/*<p className="font-bold text-neutral-950">E-Mail</p>*/}
                                 <a
                                     href="mailto:moin@kunst-und-ateliertage.de"
                                     className="wrap-break-word text-lg font-black text-blue-700 transition hover:text-blue-900"
