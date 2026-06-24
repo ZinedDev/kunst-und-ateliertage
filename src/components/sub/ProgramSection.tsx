@@ -64,9 +64,9 @@ export default function ProgramSection() {
                             {isExpanded && (
                                 <motion.div
                                     initial={{ height: 0, opacity: 0 }}
-                                    animate={{ height: "auto", opacity: 1 }}
-                                    exit={{ height: 0, opacity: 0 }}
-                                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                                    animate={{ height: "auto", opacity: 1, marginBottom: '1rem', transition: { duration: .2 } }}
+                                    exit={{ height: 0, opacity: 0, marginBottom: 0, transition: { duration: .2 } }}
+                                    transition={{ease: "easeInOut" }}
                                 >
                                     <div className="pl-6 flex flex-col">
                                         {/* Locations Section */}
@@ -91,9 +91,9 @@ export default function ProgramSection() {
                                             <AnimatePresence>
                                                 {showLocations && (
                                                     <motion.ul
-                                                        initial={{ height: 0, opacity: 0 }}
-                                                        animate={{ height: "auto", opacity: 1, marginBottom: '1rem'}}
-                                                        exit={{ height: 0, opacity: 0, marginBottom: 0 }}
+                                                        initial={{ height: 0, opacity: 0 , marginBottom: 0}}
+                                                        animate={{ height: "auto", opacity: 1, marginBottom: '1rem', transition: { duration: .2 } }}
+                                                        exit={{ height: 0, opacity: 0, marginBottom: 0, transition: { duration: .2 } }}
                                                         className="flex flex-col gap-1 overflow-hidden pl-2 max-sm:pl-1"
                                                     >
                                                         {neighborhood.locations.map((location) => (
@@ -129,9 +129,9 @@ export default function ProgramSection() {
                                                 <AnimatePresence>
                                                     {showArtists && (
                                                         <motion.ul
-                                                            initial={{ height: 0, opacity: 0 }}
-                                                            animate={{ height: "auto", opacity: 1, marginBottom: '1rem' }}
-                                                            exit={{ height: 0, opacity: 0, marginBottom: 0 }}
+                                                            initial={{ height: 0, opacity: 0, marginBottom: 0 }}
+                                                            animate={{ height: "auto", opacity: 1, marginBottom: '1rem', transition: { duration: .2 } }}
+                                                            exit={{ height: 0, opacity: 0, marginBottom: 0, transition: { duration: .2 } }}
                                                             className="flex flex-col gap-1 overflow-hidden pl-2 max-sm:pl-1"
                                                         >
                                                             {artistsForNeighborhood.artists.map((artist) => (
