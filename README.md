@@ -11,15 +11,6 @@ A modern React application for the **Kunst- und Ateliertage 2026** event. This p
 - **Animations:** Motion (motion/react)
 - **Routing:** React Router
 
-## Development
+## Deployment
 
-```bash
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-```
+-**Vercel:** www.kunstundateliertage.de**
