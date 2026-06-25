@@ -1,6 +1,6 @@
 import {NavLink} from "react-router";
 import {navbarItems,} from "../../data/NavData.ts";
-import Logo from "../../assets/images/260317_kunst_ateliertage2026_logo_cmyk_kat_2026_logo_cmyk.jpg";
+import Logo from "../../assets/images/KuA-Logo.png";
 
 export default function SidebarNav() {
     return (
@@ -12,12 +12,12 @@ export default function SidebarNav() {
                         src={Logo}
                         alt="Kunst- und Ateliertage Logo"
                         className={"rounded-full"}
-                        height={200}
-                        width={200}
+                        height={400}
+                        width={400}
                     />
                     {/*<span*/}
-                    {/*    className="block text-base font-black leading-tight text-neutral-950 transition sm:text-lg">*/}
-                    {/*        Kunst- und Ateliertage*/}
+                    {/*    className="block text-sm font-black leading-tight text-neutral-950 transition sm:text-lg">*/}
+                    {/*        14. Kunst- und Ateliertage*/}
                     {/*        <br/>*/}
                     {/*        <p className="pl-2 text-xs">*/}
                     {/*            auf den Elbinseln*/}
