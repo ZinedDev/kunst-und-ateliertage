@@ -1,10 +1,33 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { neighborhoodLocations, neighborhoodArtists } from "../../data/ProgramData.ts";
 
 export default function ProgramSection() {
     const [expandedNeighborhoods, setExpandedNeighborhoods] = useState<Record<string, boolean>>({});
     const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
+    const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
+
+    const setRef = (key: string, el: HTMLDivElement | null) => {
+        sectionRefs.current[key] = el;
+    };
+
+    const scrollIntoViewIfOverreaching = (key: string) => {
+        // Delay to allow animation to start/finish enough to get correct position
+        setTimeout(() => {
+            const element = sectionRefs.current[key];
+            if (element) {
+                const rect = element.getBoundingClientRect();
+                const isOverreaching = rect.bottom > window.innerHeight;
+
+                if (isOverreaching) {
+                    element.scrollIntoView({
+                        behavior: "smooth",
+                        block: "nearest",
+                    });
+                }
+            }
+        }, 300); // Slight delay for motion animations
+    };
 
     const toggleNeighborhood = (name: string) => {
         setExpandedNeighborhoods(prev => {
@@ -16,6 +39,8 @@ export default function ProgramSection() {
                     delete newSections[`${name}-artists`];
                     return newSections;
                 });
+            } else {
+                scrollIntoViewIfOverreaching(name);
             }
             return {
                 ...prev,
@@ -26,10 +51,16 @@ export default function ProgramSection() {
 
     const toggleSection = (neighborhoodName: string, sectionType: 'locations' | 'artists') => {
         const key = `${neighborhoodName}-${sectionType}`;
+        const isExpanding = !expandedSections[key];
+        
         setExpandedSections(prev => ({
             ...prev,
             [key]: !prev[key]
         }));
+
+        if (isExpanding) {
+            scrollIntoViewIfOverreaching(key);
+        }
     };
 
     return (
@@ -43,7 +74,11 @@ export default function ProgramSection() {
                 const showArtists = expandedSections[`${neighborhood.name}-artists`];
 
                 return (
-                    <div key={neighborhood.name} className="flex flex-col bg-transparent py-2 max-sm:py-1 ">
+                    <div 
+                        key={neighborhood.name} 
+                        ref={(el) => setRef(neighborhood.name, el)}
+                        className="flex flex-col bg-transparent py-2 max-sm:py-1 "
+                    >
                         <button
                             onClick={() => toggleNeighborhood(neighborhood.name)}
                             aria-expanded={isExpanded}
@@ -71,6 +106,7 @@ export default function ProgramSection() {
                                     <div className="pl-6 flex flex-col">
                                         {/* Locations Section */}
                                         <motion.article
+                                            ref={(el) => setRef(`${neighborhood.name}-locations`, el)}
                                             initial={{ opacity: 0, x: 20 }}
                                             animate={{ opacity: 1, x: 0 }}
                                             transition={{ duration: 0.5 }}
@@ -109,6 +145,7 @@ export default function ProgramSection() {
                                         {/* Artists Section */}
                                         {artistsForNeighborhood && (
                                             <motion.article
+                                                ref={(el) => setRef(`${neighborhood.name}-artists`, el)}
                                                 initial={{ opacity: 0, x: 20 }}
                                                 animate={{ opacity: 1, x: 0 }}
                                                 transition={{ duration: 0.5, delay: 0.1 }}
