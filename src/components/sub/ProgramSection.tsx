@@ -5,9 +5,9 @@ import { neighborhoodLocations, neighborhoodArtists } from "../../data/ProgramDa
 export default function ProgramSection() {
     const [expandedNeighborhoods, setExpandedNeighborhoods] = useState<Record<string, boolean>>({});
     const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
-    const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
+    const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
-    const setRef = (key: string, el: HTMLDivElement | null) => {
+    const setRef = (key: string, el: HTMLElement | null) => {
         sectionRefs.current[key] = el;
     };
 
