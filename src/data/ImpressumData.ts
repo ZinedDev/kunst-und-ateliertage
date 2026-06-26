@@ -13,7 +13,7 @@ export const impressumFacts:SectionFacts[] = [
     },
     {
         label:"Haftungshinweis",
-        value:"Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine" +
+        value:"Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine " +
             "Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten " +
             "sind ausschließlich deren Betreiber verantwortlich.",
     },
@@ -21,8 +21,8 @@ export const impressumFacts:SectionFacts[] = [
         label:"Urheberrecht",
         value:"Alle Rechte, insbesondere das Recht auf Vervielfältigung " +
             "Verbreitung sowie Übersetzung, bleiben vorbehalten. Keine der " +
-            "Abbildungen darf ohne Genehmigung der jeweiligen Künstler*innen" +
-            "reproduziert oder unter Verwendung elektronischer Systeme" +
+            "Abbildungen darf ohne Genehmigung der jeweiligen Künstler*innen " +
+            "reproduziert oder unter Verwendung elektronischer Systeme " +
             "verarbeitet, vervielfältigt oder verbreitet werden.",
     }
 ];

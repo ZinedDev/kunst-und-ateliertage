@@ -51,7 +51,7 @@ export default function Impressum() {
                             <div className="mt-2">
                                 {/*<p className="font-bold text-neutral-950">E-Mail</p>*/}
                                 <a
-                                    href="mailto:moin@kunst-und-ateliertage.de"
+                                    href="mailto:moin@kunstundateliertage.de"
                                     className="wrap-break-word text-lg font-black text-blue-700 transition hover:text-blue-900"
                                 >
                                     moin@kunst-und-ateliertage.de
