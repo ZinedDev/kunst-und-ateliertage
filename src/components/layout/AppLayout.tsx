@@ -2,6 +2,7 @@ import type {ReactNode} from "react";
 import MobileNav from "./MobileNav";
 import SidebarNav from "./SidebarNav.tsx";
 
+
 type AppLayoutProps = {
     children: ReactNode;
 };

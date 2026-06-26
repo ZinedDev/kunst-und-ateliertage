@@ -2,16 +2,19 @@ import PageTransition from "../components/layout/PageTransitions.tsx";
 import {visitorHighlights, visitorHeader, flyerData} from "../data/VisitorData.ts";
 import Header from "../components/layout/Header.tsx";
 import SectionFacts from "../components/sub/SectionFacts.tsx";
-// import SocialMediaIcons from "../components/sub/SocialMediaIcons.tsx";
-// import Notice from "../components/sub/Notice.tsx";
 import ProgramSection from "../components/sub/ProgramSection.tsx";
 import FlyerDownload from "../components/sub/FlyerDownload.tsx";
-// import SocialMediaIcons from "../components/sub/SocialMediaIcons.tsx";
-
+// import Background from "../components/sub/Background.tsx";
+// import BackgroundImage from "../assets/images/background/image3.jpeg";
 
 export default function VisitorsInfo() {
     return (
         <PageTransition>
+            {/*<Background*/}
+            {/*    src={BackgroundImage}*/}
+            {/*    opacity={0.1}*/}
+            {/*    className=" pointer-events-none"*/}
+            {/*/>*/}
             <section className="mb-8 mt-8">
                 <Header
                     tagline={visitorHeader.tagline}

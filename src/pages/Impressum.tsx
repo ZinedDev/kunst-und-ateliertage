@@ -3,10 +3,17 @@ import PageTransition from "../components/layout/PageTransitions.tsx";
 import Header from "../components/layout/Header.tsx";
 import {impressumFacts, impressumHeader} from "../data/ImpressumData.ts";
 import SectionFacts from "../components/sub/SectionFacts.tsx";
+// import Background from "../components/sub/Background.tsx";
+// import BackgroundImage from "../assets/images/background/image0.jpeg";
 
 export default function Impressum() {
     return (
         <PageTransition>
+            {/*<Background*/}
+            {/*    src={BackgroundImage}*/}
+            {/*    opacity={0.1}*/}
+            {/*    className=" pointer-events-none"*/}
+            {/*/>*/}
             <div className="lg:pl-80 mt-8">
                 <Header
                     tagline={impressumHeader.tagline}
@@ -54,7 +61,7 @@ export default function Impressum() {
                                     href="mailto:moin@kunstundateliertage.de"
                                     className="wrap-break-word text-lg font-black text-blue-700 transition hover:text-blue-900"
                                 >
-                                    moin@kunst-und-ateliertage.de
+                                    moin@kunstundateliertage.de
                                 </a>
                             </div>
                         </div>

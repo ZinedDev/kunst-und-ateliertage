@@ -6,7 +6,7 @@ export default function MainNav() {
     return (
         <div
             key="main-nav"
-            className="flex flex-col gap-y-6 max-sm:gap-y-2">
+            className="flex flex-col gap-y-6 max-sm:gap-y-4">
             {mainNavItems.map((item, i) => (
                 <motion.div
                     key={i + "-" + item.label}
@@ -18,7 +18,7 @@ export default function MainNav() {
                         key={i + "-" + -item.label + "-link"}
                         to={item.path}
                         end={item.path === "/"}
-                        className={"text-xl max-sm:text-sm font-bold uppercase tracking-[0.3em] whitespace-pre-wrap text-blue-700"}
+                        className={"block leading-tight text-xl max-sm:text-sm font-bold uppercase tracking-[0.3em] whitespace-pre-wrap text-blue-700"}
                     >
                         {item.label}
                     </NavLink>
