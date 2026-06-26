@@ -92,7 +92,7 @@ export default function Map() {
                     ))}
                 </div>
                 
-                <div className="w-full max-w-5xl h-150 max-sm:h-100 mt-2 border-2 border-blue-700 rounded-lg overflow-hidden shadow-lg z-0">
+                <div className="w-full max-w-5xl h-100 mt-8 max-sm:mt-4 border-2 border-blue-700 rounded-lg overflow-hidden shadow-lg z-0">
                     <MapContainer 
                         center={[lat, lon]} 
                         zoom={zoom} 
