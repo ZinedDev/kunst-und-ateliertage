@@ -9,6 +9,7 @@ import VisitorsInfo from "./pages/VisitorsInfo.tsx";
 // import Gallery from "./pages/Gallery.tsx";
 import ContactPage from "./pages/ContactPage.tsx";
 import Impressum from "./pages/Impressum.tsx";
+import Map from "./pages/Map.tsx";
 
 export default function App() {
   const location = useLocation();
@@ -18,12 +19,12 @@ export default function App() {
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Home />} />
-            {/*<Route path="/programm" element={<ProgramPage />} />*/}
             {/*<Route path="/kuenstlerinnen" element={<ArtistsInfo />} />*/}
             <Route path="/besucherinnen" element={<VisitorsInfo />} />
             {/*<Route path="/galerie" element={<Gallery />} />*/}
             <Route path="/kontakt" element={<ContactPage />} />
-            <Route path="/impressum" element={<Impressum />} />
+            <Route path="/karte" element={<Map />} />
+              <Route path="/impressum" element={<Impressum />} />
           </Routes>
         </AnimatePresence>
       </AppLayout>

@@ -7,39 +7,129 @@ export const programHeader: HeaderData = {
 };
 
 export const neighborhoodLocations: NeighborhoodLocations[] = [
-    {
-        name: "Veddel",
-        locations: [
-            "HypC",
-            "Veddeler Kirche"
-        ]
-    },
-    {
-        name: "Kirchdorf/Georgswerder",
-        locations: [
-            "Ältestes Wohnhaus Wilhelmsburg",
-            "Künstlerhaus Georgswerder",
-            "Windmühle Johanna"
-        ]
-    },
-    {
-        name: "Wilhelmsburg",
-        locations: [
-            "Atelier Freistil",
-            "Ateliergms. Kreiskomplex",
-            "Atelierhof",
-            "Atelierhaus 23",
-            "Deichdiele",
-            "Galerie 23",
-            "Geheimnisvoller Dachboden",
-            "Hidden Gallery",
-            "HoFa",
-            "Keramikwerkstatt Puhsthof",
-            "Rattenloch 4.0",
-            "Vitacurare",
-            "Zinnwerke"
-        ]
-    }
+  {
+    name: "Veddel",
+    locations: [
+      {
+        name: "HypC",
+        adresse: "Sieldeich 36, 20539 Hamburg",
+        lat: 53.52682,
+        lng: 10.02827
+      },
+      {
+        name: "Veddeler Kirche",
+        adresse: "Wilhelmsburger Straße 73, 20539 Hamburg",
+        lat: 53.525589,
+        lng: 10.017181
+      }
+    ]
+  },
+  {
+    name: "Kirchdorf/Georgswerder",
+    locations: [
+      {
+        name: "Ältestes Wohnhaus Wilhelmsburg",
+        adresse: "Schönenfelder Straße 33, 21109 Hamburg",
+        lat: 53.503992,
+        lng: 10.015822
+      },
+      {
+        name: "Künstlerhaus Georgswerder",
+        adresse: "Rahmwerder Straße 3, 21109 Hamburg",
+        lat: null,
+        lng: null
+      },
+      {
+        name: "Windmühle Johanna",
+        adresse: "Schönenfelder Straße 99a, 21109 Hamburg",
+        lat: 53.49982,
+        lng: 10.02316
+      }
+    ]
+  },
+  {
+    name: "Wilhelmsburg",
+    locations: [
+      {
+        name: "Atelier Freistil",
+        adresse: "Am Veringhof 15–17, 21107 Hamburg",
+        lat: 53.5143,
+        lng: 9.98396
+      },
+      {
+        name: "Ateliergms. Kreiskomplex",
+        adresse: null,
+        lat: null,
+        lng: null
+      },
+      {
+        name: "Atelierhof",
+        adresse: "Veringstraße 22, 21107 Hamburg",
+        lat: null,
+        lng: null
+      },
+      {
+        name: "Atelierhaus 23",
+        adresse: "Am Veringhof 23, 21107 Hamburg",
+        lat: 53.514917,
+        lng: 9.983862
+      },
+      {
+        name: "Deichdiele",
+        adresse: "Veringstraße 156, 21107 Hamburg",
+        lat: 53.505358,
+        lng: 9.98618
+      },
+      {
+        name: "Galerie 23",
+        adresse: "Am Veringhof 23a, 21107 Hamburg",
+        lat: 53.514917,
+        lng: 9.983862
+      },
+      {
+        name: "Geheimnisvoller Dachboden",
+        adresse: "Karl-Kunert-Straße 3, 21107 Hamburg",
+        lat: null,
+        lng: null
+      },
+      {
+        name: "Hidden Gallery",
+        adresse: "Am Veringhof 23, 21107 Hamburg",
+        lat: 53.514917,
+        lng: 9.983862
+      },
+      {
+        name: "HoFa",
+        adresse: "Industriestraße 125–131, 21107 Hamburg",
+        lat: 53.515877,
+        lng: 9.982554
+      },
+      {
+        name: "Keramikwerkstatt Puhsthof",
+        adresse: "Neuhöfer Straße 23, Puhsthof, 21107 Hamburg",
+        lat: 53.5103,
+        lng: 9.98551
+      },
+      {
+        name: "Rattenloch 4.0",
+        adresse: null,
+        lat: null,
+        lng: null
+      },
+      {
+        name: "Vitacurare",
+        adresse: "Sanitasstraße 10, 21107 Hamburg",
+        lat: null,
+        lng: null
+      },
+      {
+        name: "Zinnwerke",
+        adresse: "Am Veringhof 7, 21107 Hamburg",
+        lat: 53.513175,
+        lng: 9.984564
+      }
+    ]
+  }
 ];
 
 export const neighborhoodArtists: NeighborhoodArtists[] = [

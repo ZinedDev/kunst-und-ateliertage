@@ -26,9 +26,19 @@ export interface Artist {
 }
 
 
+
+
+export interface Location {
+    name: string;
+    adresse?: string | null;
+    lat?: number | null;
+    lng?: number | null;
+}
+
+
 export interface NeighborhoodLocations {
     name: string;
-    locations: string[];
+    locations: Location[];
 }
 
 export interface NeighborhoodArtists {

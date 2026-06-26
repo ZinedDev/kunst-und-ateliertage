@@ -2,7 +2,6 @@ import type {ReactNode} from "react";
 import MobileNav from "./MobileNav";
 import SidebarNav from "./SidebarNav.tsx";
 
-
 type AppLayoutProps = {
     children: ReactNode;
 };
@@ -23,16 +22,17 @@ export default function AppLayout({children}: AppLayoutProps) {
                 <MobileNav/>
             </div>
 
+            {/* Desktop sidebar navigation */}
             <div className="hidden lg:block">
                 <SidebarNav/>
             </div>
 
-            {/* Desktop sidebar navigation */}
+
             {/* Main content */}
             <main
                 id="main-content"
                 tabIndex={-1}
-                className="min-h-screen outline-none pt-20 lg:pt-10 px-2 lg:px-10 bg-linear-to-tr from-white to-white flex flex-col justify-start items-start"
+                className="min-h-screen outline-none pt-20 lg:pt-10 px-2 lg:px-10 bg-white flex flex-col justify-start items-start"
             >
                 <div className="mx-auto w-auto">
                     {children}

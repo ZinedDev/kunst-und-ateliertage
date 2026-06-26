@@ -99,8 +99,8 @@ export default function ProgramSection() {
                             {isExpanded && (
                                 <motion.div
                                     initial={{ height: 0, opacity: 0 }}
-                                    animate={{ height: "auto", opacity: 1, marginBottom: '1rem', transition: { duration: .2 } }}
-                                    exit={{ height: 0, opacity: 0, marginBottom: 0, transition: { duration: .2 } }}
+                                    animate={{ height: "auto", opacity: 1, marginBottom: '1rem', transition: { duration: .5 } }}
+                                    exit={{ height: 0, opacity: 0, marginBottom: 0, transition: { duration: .5 } }}
                                     transition={{ease: "easeInOut" }}
                                 >
                                     <div className="pl-6 flex flex-col">
@@ -133,8 +133,8 @@ export default function ProgramSection() {
                                                         className="flex flex-col gap-1 overflow-hidden pl-2 max-sm:pl-1"
                                                     >
                                                         {neighborhood.locations.map((location) => (
-                                                            <li key={location} className="text-lg max-sm:text-base text-neutral-950 font-bold">
-                                                                {location}
+                                                            <li key={location.name} className="text-lg max-sm:text-base text-neutral-950 font-bold">
+                                                                {location.name}
                                                             </li>
                                                         ))}
                                                     </motion.ul>
