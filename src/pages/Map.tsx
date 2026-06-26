@@ -92,7 +92,7 @@ export default function Map() {
                     ))}
                 </div>
                 
-                <div className="w-full max-w-5xl h-100 mt-8 max-sm:mt-4 border-2 border-blue-700 rounded-lg overflow-hidden shadow-lg z-0">
+                <div className="w-full max-w-5xl h-100 max-sm:h-80 mt-8 max-sm:mt-2 border-2 border-blue-700 rounded-lg overflow-hidden shadow-lg z-0">
                     <MapContainer 
                         center={[lat, lon]} 
                         zoom={zoom} 
@@ -116,7 +116,7 @@ export default function Map() {
                         ))}
                     </MapContainer>
                 </div>
-                <div className="mt-2 text-blue-700 text-center">
+                <div className="mt-8 max-sm:mt-2 text-blue-700 text-center">
                     <small>
                         <a 
                             href={`https://www.openstreetmap.org/?mlat=${lat}&mlon=${lon}#map=${zoom}/${lat}/${lon}`}
