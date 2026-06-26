@@ -3,7 +3,7 @@ import {NavLink} from "react-router";
 import {AnimatePresence, motion} from "motion/react";
 import {Menu, X} from "lucide-react";
 import {navbarItems} from "../../data/NavData.ts";
-import Logo from "../../assets/images/KuA-Logo_Schriftzug.png"
+import Logo from "../../assets/images/logos/KuA-Logo_Schriftzug.png"
 
 export default function MobileNav() {
     const [isOpen, setIsOpen] = useState(false);

@@ -1,7 +1,7 @@
 import PageTransition from "../components/layout/PageTransitions.tsx";
 import Header from "../components/layout/Header.tsx";
 import {AnimatePresence, motion} from "motion/react";
-import Logo from "../assets/images/260317_kunst_ateliertage2026_logo_cmyk_kat_2026_logo_cmyk.jpg";
+import Logo from "../assets/images/logos/260317_kunst_ateliertage2026_logo_cmyk_kat_2026_logo_cmyk.jpg";
 import SocialMediaIcons from "../components/sub/SocialMediaIcons.tsx";
 import MainNav from "../components/sub/MainNav.tsx";
 import FlyerDownload from "../components/sub/FlyerDownload.tsx";

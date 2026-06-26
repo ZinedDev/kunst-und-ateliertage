@@ -1,6 +1,6 @@
 import {NavLink} from "react-router";
 import {navbarItems,} from "../../data/NavData.ts";
-import Logo from "../../assets/images/KuA-Logo.png";
+import Logo from "../../assets/images/logos/KuA-Logo.png";
 
 export default function SidebarNav() {
     return (
