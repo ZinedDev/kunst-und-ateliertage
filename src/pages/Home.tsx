@@ -12,7 +12,7 @@ import {flyerData} from "../data/VisitorData.ts";
 export default function Home() {
     return (
         <PageTransition>
-            <section className="mt-8 max-sm:mt-4 mb-4 flex flex-col items-center justify-center gap-y-4 max-sm:gap-y-1">
+            <section className="mt-8 max-sm:mt-4 mb-4 flex flex-col items-center justify-center gap-y-6 max-sm:gap-y-1">
                 <AnimatePresence>
                     <div
                         key={"header-home"}
