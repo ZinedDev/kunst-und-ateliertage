@@ -14,17 +14,17 @@ export default function Impressum() {
             {/*    opacity={0.1}*/}
             {/*    className=" pointer-events-none"*/}
             {/*/>*/}
-            <div className="lg:pl-80 mt-8">
+            <section className="mt-8">
                 <Header
                     tagline={impressumHeader.tagline}
                     title={impressumHeader.title}
                     description={impressumHeader.description}
                 />
-                <section className="flex flex-col items-center justify-center">
+                <div className="flex flex-col items-center justify-center">
                     <div>
                         <SectionFacts facts={impressumFacts}/>
                     </div>
-                </section>
+                </div>
 
                 <motion.div
                     className="mt-8 mb-8 grid gap-6 lg:grid-cols-[1fr_0.8fr]"
@@ -67,7 +67,7 @@ export default function Impressum() {
                         </div>
                     </article>
                 </motion.div>
-            </div>
+            </section>
         </PageTransition>
     );
 }

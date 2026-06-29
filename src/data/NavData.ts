@@ -15,6 +15,6 @@ export const mainNavItems = [
     { path: "/besucherinnen", label: "Orte entdecken,\n Menschen treffen,\n  Kunst erleben"},
     // { path: "/galerie", label: "Galerie" },
     { path: "/kontakt", label: "Schreibe uns, \n wenn du Fragen hast" },
-    { path: "/karte", label: "Finde uns \n auf der Karte" },
+    { path: "/karte", label: "Erlebe Kunst da, \n wo sie entsteht" },
     { path: "/impressum", label: "Rechtliches" },
 ];

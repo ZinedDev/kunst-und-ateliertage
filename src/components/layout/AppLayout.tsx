@@ -32,7 +32,7 @@ export default function AppLayout({children}: AppLayoutProps) {
             <main
                 id="main-content"
                 tabIndex={-1}
-                className="min-h-screen outline-none pt-20 lg:pt-10 px-2 lg:px-10 bg-white flex flex-col justify-start items-start"
+                className="min-h-screen outline-none lg:ml-80 mt-20 lg:mt-10 px-2 lg:px-10 bg-white flex flex-col justify-start items-center"
             >
                 <div className="mx-auto w-auto">
                     {children}

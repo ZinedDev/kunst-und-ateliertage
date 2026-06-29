@@ -9,12 +9,12 @@ interface HeaderProps {
     children?: ReactNode;
 }
 
-export default function Header({ tagline, title, taglineClassName = "text-blue-700", children
+export default function Header({ tagline, title, taglineClassName = "text-blue-800", children
 }: HeaderProps) {
     return (
         <header className="max-w-4xl flex flex-col mt-4">
             <motion.p
-                className={`block leading-tight mb-1 text-2xl max-sm:text-sm font-bold uppercase tracking-[0.3em] whitespace-pre-wrap ${taglineClassName}`}
+                className={`block leading-tight mb-1 text-2xl max-sm:text-base font-bold uppercase tracking-[0.3em] whitespace-pre-wrap ${taglineClassName}`}
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.25 }}

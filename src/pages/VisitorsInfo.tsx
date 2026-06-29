@@ -21,7 +21,7 @@ export default function VisitorsInfo() {
                     title={visitorHeader.title}
                     description={visitorHeader.description}
                 />
-                <section className="flex flex-col items-center justify-center gap-y-8 max-sm:gap-y-0">
+                <div className="flex flex-col items-center justify-center gap-y-8 max-sm:gap-y-0">
                     <SectionFacts facts={visitorHighlights}/>
                     <FlyerDownload
                         label={flyerData.label}
@@ -30,7 +30,7 @@ export default function VisitorsInfo() {
                     <ProgramSection />
                     {/*<Notice data={visitorNotice}/>*/}
                     {/*<SocialMediaIcons/>*/}
-                </section>
+                </div>
             </section>
         </PageTransition>
     );

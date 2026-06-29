@@ -22,7 +22,7 @@ export default function ProgramSection() {
                 if (isOverreaching) {
                     element.scrollIntoView({
                         behavior: "smooth",
-                        block: "nearest",
+                        block: "start",
                     });
                 }
             }

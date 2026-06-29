@@ -3,7 +3,6 @@ import { AnimatePresence } from "motion/react";
 
 import AppLayout from "./components/layout/AppLayout";
 import Home from "./pages/Home.tsx";
-// import ProgramPage from "./pages/ProgramPage.tsx";
 // import ArtistsInfo from "./pages/ArtistsInfo.tsx";
 import VisitorsInfo from "./pages/VisitorsInfo.tsx";
 // import Gallery from "./pages/Gallery.tsx";

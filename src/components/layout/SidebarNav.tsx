@@ -1,13 +1,13 @@
 import {NavLink} from "react-router";
 import {navbarItems,} from "../../data/NavData.ts";
-import Logo from "../../assets/images/logos/KuA-Logo.png";
+import Logo from "../../assets/images/logos/260317_kunst_ateliertage2026_logo_cmyk_kat_2026_logo_cmyk.jpg"
 
 export default function SidebarNav() {
     return (
         <aside
             className="hidden fixed left-0 top-0 p-2 z-50 h-screen w-74 flex-col lg:flex border-r-2 border-zinc-800 shadow-2xl shadow-zinc-800 bg-white backdrop-blur-xl pointer-events-auto">
             <NavLink to="/" className="group">
-                <div className={"flex flex-row items-center gap-x-2"}>
+                <div className={"flex flex-row items-center border-b-2 border-zinc-800 pb-2"}>
                     <img
                         src={Logo}
                         alt="Kunst- und Ateliertage Logo"
@@ -17,7 +17,7 @@ export default function SidebarNav() {
                     />
                     {/*<span*/}
                     {/*    className="block text-sm font-black leading-tight text-neutral-950 transition sm:text-lg">*/}
-                    {/*        14. Kunst- und Ateliertage*/}
+                    {/*        14. KuA*/}
                     {/*        <br/>*/}
                     {/*        <p className="pl-2 text-xs">*/}
                     {/*            auf den Elbinseln*/}
@@ -26,7 +26,7 @@ export default function SidebarNav() {
                 </div>
             </NavLink>
 
-            <nav className="flex flex-col gap-2 mt-10">
+            <nav className="flex flex-col gap-2 mt-4">
                 {navbarItems.map((item) => (
                     <NavLink
                         key={item.path}

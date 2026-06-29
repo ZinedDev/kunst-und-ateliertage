@@ -12,14 +12,14 @@ import {flyerData} from "../data/VisitorData.ts";
 export default function Home() {
     return (
         <PageTransition>
-            <section className="mt-8 max-sm:mt-4 mb-4 flex flex-col items-center justify-center gap-y-10 max-sm:gap-y-1">
+            <section className="mt-8 max-sm:mt-4 mb-4 flex flex-col items-center justify-center gap-y-4 max-sm:gap-y-1">
                 <AnimatePresence>
                     <div
                         key={"header-home"}
                         className="max-w-5xl">
                         <Header
                             tagline="19.–20. September 2026"
-                            taglineClassName="underline border-blue-700 p-2 text-blue-700"
+                            taglineClassName="underline text-blue-800"
                         />
                     </div>
                     <motion.img

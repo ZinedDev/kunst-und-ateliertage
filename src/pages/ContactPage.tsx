@@ -15,18 +15,18 @@ export default function ContactPage() {
             {/*    opacity={0.1}*/}
             {/*    className=" pointer-events-none"*/}
             {/*/>*/}
-            <div className={"mt-8"}>
+            <section className={"mt-8"}>
                 <Header
                     tagline={contactHeader.tagline}
                     title={contactHeader.title}
                     description={contactHeader.description}
                 />
-                <section className="flex flex-col items-center justify-center">
+                <div className="flex flex-col items-center justify-center">
                     <SectionFacts facts={contactFacts}/>
                     <Notice data={contactNotice}/>
                     <SocialMediaIcons/>
-                </section>
-            </div>
+                </div>
+            </section>
         </PageTransition>
     );
 }

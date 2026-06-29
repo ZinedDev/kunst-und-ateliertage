@@ -18,8 +18,15 @@ export default function MainNav() {
                         key={i + "-" + -item.label + "-link"}
                         to={item.path}
                         end={item.path === "/"}
-                        className={"block leading-tight text-xl max-sm:text-sm font-bold uppercase tracking-[0.3em] whitespace-pre-wrap text-blue-700"}
+                        className={"flex items-center gap-x-4 leading-tight text-xl max-sm:text-base font-bold uppercase tracking-[0.3em] whitespace-pre-wrap text-blue-800"}
                     >
+                        <motion.span
+                            animate={{x: [8, 10, 8]}}
+                            transition={{repeat: Infinity, duration: 1.5, ease: "easeInOut"}}
+                            className={"text-2xl max-sm:text-lg font-bold"}
+                        >
+                            →
+                        </motion.span>
                         {item.label}
                     </NavLink>
                 </motion.div>

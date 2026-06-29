@@ -69,7 +69,7 @@ export default function Map() {
 
     return (
         <PageTransition>
-            <div className="mt-8">
+            <section className="mt-8">
                 <Header 
                     title={mapHeader.title}
                     tagline={mapHeader.tagline}
@@ -128,7 +128,7 @@ export default function Map() {
                         </a>
                     </small>
                 </div>
-            </div>
+            </section>
         </PageTransition>
     );
 }

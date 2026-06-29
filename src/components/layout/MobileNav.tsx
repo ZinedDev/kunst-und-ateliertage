@@ -50,7 +50,7 @@ export default function MobileNav() {
 
             <AnimatePresence>
                 {isOpen && (
-                    <>
+                    <div>
                         <motion.button
                             type="button"
                             aria-label="Menü schließen"
@@ -62,7 +62,7 @@ export default function MobileNav() {
                         />
 
                         <motion.nav
-                            className="max-w-100 fixed left-4 right-4 top-25 z-50 rounded-3xl border-2 border-zinc-800 bg-white p-4 shadow-2xl sm:left-6 sm:right-6"
+                            className="w-1/2 fixed left-50 max-sm:left-22.5 top-25 z-50 rounded-3xl border-2 border-zinc-800 bg-white p-4 shadow-2xl"
                             initial={{opacity: 0, y: -16, scale: 0.96}}
                             animate={{opacity: 1, y: 0, scale: 1}}
                             exit={{opacity: 0, y: -16, scale: 0.96}}
@@ -80,7 +80,7 @@ export default function MobileNav() {
                                         end={item.path === "/"}
                                         className={({isActive}) =>
                                             [
-                                                "rounded-2xl px-4 py-2 text-base font-semibold transition-all",
+                                                "rounded-2xl px-4 py-2 text-lg font-semibold transition-all",
                                                 isActive
                                                     ? "bg-neutral-950 text-white"
                                                     : "text-neutral-700 hover:bg-neutral-100 hover:text-neutral-950",
@@ -92,7 +92,7 @@ export default function MobileNav() {
                                 ))}
                             </div>
                         </motion.nav>
-                    </>
+                    </div>
                 )}
             </AnimatePresence>
         </>
