@@ -12,7 +12,7 @@ export default function SocialMediaIcons() {
             x: 0,
             transition: {
                 duration: 0.4,
-                delay: (i + 1) * 0.2,
+                delay: i * 0.1,
                 type: "spring",
                 stiffness: 100,
                 scale: {delay:0}
@@ -20,7 +20,7 @@ export default function SocialMediaIcons() {
         }),
         hidden: {
             opacity: 0,
-            x: (window.innerWidth < 640 ? -50 : -100),
+            x: -50,
         },
     }
 
@@ -33,7 +33,7 @@ export default function SocialMediaIcons() {
                     className={"rounded-lg hover:bg-red-600 hover:text-white transition-colors duration-200"}
                     href={icon.url}
                     aria-label={icon.label}
-                    key={'#' + i + '-' + icon.id}
+                    key={icon.id}
                     target={icon.url.startsWith("http") || icon.url.startsWith("www") ? "_blank" : "_self"}
                     rel={icon.url.startsWith("http") || icon.url.startsWith("www") ? "noreferrer" : ""}
                     initial="hidden"
@@ -41,7 +41,7 @@ export default function SocialMediaIcons() {
                     custom={i}
                     variants={variants}
                     whileHover={{scale: 1.1}}
-                    viewport={{once: false}}
+                    viewport={{once: true}}
                 >
                     <icon.icon/>
                 </motion.a>

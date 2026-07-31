@@ -6,7 +6,7 @@ import SocialMediaIcons from "../sub/SocialMediaIcons.tsx";
 export default function SidebarNav() {
     return (
         <aside
-            className="hidden lg:flex flex-col fixed left-0 top-0 p-2 z-50 h-screen w-74  border-r-2 border-zinc-800 shadow-2xl shadow-zinc-800 bg-white backdrop-blur-xl pointer-events-auto">
+            className="hidden lg:flex flex-col fixed left-0 top-0 p-5 z-50 h-screen w-74  border-r-2 border-zinc-800 shadow-2xl shadow-zinc-800 bg-white backdrop-blur-xl pointer-events-auto">
                 <div className={"border-b-2 border-zinc-800 pb-2"}>
                     <NavLink to="/">
                     <img
