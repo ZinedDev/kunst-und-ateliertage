@@ -1,7 +1,7 @@
 import type {HeaderData, NoticeData, SectionFacts} from "./Types.ts";
 
 export const contactHeader:HeaderData = {
-    tagline: "Schreibe uns, \n wenn du Fragen hast",
+    tagline: "Schreibe uns,\nwenn du Fragen hast",
     title: "Kontakt",
     description: "...für Fragen, Anfragen und/oder Zusammenarbeit.",
 }

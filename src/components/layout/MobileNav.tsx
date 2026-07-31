@@ -4,13 +4,14 @@ import {AnimatePresence, motion} from "motion/react";
 import {Menu, X} from "lucide-react";
 import {navbarItems} from "../../data/NavData.ts";
 import Logo from "../../assets/images/logos/KuA-Logo_Schriftzug.png"
+import SocialMediaIcons from "../sub/SocialMediaIcons.tsx";
 
 export default function MobileNav() {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
         <>
-            <header className="fixed left-0 top-0 z-40 w-full border-b-2 border-zinc-800 bg-linear-to-tr from-white to-white px-2 py-3 backdrop-blur-xl sm:px-6">
+            <header className="fixed left-0 top-0 z-40 w-full border-b-2 border-zinc-800 bg-linear-to-tr from-white to-white px-2 py-2 backdrop-blur-xl sm:px-6">
                 <div className="flex items-center justify-between">
                     <NavLink
                         to="/"
@@ -28,14 +29,12 @@ export default function MobileNav() {
                         <span
                             className="block text-sm font-black leading-tight text-neutral-950 transition group-hover:text-blue-700">
                             14. Kunst- und Ateliertage
-                            <br/>
-                            <p className="pl-2 text-xs">
+                            <p className="text-xs">
                                 auf den Elbinseln
                             </p>
                         </span>
                     </div>
                     </NavLink>
-
                     <button
                         type="button"
                         onClick={() => setIsOpen((current) => !current)}
@@ -45,6 +44,12 @@ export default function MobileNav() {
                     >
                         {isOpen ? <X size={22}/> : <Menu size={22}/>}
                     </button>
+                </div>
+                <div
+                    key={"social-media-icons"}
+                    className={"max-sm:mb-1"}
+                >
+                    <SocialMediaIcons />
                 </div>
             </header>
 

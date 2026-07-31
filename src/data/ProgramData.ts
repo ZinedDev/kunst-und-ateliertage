@@ -1,7 +1,7 @@
 import type { NeighborhoodLocations, NeighborhoodArtists, HeaderData } from "./Types.ts";
 
 export const programHeader: HeaderData = {
-    tagline: "Kunst und Künstlerinnen \n vor Ort im Quartier",
+    tagline: "Kunst und Künstlerinnen\nvor Ort im Quartier",
     title: "Programm & Orte",
     description: "Hier findest du alle Orte und Künstler*innen, die an den Kunst- und Ateliertagen teilnehmen, sortiert nach ihren Stadtteilen."
 };

@@ -22,7 +22,7 @@ export default function Notice({ data }: NoticeProps) {
 
                 {data.link && (
                     <a
-                        className="block text-2xl max-sm:text-xl"
+                        className="block text-3xl max-sm:text-xl"
                         href={data.link.href}
                         target={data.link.href.startsWith("http") || data.link.href.endsWith(".pdf") ? "_blank" : undefined}
                         rel={data.link.href.startsWith("http") || data.link.href.endsWith(".pdf") ? "noopener noreferrer" : undefined}

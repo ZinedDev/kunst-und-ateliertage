@@ -1,9 +1,9 @@
 import type {HeaderData, NoticeData, SectionFacts} from "./Types.ts";
 
 export const visitorHeader: HeaderData = {
-    tagline: "Orte entdecken, \n Menschen treffen, \n  Kunst erleben",
-    title: "Programm",
-    description: "...können die kreative Vielfalt der Elbinseln kennenlernen."
+    tagline:"Orte entdecken,\nMenschen treffen,\nKunst erleben",
+    title:"Programm",
+    description:"...können die kreative Vielfalt der Elbinseln kennenlernen."
 }
 
 export const visitorNotice: NoticeData = {
