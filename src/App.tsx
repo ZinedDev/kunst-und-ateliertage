@@ -22,8 +22,8 @@ export default function App() {
             <Route path="/besucherinnen" element={<VisitorsInfo />} />
             {/*<Route path="/galerie" element={<Gallery />} />*/}
             <Route path="/kontakt" element={<ContactPage />} />
-            <Route path="/karte" element={<Map />} />
-              <Route path="/impressum" element={<Impressum />} />
+            <Route path="/karte" element={<Map />} /><Route path="/impressum" element={<Impressum />} />
+
           </Routes>
         </AnimatePresence>
       </AppLayout>
