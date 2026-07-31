@@ -1,5 +1,5 @@
-import { Route, Routes, useLocation } from "react-router";
-import { AnimatePresence } from "motion/react";
+import {Route, Routes, useLocation} from "react-router";
+import {AnimatePresence} from "motion/react";
 
 import AppLayout from "./components/layout/AppLayout";
 import Home from "./pages/Home.tsx";
@@ -11,21 +11,22 @@ import Impressum from "./pages/Impressum.tsx";
 import Map from "./pages/Map.tsx";
 
 export default function App() {
-  const location = useLocation();
+    const location = useLocation();
 
-  return (
-      <AppLayout>
-        <AnimatePresence mode="wait">
-          <Routes location={location} key={location.pathname}>
-            <Route path="/" element={<Home />} />
-            {/*<Route path="/kuenstlerinnen" element={<ArtistsInfo />} />*/}
-            <Route path="/besucherinnen" element={<VisitorsInfo />} />
-            {/*<Route path="/galerie" element={<Gallery />} />*/}
-            <Route path="/kontakt" element={<ContactPage />} />
-            <Route path="/karte" element={<Map />} /><Route path="/impressum" element={<Impressum />} />
+    return (
+        <AppLayout>
+            <AnimatePresence mode="wait">
+                <Routes location={location} key={location.pathname}>
+                    <Route path="/" element={<Home/>}/>
+                    {/*<Route path="/kuenstlerinnen" element={<ArtistsInfo />} />*/}
+                    <Route path="/besucherinnen" element={<VisitorsInfo/>}/>
+                    {/*<Route path="/galerie" element={<Gallery />} />*/}
+                    <Route path="/karte" element={<Map/>}/>
 
-          </Routes>
-        </AnimatePresence>
-      </AppLayout>
-  );
+                    <Route path="/kontakt" element={<ContactPage/>}/>
+                    <Route path="/impressum" element={<Impressum/>}/>
+                </Routes>
+            </AnimatePresence>
+        </AppLayout>
+    );
 }

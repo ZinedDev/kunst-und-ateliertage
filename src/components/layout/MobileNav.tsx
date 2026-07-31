@@ -52,7 +52,6 @@ export default function MobileNav() {
                     <SocialMediaIcons />
                 </div>
             </header>
-
             <AnimatePresence>
                 {isOpen && (
                     <div>
@@ -67,7 +66,7 @@ export default function MobileNav() {
                         />
 
                         <motion.nav
-                            className="w-1/2 fixed left-50 max-sm:left-22.5 top-25 z-50 rounded-3xl border-2 border-zinc-800 bg-white p-4 shadow-2xl"
+                            className="w-1/2 fixed left-50 max-sm:left-22.5 top-28 z-50 rounded-3xl border-2 border-zinc-800 bg-white p-4 shadow-2xl"
                             initial={{opacity: 0, y: -16, scale: 0.96}}
                             animate={{opacity: 1, y: 0, scale: 1}}
                             exit={{opacity: 0, y: -16, scale: 0.96}}
