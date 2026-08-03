@@ -12,11 +12,11 @@ export default function MobileNav() {
 
     return (
         <>
-            <header className="fixed left-0 top-0 z-40 w-full border-b-2 border-zinc-800 bg-linear-to-tr from-white to-white px-2 py-2 backdrop-blur-xl sm:px-6">
+            <header className="fixed left-0 top-0 z-40 w-full border-b-2 border-zinc-800 px-2 sm:px-6 backdrop-blur-xl ">
                 <div className="flex items-center justify-between">
                     <NavLink
                         to="/"
-                        className="group"
+                        className="group bg-red"
                         onClick={() => setIsOpen(false)}
                     >
                     <div>
@@ -38,7 +38,6 @@ export default function MobileNav() {
                     </NavLink>
                     <div
                         key={"social-media-icons"}
-                        className={"max-sm:mb-1"}
                     >
                         <SocialMediaIcons />
                     </div>
@@ -47,7 +46,7 @@ export default function MobileNav() {
                         onClick={() => setIsOpen((current) => !current)}
                         aria-label={isOpen ? "Menü schließen" : "Menü öffnen"}
                         aria-expanded={isOpen}
-                        className="inline-flex h-8 w-8 items-center justify-center rounded-1xl border-2 border-zinc-800 bg-transparent text-zinc transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                        className="inline-flex h-8 w-8 mr-2 ml-3 items-center justify-center rounded-1xl border-2 border-zinc-800 bg-transparent text-zinc transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                     >
                         {isOpen ? <X size={24}/> : <Menu size={18}/>}
                     </button>

@@ -6,10 +6,12 @@ export function usePageScroll() {
   const navigate = useNavigate();
   const location = useLocation();
   const isScrolling = useRef(false);
-  const touchStart = useRef<number | null>(null);
   const cooldownPeriod = 1000; // ms
 
   useEffect(() => {
+    // Only apply for desktop (screens >= 1024px)
+    if (window.innerWidth < 1024) return;
+
     const handleNavigation = (direction: 'up' | 'down') => {
       if (isScrolling.current) return;
 
@@ -71,33 +73,10 @@ export function usePageScroll() {
       handleNavigation(event.deltaY > 0 ? 'down' : 'up');
     };
 
-    const handleTouchStart = (event: TouchEvent) => {
-      touchStart.current = event.touches[0].clientY;
-    };
-
-    const handleTouchEnd = (event: TouchEvent) => {
-      if (touchStart.current === null) return;
-      
-      const touchEnd = event.changedTouches[0].clientY;
-      const deltaY = touchStart.current - touchEnd;
-      touchStart.current = null;
-
-      // Threshold for swipe
-      if (Math.abs(deltaY) < 50) return;
-
-      if (isInternalScrollable(event.target as HTMLElement, deltaY)) return;
-
-      handleNavigation(deltaY > 0 ? 'down' : 'up');
-    };
-
     window.addEventListener("wheel", handleWheel, { passive: false });
-    window.addEventListener("touchstart", handleTouchStart, { passive: true });
-    window.addEventListener("touchend", handleTouchEnd, { passive: true });
 
     return () => {
       window.removeEventListener("wheel", handleWheel);
-      window.removeEventListener("touchstart", handleTouchStart);
-      window.removeEventListener("touchend", handleTouchEnd);
     };
   }, [location.pathname, navigate]);
 }

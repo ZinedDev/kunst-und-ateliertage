@@ -10,7 +10,7 @@ type AppLayoutProps = {
 export default function AppLayout({children}: AppLayoutProps) {
     usePageScroll();
     return (
-        <div className="h-screen overflow-hidden">
+        <div className="min-h-screen lg:h-screen lg:overflow-hidden">
             {/* Accessibility skip link */}
             <a
                 href="#main-content"
@@ -34,7 +34,7 @@ export default function AppLayout({children}: AppLayoutProps) {
             <main
                 id="main-content"
                 tabIndex={-1}
-                className="h-full outline-none lg:ml-80 mt-20 lg:mt-10 px-2 lg:px-10 bg-white flex flex-col justify-start items-center overflow-y-auto"
+                className="outline-none lg:ml-80 lg:h-full mt-20 lg:mt-10 px-2 lg:px-10 bg-white flex flex-col justify-start items-center lg:overflow-y-auto"
             >
                 <div className="">
                     {children}
