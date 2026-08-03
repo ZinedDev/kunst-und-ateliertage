@@ -22,7 +22,7 @@ export default function Home() {
                     <motion.img
                         key="logo"
                         // className={"border-2 border-orange-500 rounded-4xl"}
-                        initial={{opacity: 0, scale: 0.5}}
+                        initial={{opacity: 0, scale: .8}}
                         animate={{opacity: 1, scale: 1}}
                         transition={{duration: 0.5, type: "spring", stiffness: 100, damping: 10, delay: 0.1,}}
                         src={Logo}

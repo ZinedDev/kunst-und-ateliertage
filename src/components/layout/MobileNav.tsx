@@ -16,7 +16,7 @@ export default function MobileNav() {
                 <div className="flex items-center justify-between">
                     <NavLink
                         to="/"
-                        className="group bg-red"
+                        className="group"
                         onClick={() => setIsOpen(false)}
                     >
                     <div>

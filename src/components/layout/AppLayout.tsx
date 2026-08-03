@@ -10,7 +10,7 @@ type AppLayoutProps = {
 export default function AppLayout({children}: AppLayoutProps) {
     usePageScroll();
     return (
-        <div className="min-h-screen lg:h-screen lg:overflow-hidden">
+        <div className="min-h-screen lg:h-screen lg:overflow-hidden overflow-x-hidden">
             {/* Accessibility skip link */}
             <a
                 href="#main-content"
@@ -29,7 +29,6 @@ export default function AppLayout({children}: AppLayoutProps) {
                 <SidebarNav/>
             </div>
 
-
             {/* Main content */}
             <main
                 id="main-content"
@@ -39,7 +38,6 @@ export default function AppLayout({children}: AppLayoutProps) {
                 <div className="">
                     {children}
                 </div>
-
             </main>
         </div>
     );
