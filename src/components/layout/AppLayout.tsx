@@ -1,14 +1,16 @@
 import type {ReactNode} from "react";
 import MobileNav from "./MobileNav";
 import SidebarNav from "./SidebarNav.tsx";
+import {usePageScroll} from "../../hooks/usePageScroll.ts";
 
 type AppLayoutProps = {
     children: ReactNode;
 };
 
 export default function AppLayout({children}: AppLayoutProps) {
+    usePageScroll();
     return (
-        <div className="min-h-screen overflow-x-hidden">
+        <div className="h-screen overflow-hidden">
             {/* Accessibility skip link */}
             <a
                 href="#main-content"
@@ -32,9 +34,9 @@ export default function AppLayout({children}: AppLayoutProps) {
             <main
                 id="main-content"
                 tabIndex={-1}
-                className="min-h-screen outline-none lg:ml-80 mt-20 lg:mt-10 px-2 lg:px-10 bg-white flex flex-col justify-start items-center"
+                className="h-full outline-none lg:ml-80 mt-20 lg:mt-10 px-2 lg:px-10 bg-white flex flex-col justify-start items-center overflow-y-auto"
             >
-                <div className="mx-auto w-auto">
+                <div className="">
                     {children}
                 </div>
 

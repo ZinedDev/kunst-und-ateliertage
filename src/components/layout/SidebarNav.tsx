@@ -23,14 +23,6 @@ export default function SidebarNav() {
                     >
                         <SocialMediaIcons />
                     </div>
-                    {/*<span*/}
-                    {/*    className="block text-sm font-black leading-tight text-neutral-950 transition sm:text-lg">*/}
-                    {/*        14. KuA*/}
-                    {/*        <br/>*/}
-                    {/*        <p className="pl-2 text-xs">*/}
-                    {/*            auf den Elbinseln*/}
-                    {/*        </p>*/}
-                    {/*</span>*/}
                 </div>
             <nav className="flex flex-col gap-2 mt-4">
                 {navbarItems.map((item) => (

@@ -4,6 +4,7 @@ import {AnimatePresence, motion} from "motion/react";
 import {Menu, X} from "lucide-react";
 import {navbarItems} from "../../data/NavData.ts";
 import Logo from "../../assets/images/logos/KuA-Logo_Schriftzug.png"
+//import Logo from "../../assets/images/logos/260317_kunst_ateliertage2026_logo_cmyk_kat_2026_logo_cmyk.jpg"
 import SocialMediaIcons from "../sub/SocialMediaIcons.tsx";
 
 export default function MobileNav() {
@@ -18,7 +19,7 @@ export default function MobileNav() {
                         className="group"
                         onClick={() => setIsOpen(false)}
                     >
-                    <div className={"flex flex-row items-center gap-1"}>
+                    <div>
                         <img
                             src={Logo}
                             alt="Kunst- und Ateliertage Logo"
@@ -26,30 +27,30 @@ export default function MobileNav() {
                             height={50}
                             width={50}
                         />
-                        <span
-                            className="block text-sm font-black leading-tight text-neutral-950 transition group-hover:text-blue-700">
-                            14. Kunst- und Ateliertage
-                            <p className="text-xs">
-                                auf den Elbinseln
-                            </p>
-                        </span>
+                        {/*<span*/}
+                        {/*    className="block text-sm font-black leading-tight text-neutral-950 transition group-hover:text-blue-700">*/}
+                        {/*    14. Kunst- und Ateliertage*/}
+                        {/*    <p className="text-xs">*/}
+                        {/*        auf den Elbinseln*/}
+                        {/*    </p>*/}
+                        {/*</span>*/}
                     </div>
                     </NavLink>
+                    <div
+                        key={"social-media-icons"}
+                        className={"max-sm:mb-1"}
+                    >
+                        <SocialMediaIcons />
+                    </div>
                     <button
                         type="button"
                         onClick={() => setIsOpen((current) => !current)}
                         aria-label={isOpen ? "Menü schließen" : "Menü öffnen"}
                         aria-expanded={isOpen}
-                        className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border-2 border-zinc-800 bg-transparent text-zinc transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-1xl border-2 border-zinc-800 bg-transparent text-zinc transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                     >
-                        {isOpen ? <X size={22}/> : <Menu size={22}/>}
+                        {isOpen ? <X size={24}/> : <Menu size={18}/>}
                     </button>
-                </div>
-                <div
-                    key={"social-media-icons"}
-                    className={"max-sm:mb-1"}
-                >
-                    <SocialMediaIcons />
                 </div>
             </header>
             <AnimatePresence>
@@ -66,7 +67,7 @@ export default function MobileNav() {
                         />
 
                         <motion.nav
-                            className="w-1/2 fixed left-50 max-sm:left-22.5 top-28 z-50 rounded-3xl border-2 border-zinc-800 bg-white p-4 shadow-2xl"
+                            className="w-1/2 fixed left-50 max-sm:left-22.5 top-20 z-50 rounded-3xl border-2 border-zinc-800 bg-white p-4 shadow-2xl"
                             initial={{opacity: 0, y: -16, scale: 0.96}}
                             animate={{opacity: 1, y: 0, scale: 1}}
                             exit={{opacity: 0, y: -16, scale: 0.96}}

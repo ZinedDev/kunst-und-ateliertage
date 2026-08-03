@@ -9,11 +9,6 @@ import SectionFacts from "../components/sub/SectionFacts.tsx";
 export default function Impressum() {
     return (
         <PageTransition>
-            {/*<Background*/}
-            {/*    src={BackgroundImage}*/}
-            {/*    opacity={0.1}*/}
-            {/*    className=" pointer-events-none"*/}
-            {/*/>*/}
             <section className="mt-8">
                 <Header
                     tagline={impressumHeader.tagline}
@@ -32,7 +27,7 @@ export default function Impressum() {
                     animate={{opacity: 1, y: 0}}
                     transition={{duration: 0.35, delay: 0.15}}
                 >
-                    <article className="rounded-4xl border-2 border-zinc-800 p-6 text-zinc-800 shadow-sm sm:p-8 md:p-10">
+                    <article className="rounded-4xl border-2 border-zinc-800 p-4 text-zinc-800 shadow-sm sm:p-8 md:p-10">
                         <h2 className="text-2xl font-black text-neutral-950">
                             Verantwortlichkeit
                         </h2>
@@ -56,7 +51,6 @@ export default function Impressum() {
                             </div>
 
                             <div className="mt-2">
-                                {/*<p className="font-bold text-neutral-950">E-Mail</p>*/}
                                 <a
                                     href="mailto:moin@kunstundateliertage.de"
                                     className="wrap-break-word text-lg font-black text-blue-700 transition hover:text-blue-900"
