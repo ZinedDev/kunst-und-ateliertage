@@ -64,7 +64,7 @@ export default function ProgramSection() {
     };
 
     return (
-        <section className="mt-8 flex flex-col mx-auto lg:mx-0">
+        <section className="flex flex-col mx-auto lg:mx-0 mt-8 max-sm:mt-0">
             {neighborhoodLocations.map((neighborhood) => {
                 const artistsForNeighborhood = neighborhoodArtists.find(
                     (na) => na.name === neighborhood.name
@@ -77,7 +77,7 @@ export default function ProgramSection() {
                     <div 
                         key={neighborhood.name} 
                         ref={(el) => setRef(neighborhood.name, el)}
-                        className="flex flex-col bg-transparent py-2 max-sm:py-1 "
+                        className="flex flex-col bg-transparent pb-2 max-sm:pb-1 "
                     >
                         <button
                             onClick={() => toggleNeighborhood(neighborhood.name)}

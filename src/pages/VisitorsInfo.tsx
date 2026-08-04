@@ -8,13 +8,13 @@ import FlyerDownload from "../components/sub/FlyerDownload.tsx";
 export default function VisitorsInfo() {
     return (
         <PageTransition>
-            <section className="mb-8 mt-8">
+            <section className="mt-8">
                 <Header
                     tagline={visitorHeader.tagline}
                     title={visitorHeader.title}
                     description={visitorHeader.description}
                 />
-                <div className="flex flex-col items-center justify-center gap-y-8 max-sm:gap-y-0">
+                <div className="flex flex-col items-center justify-center md:mt-8">
                     {/*<SectionFacts facts={visitorHighlights}/>*/}
                     <FlyerDownload
                         label={flyerData.label}
