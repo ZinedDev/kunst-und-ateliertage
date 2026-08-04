@@ -36,12 +36,13 @@ export interface Location {
 }
 
 
-export interface NeighborhoodLocations {
+export interface NeighborhoodData {
     name: string;
-    locations: Location[];
-}
-
-export interface NeighborhoodArtists {
-    name: string;
-    artists: Artist[];
+    locations: {
+        name: string;
+        adresse?: string | null;
+        lat?: number | null;
+        lng?: number | null;
+        artists: Artist[];
+    }[];
 }

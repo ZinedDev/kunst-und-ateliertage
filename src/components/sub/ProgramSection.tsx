@@ -1,10 +1,10 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { neighborhoodLocations, neighborhoodArtists } from "../../data/ProgramData.ts";
+import { neighborhoodData } from "../../data/ProgramData.ts";
 
 export default function ProgramSection() {
     const [expandedNeighborhoods, setExpandedNeighborhoods] = useState<Record<string, boolean>>({});
-    const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
+    const [expandedLocations, setExpandedLocations] = useState<Record<string, boolean>>({});
     const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
     const setRef = (key: string, el: HTMLElement | null) => {
@@ -33,11 +33,15 @@ export default function ProgramSection() {
         setExpandedNeighborhoods(prev => {
             const isExpanding = !prev[name];
             if (!isExpanding) {
-                setExpandedSections(prevSections => {
-                    const newSections = { ...prevSections };
-                    delete newSections[`${name}-locations`];
-                    delete newSections[`${name}-artists`];
-                    return newSections;
+                setExpandedLocations(prevLocs => {
+                    const newLocs = { ...prevLocs };
+                    // Remove all locations belonging to this neighborhood
+                    Object.keys(newLocs).forEach(key => {
+                        if (key.startsWith(`${name}-`)) {
+                            delete newLocs[key];
+                        }
+                    });
+                    return newLocs;
                 });
             } else {
                 scrollIntoViewIfOverreaching(name);
@@ -49,11 +53,11 @@ export default function ProgramSection() {
         });
     };
 
-    const toggleSection = (neighborhoodName: string, sectionType: 'locations' | 'artists') => {
-        const key = `${neighborhoodName}-${sectionType}`;
-        const isExpanding = !expandedSections[key];
+    const toggleLocation = (neighborhoodName: string, locationName: string) => {
+        const key = `${neighborhoodName}-${locationName}`;
+        const isExpanding = !expandedLocations[key];
         
-        setExpandedSections(prev => ({
+        setExpandedLocations(prev => ({
             ...prev,
             [key]: !prev[key]
         }));
@@ -65,13 +69,8 @@ export default function ProgramSection() {
 
     return (
         <section className="flex flex-col mx-auto lg:mx-0 mt-8 max-sm:mt-0">
-            {neighborhoodLocations.map((neighborhood) => {
-                const artistsForNeighborhood = neighborhoodArtists.find(
-                    (na) => na.name === neighborhood.name
-                );
+            {neighborhoodData.map((neighborhood) => {
                 const isExpanded = expandedNeighborhoods[neighborhood.name];
-                const showLocations = expandedSections[`${neighborhood.name}-locations`];
-                const showArtists = expandedSections[`${neighborhood.name}-artists`];
 
                 return (
                     <div 
@@ -103,84 +102,55 @@ export default function ProgramSection() {
                                     exit={{ height: 0, opacity: 0, marginBottom: 0, transition: { duration: .5 } }}
                                     transition={{ease: "easeInOut" }}
                                 >
-                                    <div className="pl-6 flex flex-col">
-                                        {/* Locations Section */}
-                                        <motion.article
-                                            ref={(el) => setRef(`${neighborhood.name}-locations`, el)}
-                                            initial={{ opacity: 0, x: 20 }}
-                                            animate={{ opacity: 1, x: 0 }}
-                                            transition={{ duration: 0.5 }}
-                                        >
-                                            <button
-                                                onClick={() => toggleSection(neighborhood.name, 'locations')}
-                                                aria-expanded={showLocations}
-                                                className={`flex items-center py-1 gap-2 text-xl max-sm:text-base font-semibold text-black rounded-md hover:cursor-pointer hover:scale-105 transition-all duration-200 ${showLocations ? 'scale-105' : ''}`}
-                                            >
-                                                <motion.span
-                                                    animate={{ rotate: showLocations ? 90 : 0 }}
-                                                    className="text-xs"
+                                    <div className="pl-6 flex flex-col mt-2">
+                                        {neighborhood.locations.map((location) => {
+                                            const locationKey = `${neighborhood.name}-${location.name}`;
+                                            const isLocationExpanded = expandedLocations[locationKey];
+                                            
+                                            return (
+                                                <motion.article
+                                                    key={location.name}
+                                                    ref={(el) => setRef(locationKey, el)}
+                                                    initial={{ opacity: 0, x: 20 }}
+                                                    animate={{ opacity: 1, x: 0 }}
+                                                    transition={{ duration: 0.5 }}
+                                                    className="flex flex-col"
                                                 >
-                                                    →
-                                                </motion.span>
-                                                <span className={showLocations ? 'underline underline-offset-4' : ''}>Orte</span>
-                                            </button>
-                                            <AnimatePresence>
-                                                {showLocations && (
-                                                    <motion.ul
-                                                        initial={{ height: 0, opacity: 0 , marginBottom: 0}}
-                                                        animate={{ height: "auto", opacity: 1, marginBottom: '1rem', transition: { duration: .2 } }}
-                                                        exit={{ height: 0, opacity: 0, marginBottom: 0, transition: { duration: .2 } }}
-                                                        className="flex flex-col gap-1 overflow-hidden pl-5"
+                                                    <button
+                                                        onClick={() => toggleLocation(neighborhood.name, location.name)}
+                                                        aria-expanded={isLocationExpanded}
+                                                        className={`flex items-center py-1 gap-2 text-base max-sm:text-sm uppercase tracking-wider text-black rounded-md hover:cursor-pointer hover:scale-105 transition-all duration-200 text-left ${isLocationExpanded ? 'scale-105' : ''}`}
                                                     >
-                                                        {neighborhood.locations.map((location) => (
-                                                            <li key={location.name} className="text-lg max-sm:text-base text-neutral-950 font-bold">
-                                                                {location.name}
-                                                            </li>
-                                                        ))}
-                                                    </motion.ul>
-                                                )}
-                                            </AnimatePresence>
-                                        </motion.article>
-
-                                        {/* Artists Section */}
-                                        {artistsForNeighborhood && (
-                                            <motion.article
-                                                ref={(el) => setRef(`${neighborhood.name}-artists`, el)}
-                                                initial={{ opacity: 0, x: 20 }}
-                                                animate={{ opacity: 1, x: 0 }}
-                                                transition={{ duration: 0.5, delay: 0.1 }}
-                                            >
-                                                <button
-                                                    onClick={() => toggleSection(neighborhood.name, 'artists')}
-                                                    aria-expanded={showArtists}
-                                                    className={`flex items-center py-1 gap-2 text-xl max-sm:text-base font-semibold text-black rounded-lg hover:cursor-pointer hover:scale-105 transition-all duration-200 ${showArtists ? 'scale-105' : ''}`}
-                                                >
-                                                    <motion.span
-                                                        animate={{ rotate: showArtists ? 90 : 0 }}
-                                                        className="text-xs"
-                                                    >
-                                                        →
-                                                    </motion.span>
-                                                    <span className={showArtists ? 'underline underline-offset-4' : ''}>Künstler*innen</span>
-                                                </button>
-                                                <AnimatePresence>
-                                                    {showArtists && (
-                                                        <motion.ul
-                                                            initial={{ height: 0, opacity: 0, marginBottom: 0 }}
-                                                            animate={{ height: "auto", opacity: 1, marginBottom: '1rem', transition: { duration: .2 } }}
-                                                            exit={{ height: 0, opacity: 0, marginBottom: 0, transition: { duration: .2 } }}
-                                                            className="flex flex-col gap-1 overflow-hidden pl-5"
+                                                        <motion.span
+                                                            animate={{ rotate: isLocationExpanded ? 90 : 0 }}
+                                                            className="text-xs"
                                                         >
-                                                            {artistsForNeighborhood.artists.map((artist) => (
-                                                                <li key={artist.name} className="text-lg max-sm:text-base text-neutral-950 font-bold">
-                                                                    {artist.name}
-                                                                </li>
-                                                            ))}
-                                                        </motion.ul>
-                                                    )}
-                                                </AnimatePresence>
-                                            </motion.article>
-                                        )}
+                                                            →
+                                                        </motion.span>
+                                                        <span className={isLocationExpanded ? 'underline underline-offset-4' : ''}>
+                                                            {location.name}
+                                                        </span>
+                                                    </button>
+                                                    
+                                                    <AnimatePresence>
+                                                        {isLocationExpanded && (
+                                                            <motion.ul
+                                                                initial={{ height: 0, opacity: 0 }}
+                                                                animate={{ height: "auto", opacity: 1, marginTop: '0.25rem', transition: { duration: .2 } }}
+                                                                exit={{ height: 0, opacity: 0, marginTop: 0, transition: { duration: .2 } }}
+                                                                className="overflow-hidden pl-6 border-l-2 border-zinc-200"
+                                                            >
+                                                                {location.artists.map((artist, aIdx) => (
+                                                                    <li key={aIdx} className="text-md max-sm:text-sm text-neutral-700 italic py-0.5">
+                                                                        {artist.name}
+                                                                    </li>
+                                                                ))}
+                                                            </motion.ul>
+                                                        )}
+                                                    </AnimatePresence>
+                                                </motion.article>
+                                            );
+                                        })}
                                     </div>
                                 </motion.div>
                             )}

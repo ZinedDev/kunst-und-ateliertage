@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import PageTransition from "../components/layout/PageTransitions.tsx";
 import Header from "../components/layout/Header.tsx";
-import { neighborhoodLocations } from "../data/ProgramData.ts";
+import { neighborhoodData } from "../data/ProgramData.ts";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -58,12 +58,12 @@ export default function Map() {
     const [currentNeighborhood, setCurrentNeighborhood] = useState<string | null>(null);
 
     const currentLocations = !currentNeighborhood
-        ? neighborhoodLocations.flatMap(n => n.locations)
-        : neighborhoodLocations.find(n => n.name === currentNeighborhood)?.locations || [];
+        ? neighborhoodData.flatMap(n => n.locations)
+        : neighborhoodData.find(n => n.name === currentNeighborhood)?.locations || [];
     const geoLocations = currentLocations.filter(loc => loc.lat !== null && loc.lng !== null && loc.lat !== undefined && loc.lng !== undefined);
 
-    const neighborhoodData = (currentNeighborhood && neighborhoodCoordinates[currentNeighborhood]) || { lat: 53.505, lon: 10.005, zoom: 13 };
-    const { lat, lon, zoom } = neighborhoodData;
+    const activeNeighborhoodData = (currentNeighborhood && neighborhoodCoordinates[currentNeighborhood]) || { lat: 53.505, lon: 10.005, zoom: 13 };
+    const { lat, lon, zoom } = activeNeighborhoodData;
 
     const bounds = geoLocations.length > 0 
         ? L.latLngBounds(geoLocations.map(loc => [loc.lat!, loc.lng!])) 
@@ -78,7 +78,7 @@ export default function Map() {
                     description={mapHeader.description}
                 />
                 <div className="flex flex-row justify-center gap-1 mt-8 flex-wrap">
-                    {neighborhoodLocations.map((neighborhood) => (
+                    {neighborhoodData.map((neighborhood) => (
                         <button
                             key={neighborhood.name}
                             onClick={() => setCurrentNeighborhood(prev => prev === neighborhood.name ? null : neighborhood.name)}
