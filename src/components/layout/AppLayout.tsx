@@ -33,9 +33,9 @@ export default function AppLayout({children}: AppLayoutProps) {
             <main
                 id="main-content"
                 tabIndex={-1}
-                className="outline-none lg:ml-80 lg:h-full mt-20 lg:mt-10 px-2 lg:px-10 bg-white flex flex-col justify-start items-center lg:overflow-y-auto"
+                className="outline-none lg:ml-80 lg:h-full mt-16 lg:mt-10 px-2 lg:px-10 bg-white flex flex-col justify-start items-center lg:overflow-y-auto"
             >
-                <div className="">
+                <div>
                     {children}
                 </div>
             </main>

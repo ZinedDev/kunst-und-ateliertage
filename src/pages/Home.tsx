@@ -5,6 +5,8 @@ import Logo from "../assets/images/logos/260317_kunst_ateliertage2026_logo_cmyk_
 import MainNav from "../components/sub/MainNav.tsx";
 import FlyerDownload from "../components/sub/FlyerDownload.tsx";
 import {flyerData} from "../data/VisitorData.ts";
+import Notice from "../components/sub/Notice.tsx";
+import {contactNotice} from "../data/ContactData.ts";
 
 export default function Home() {
     return (
@@ -27,19 +29,23 @@ export default function Home() {
                         transition={{duration: 0.5, type: "spring", stiffness: 100, damping: 10, delay: 0.1,}}
                         src={Logo}
                         alt="Kunst- und Ateliertage Logo"
-                        height={400}
-                        width={400}
+                        height={500}
+                        width={500}
                     />
                     <div
                         key={"main-nav"}
                         className={""}>
-                        <MainNav />
+                        <MainNav/>
                     </div>
-                    <div className={"max-sm:mt-2"}>
+                    <div className={"mt-12"}>
                         <FlyerDownload
                             label={flyerData.label}
                             href={flyerData.href}
                         />
+                    </div>
+                    <div
+                        key={"contact-notice"}>
+                        <Notice data={contactNotice}/>
                     </div>
                 </AnimatePresence>
             </section>

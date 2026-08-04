@@ -14,7 +14,7 @@ export default function ContactPage() {
             {/*    opacity={0.1}*/}
             {/*    className=" pointer-events-none"*/}
             {/*/>*/}
-            <section className={"mt-8"}>
+            <section>
                 <Header
                     tagline={contactHeader.tagline}
                     title={contactHeader.title}

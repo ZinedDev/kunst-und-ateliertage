@@ -9,12 +9,12 @@ import SectionFacts from "../components/sub/SectionFacts.tsx";
 export default function Impressum() {
     return (
         <PageTransition>
-            <section className="mt-8">
-                <Header
-                    tagline={impressumHeader.tagline}
-                    title={impressumHeader.title}
-                    description={impressumHeader.description}
-                />
+            <Header
+                tagline={impressumHeader.tagline}
+                title={impressumHeader.title}
+                description={impressumHeader.description}
+            />
+            <section>
                 <div className="flex flex-col items-center justify-center">
                     <div>
                         <SectionFacts facts={impressumFacts}/>

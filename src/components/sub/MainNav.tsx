@@ -18,7 +18,7 @@ export default function MainNav() {
                         key={i + "-" + -item.label + "-link"}
                         to={item.path}
                         end={item.path === "/"}
-                        className={"flex items-start gap-x-4 text-xl max-sm:text-base font-bold uppercase tracking-[0.1em] whitespace-pre-wrap text-blue-800"}
+                        className={"flex items-start gap-x-4 text-xl max-sm:text-base font-bold uppercase tracking-widest whitespace-pre-wrap text-blue-800"}
                     >
                         <motion.span
                             animate={{x: [8, 10, 8]}}

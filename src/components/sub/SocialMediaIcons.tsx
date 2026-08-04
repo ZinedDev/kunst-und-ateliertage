@@ -34,8 +34,8 @@ export default function SocialMediaIcons() {
                     href={icon.url}
                     aria-label={icon.label}
                     key={icon.id}
-                    target={icon.url.startsWith("http") || icon.url.startsWith("www") ? "_blank" : "_self"}
-                    rel={icon.url.startsWith("http") || icon.url.startsWith("www") ? "noreferrer" : ""}
+                    target={icon.url.startsWith("http") || icon.url.startsWith("www") || icon.url.startsWith("mailto:") ? "_blank" : "_self"}
+                    rel={icon.url.startsWith("http") || icon.url.startsWith("www") || icon.url.startsWith("mailto:") ? "noreferrer" : ""}
                     initial="hidden"
                     whileInView="visible"
                     custom={i}

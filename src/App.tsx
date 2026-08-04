@@ -4,11 +4,10 @@ import {AnimatePresence} from "motion/react";
 import AppLayout from "./components/layout/AppLayout";
 import Home from "./pages/Home.tsx";
 // import ArtistsInfo from "./pages/ArtistsInfo.tsx";
-import VisitorsInfo from "./pages/VisitorsInfo.tsx";
 // import Gallery from "./pages/Gallery.tsx";
-import ContactPage from "./pages/ContactPage.tsx";
+//import ContactPage from "./pages/ContactPage.tsx";
 import Impressum from "./pages/Impressum.tsx";
-import Map from "./pages/Map.tsx";
+import ProgramPage from "./pages/ProgramPage.tsx";
 
 export default function App() {
     const location = useLocation();
@@ -19,11 +18,9 @@ export default function App() {
                 <Routes location={location} key={location.pathname}>
                     <Route path="/" element={<Home/>}/>
                     {/*<Route path="/kuenstlerinnen" element={<ArtistsInfo />} />*/}
-                    <Route path="/besucherinnen" element={<VisitorsInfo/>}/>
+                    <Route path="/besucherinnen" element={<ProgramPage/>}/>
                     {/*<Route path="/galerie" element={<Gallery />} />*/}
-                    <Route path="/karte" element={<Map/>}/>
-
-                    <Route path="/kontakt" element={<ContactPage/>}/>
+                    {/*<Route path="/kontakt" element={<ContactPage/>}/>*/}
                     <Route path="/impressum" element={<Impressum/>}/>
                 </Routes>
             </AnimatePresence>

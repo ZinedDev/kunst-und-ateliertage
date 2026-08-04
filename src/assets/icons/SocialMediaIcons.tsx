@@ -4,11 +4,10 @@ import InstagramLineIcon from "remixicon-react/InstagramLineIcon";
 import FacebookCircleLineIcon from "remixicon-react/FacebookCircleLineIcon";
 
 export const socialMediaIcons = [
-
     {
         id: 'contact',
         icon: AtIcon,
-        url: '/kontakt',
+        url: 'mailto:moin@kunstundateliertage.de',
         label: 'Contact',
     },
     {
