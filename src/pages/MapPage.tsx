@@ -7,7 +7,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import {mapHeader} from "../data/MapData.ts";
 import {useLocation} from "react-router";
-import MapSection from "../components/sub/MapSection.tsx";
+
 
 // Fix for default marker icon in Leaflet with React
 // @ts-expect-error - Leaflet icon property deletion for React-Leaflet compatibility
