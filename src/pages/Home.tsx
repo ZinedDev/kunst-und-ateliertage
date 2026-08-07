@@ -4,7 +4,7 @@ import {AnimatePresence, motion} from "motion/react";
 import Logo from "../assets/images/logos/260317_kunst_ateliertage2026_logo_cmyk_kat_2026_logo_cmyk.jpg";
 import MainNav from "../components/sub/MainNav.tsx";
 import FlyerDownload from "../components/sub/FlyerDownload.tsx";
-import {flyerData} from "../data/VisitorData.ts";
+import {flyerData} from "../data/ProgramData.ts";
 import Notice from "../components/sub/Notice.tsx";
 import {contactNotice} from "../data/ContactData.ts";
 

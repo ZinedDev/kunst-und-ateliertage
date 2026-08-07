@@ -15,7 +15,7 @@ export default function PageTransition({children}: PageTransitionProps) {
                 duration: 0.5,
                 ease: "easeInOut"
             }}
-            className=""
+            className="w-full flex flex-col items-center"
         >
             {children}
         </motion.div>

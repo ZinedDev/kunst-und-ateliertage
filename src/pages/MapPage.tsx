@@ -5,9 +5,9 @@ import {neighborhoodData} from "../data/ProgramData.ts";
 import {MapContainer, TileLayer, Marker, Popup, useMap} from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import {visitorHeader} from "../data/VisitorData.ts";
+import {mapHeader} from "../data/MapData.ts";
 import {useLocation} from "react-router";
-import ProgramSection from "../components/sub/ProgramSection.tsx";
+import MapSection from "../components/sub/MapSection.tsx";
 
 // Fix for default marker icon in Leaflet with React
 // @ts-expect-error - Leaflet icon property deletion for React-Leaflet compatibility
@@ -41,11 +41,11 @@ function ChangeView({bounds, center, zoom, forceUpdate}: {
     zoom: number;
     forceUpdate?: number
 }) {
-    console.log("[ChangeView] Rendering", { bounds, center, zoom, forceUpdate });
+    console.log("[ChangeView] Rendering", {bounds, center, zoom, forceUpdate});
     const map = useMap();
 
     useEffect(() => {
-        console.log("[ChangeView] useEffect triggered", { bounds, center, zoom, forceUpdate });
+        console.log("[ChangeView] useEffect triggered", {bounds, center, zoom, forceUpdate});
         const handleResize = () => {
             console.log("[ChangeView] handleResize called");
             map.invalidateSize();
@@ -55,7 +55,7 @@ function ChangeView({bounds, center, zoom, forceUpdate}: {
                 const padding = [size.x * 0.1, size.y * 0.1] as [number, number];
                 map.fitBounds(bounds, {padding});
             } else {
-                console.log("[ChangeView] setting view", { center, zoom });
+                console.log("[ChangeView] setting view", {center, zoom});
                 map.setView(center, zoom);
             }
         };
@@ -77,12 +77,12 @@ function ChangeView({bounds, center, zoom, forceUpdate}: {
     return null;
 }
 
-function LocationMarker({ loc, isFocused, onClick }: { loc: any, isFocused: boolean, onClick: () => void }) {
-    console.log(`[LocationMarker] Rendering: ${loc.name}`, { isFocused });
+function LocationMarker({loc, isFocused, onClick}: { loc: any, isFocused: boolean, onClick: () => void }) {
+    console.log(`[LocationMarker] Rendering: ${loc.name}`, {isFocused});
     const markerRef = useRef<L.Marker>(null);
 
     useEffect(() => {
-        console.log(`[LocationMarker] useEffect (isFocused): ${loc.name}`, { isFocused });
+        console.log(`[LocationMarker] useEffect (isFocused): ${loc.name}`, {isFocused});
         if (isFocused && markerRef.current) {
             console.log(`[LocationMarker] Opening popup: ${loc.name}`);
             markerRef.current.openPopup();
@@ -93,7 +93,7 @@ function LocationMarker({ loc, isFocused, onClick }: { loc: any, isFocused: bool
     }, [isFocused, loc.name]);
 
     return (
-        <Marker 
+        <Marker
             ref={markerRef}
             position={[loc.lat!, loc.lng!]}
             icon={isFocused ? highlightedIcon : new L.Icon.Default()}
@@ -123,8 +123,8 @@ function LocationMarker({ loc, isFocused, onClick }: { loc: any, isFocused: bool
     );
 }
 
-export default function ProgramPage() {
-    console.log("[ProgramPage] Rendering");
+export default function MapPage() {
+    console.log("[MapPage] Rendering");
     const location = useLocation();
     const state = location.state as { neighborhood?: string; location?: string } | null;
 
@@ -133,14 +133,16 @@ export default function ProgramPage() {
     const [forceUpdate, setForceUpdate] = useState(0);
 
     useEffect(() => {
-        console.log("[ProgramPage] useEffect (router state)", state);
-        if (state?.neighborhood) {
-            setCurrentNeighborhood(state.neighborhood);
+        console.log("[MapPage] useEffect (router state)", state);
+        if (state) {
+            if (state.neighborhood !== undefined) {
+                setCurrentNeighborhood(state.neighborhood);
+            }
+            if (state.location !== undefined) {
+                setFocusedLocation(state.location);
+            }
+            setForceUpdate(prev => prev + 1);
         }
-        if (state?.location) {
-            setFocusedLocation(state.location);
-        }
-        setForceUpdate(prev => prev + 1);
     }, [state]);
 
     const currentLocations = !currentNeighborhood
@@ -174,21 +176,22 @@ export default function ProgramPage() {
 
     return (
         <PageTransition>
-            <div className="w-full px-4 lg:px-0">
-                <Header
-                    tagline={visitorHeader.tagline}
-                    title={visitorHeader.title}
-                    description={visitorHeader.description}
-                />
-            </div>
-            <nav className="flex flex-row justify-center gap-x-1 mt-8 w-full max-w-5xl px-4 lg:px-0">
+            <Header
+                tagline={mapHeader.tagline}
+                title={mapHeader.title}
+                description={mapHeader.description}
+            />
+            <section className="flex flex-row justify-center gap-x-1 mt-8 w-full max-w-5xl px-4 lg:px-0 mx-auto">
                 {neighborhoodData.map((neighborhood) => {
                     const isActive = currentNeighborhood === neighborhood.name;
                     return (
                         <button
                             key={neighborhood.name}
                             onClick={() => {
-                                console.log("[ProgramPage] Neighborhood button clicked", { name: neighborhood.name, isActive });
+                                console.log("[MapPage] Neighborhood button clicked", {
+                                    name: neighborhood.name,
+                                    isActive
+                                });
                                 if (isActive) {
                                     setCurrentNeighborhood(null);
                                 } else {
@@ -197,8 +200,8 @@ export default function ProgramPage() {
                                 setFocusedLocation(null);
                             }}
                             className={`px-2 rounded-md border-2 uppercase tracking-widest text-base max-sm:text-xs font-bold transition-all duration-300 ${
-                                isActive 
-                                    ? 'bg-blue-700 border-blue-700 text-white shadow-md' 
+                                isActive
+                                    ? 'bg-blue-700 border-blue-700 text-white shadow-md'
                                     : 'bg-transparent border-zinc-300 text-zinc-600 hover:border-blue-700 hover:text-blue-700'
                             }`}
                         >
@@ -206,9 +209,10 @@ export default function ProgramPage() {
                         </button>
                     );
                 })}
-            </nav>
-            <section className="w-full max-w-5xl px-4 lg:px-0 mt-2">
-                <div className="w-full h-125 max-sm:h-100 border-2 border-blue-700 rounded-lg overflow-hidden shadow-lg z-0 mx-auto">
+            </section>
+            <section className="w-full max-w-5xl px-4 lg:px-0 mt-2 mx-auto">
+                <div
+                    className="w-full h-125 max-sm:h-100 border-2 border-blue-700 rounded-lg overflow-hidden shadow-lg z-0 mx-auto">
                     <MapContainer
                         center={activeCenter}
                         zoom={activeZoom}
@@ -224,44 +228,47 @@ export default function ProgramPage() {
                         {neighborhoodData.flatMap(n => n.locations.map(loc => ({...loc, neighborhood: n.name})))
                             .filter(loc => loc.lat !== null && loc.lng !== null && loc.lat !== undefined && loc.lng !== undefined)
                             .map((loc, idx) => (
-                            <LocationMarker 
-                                key={`${loc.name}-${idx}`} 
-                                loc={loc} 
-                                isFocused={focusedLocation === loc.name} 
-                                onClick={() => {
-                                    console.log("[ProgramPage] Marker clicked", { name: loc.name, neighborhood: loc.neighborhood });
-                                    if (focusedLocation === loc.name) {
-                                        setFocusedLocation(null);
-                                    } else {
-                                        if (currentNeighborhood !== loc.neighborhood) {
-                                            console.log("[ProgramPage] Switching neighborhood from marker click", loc.neighborhood);
-                                            setCurrentNeighborhood(loc.neighborhood);
+                                <LocationMarker
+                                    key={`${loc.name}-${idx}`}
+                                    loc={loc}
+                                    isFocused={focusedLocation === loc.name}
+                                    onClick={() => {
+                                        console.log("[MapPage] Marker clicked", {
+                                            name: loc.name,
+                                            neighborhood: loc.neighborhood
+                                        });
+                                        if (focusedLocation === loc.name) {
+                                            setFocusedLocation(null);
+                                        } else {
+                                            if (currentNeighborhood !== loc.neighborhood) {
+                                                console.log("[MapPage] Switching neighborhood from marker click", loc.neighborhood);
+                                                setCurrentNeighborhood(loc.neighborhood);
+                                            }
+                                            setFocusedLocation(loc.name);
                                         }
-                                        setFocusedLocation(loc.name);
-                                    }
-                                }}
-                            />
-                        ))}
+                                    }}
+                                />
+                            ))}
                     </MapContainer>
                 </div>
             </section>
 
-            <div className="flex flex-col items-center justify-center mt-2 w-full max-w-5xl px-4 lg:px-0">
-                <ProgramSection
-                    selectedNeighborhood={currentNeighborhood}
-                    selectedLocation={focusedLocation}
-                    showNeighborhoodButtons={false}
-                    onNeighborhoodToggle={(name) => {
-                        console.log("[ProgramPage] onNeighborhoodToggle from ProgramSection", name);
-                        setCurrentNeighborhood(name);
-                        setFocusedLocation(null);
-                    }}
-                    onLocationToggle={(_, locationName) => {
-                        console.log("[ProgramPage] onLocationToggle from ProgramSection", locationName);
-                        setFocusedLocation(locationName);
-                    }}
-                />
-            </div>
+            {/*<section className="flex flex-col items-center justify-center mt-2 w-full max-w-5xl px-4 lg:px-0">*/}
+            {/*    <MapSection*/}
+            {/*        selectedNeighborhood={currentNeighborhood}*/}
+            {/*        selectedLocation={focusedLocation}*/}
+            {/*        showNeighborhoodButtons={false}*/}
+            {/*        onNeighborhoodToggle={(name) => {*/}
+            {/*            console.log("[MapPage] onNeighborhoodToggle from MapSection", name);*/}
+            {/*            setCurrentNeighborhood(name);*/}
+            {/*            setFocusedLocation(null);*/}
+            {/*        }}*/}
+            {/*        onLocationToggle={(_, locationName) => {*/}
+            {/*            console.log("[MapPage] onLocationToggle from MapSection", locationName);*/}
+            {/*            setFocusedLocation(locationName);*/}
+            {/*        }}*/}
+            {/*    />*/}
+            {/*</section>*/}
         </PageTransition>
     );
 }

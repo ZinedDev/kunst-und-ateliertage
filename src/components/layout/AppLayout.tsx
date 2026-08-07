@@ -1,6 +1,5 @@
 import type {ReactNode} from "react";
 import MobileNav from "./MobileNav";
-import SidebarNav from "./SidebarNav.tsx";
 import {usePageScroll} from "../../hooks/usePageScroll.ts";
 
 type AppLayoutProps = {
@@ -20,24 +19,22 @@ export default function AppLayout({children}: AppLayoutProps) {
             </a>
 
             {/* Mobile navigation */}
-            <div className="lg:hidden">
+            <div className="">
                 <MobileNav/>
             </div>
 
             {/* Desktop sidebar navigation */}
-            <div className="hidden lg:block">
-                <SidebarNav/>
-            </div>
+            {/*<div className="hidden lg:block">*/}
+            {/*    <SidebarNav/>*/}
+            {/*</div>*/}
 
             {/* Main content */}
             <main
                 id="main-content"
                 tabIndex={-1}
-                className="outline-none lg:ml-80 lg:h-full mt-16 lg:mt-10 px-2 lg:px-10 bg-white flex flex-col justify-start items-center lg:overflow-y-auto"
+                className="outline-none lg:ml-0 lg:h-full mt-16 lg:mt-10 px-2 lg:px-10 bg-white flex flex-col items-center lg:overflow-y-auto w-full overflow-x-hidden"
             >
-                <div>
-                    {children}
-                </div>
+                {children}
             </main>
         </div>
     );

@@ -4,7 +4,7 @@ import {neighborhoodData} from "../../data/ProgramData.ts";
 import {useNavigate} from "react-router";
 import {MapPin} from "lucide-react";
 
-interface ProgramSectionProps {
+interface MapSectionProps {
     selectedNeighborhood?: string | null;
     selectedLocation?: string | null;
     onNeighborhoodToggle?: (name: string | null) => void;
@@ -12,20 +12,20 @@ interface ProgramSectionProps {
     showNeighborhoodButtons?: boolean;
 }
 
-export default function ProgramSection({
+export default function MapSection({
                                            selectedNeighborhood,
                                            selectedLocation,
                                            onNeighborhoodToggle,
                                            onLocationToggle,
                                            showNeighborhoodButtons = true
-                                       }: ProgramSectionProps) {
-    console.log("[ProgramSection] Rendering", { selectedNeighborhood, selectedLocation, showNeighborhoodButtons });
+                                       }: MapSectionProps) {
+    console.log("[MapSection] Rendering", { selectedNeighborhood, selectedLocation, showNeighborhoodButtons });
     const [expandedNeighborhoods, setExpandedNeighborhoods] = useState<Record<string, boolean>>({});
     const [expandedLocations, setExpandedLocations] = useState<Record<string, boolean>>({});
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log("[ProgramSection] useEffect (selectedNeighborhood)", { selectedNeighborhood });
+        console.log("[MapSection] useEffect (selectedNeighborhood)", { selectedNeighborhood });
         if (selectedNeighborhood) {
             setExpandedNeighborhoods({
                 [selectedNeighborhood]: true
@@ -37,7 +37,7 @@ export default function ProgramSection({
     }, [selectedNeighborhood]);
 
     useEffect(() => {
-        console.log("[ProgramSection] useEffect (selectedLocation)", { selectedLocation, selectedNeighborhood });
+        console.log("[MapSection] useEffect (selectedLocation)", { selectedLocation, selectedNeighborhood });
         if (selectedLocation && selectedNeighborhood) {
             const key = `${selectedNeighborhood}-${selectedLocation}`;
             setExpandedLocations({
@@ -51,7 +51,7 @@ export default function ProgramSection({
     const toggleLocation = (neighborhoodName: string, locationName: string) => {
         const key = `${neighborhoodName}-${locationName}`;
         const isExpanding = !expandedLocations[key];
-        console.log("[ProgramSection] toggleLocation", { neighborhoodName, locationName, isExpanding });
+        console.log("[MapSection] toggleLocation", { neighborhoodName, locationName, isExpanding });
 
         if (onLocationToggle) {
             onLocationToggle(neighborhoodName, isExpanding ? locationName : null);
@@ -66,8 +66,8 @@ export default function ProgramSection({
     const anyNeighborhoodExpanded = Object.values(expandedNeighborhoods).some(Boolean);
 
     return (
-        <section className="flex flex-col w-full mx-auto lg:mx-0">
-            <AnimatePresence mode="popLayout">
+        <section className="flex flex-col w-full max-w-5xl mx-auto">
+            <AnimatePresence>
                 {neighborhoodData.map((neighborhood) => {
                     const isExpanded = expandedNeighborhoods[neighborhood.name];
 
@@ -83,12 +83,8 @@ export default function ProgramSection({
                     }
 
                     return (
-                        <motion.div
+                        <div
                             key={neighborhood.name}
-                            layout
-                            initial={{opacity: 0, y: 10}}
-                            animate={{opacity: 1, y: 0}}
-                            exit={{opacity: 0, y: -10, transition: {duration: 0.2}}}
                             className="flex flex-col bg-transparent pb-2 max-sm:pb-1 "
                         >
                             <AnimatePresence>
@@ -105,7 +101,7 @@ export default function ProgramSection({
                                         transition={{ease: "easeInOut"}}
                                     >
                                         <div className={`${showNeighborhoodButtons ? 'pl-6' : ''} flex flex-col`}>
-                                            <AnimatePresence mode="popLayout">
+                                            <AnimatePresence>
                                                 {neighborhood.locations.map((location) => {
                                                     const locationKey = `${neighborhood.name}-${location.name}`;
                                                     const isLocationExpanded = expandedLocations[locationKey];
@@ -120,13 +116,8 @@ export default function ProgramSection({
                                                     }
 
                                                     return (
-                                                        <motion.article
+                                                        <article
                                                             key={location.name}
-                                                            layout
-                                                            initial={{opacity: 0, scale: 1}}
-                                                            animate={{opacity: 1, scale: 1, transition: {duration: 0.0}}}
-                                                            exit={{opacity: 0, scale: 1, transition: {duration: 0.0}}}
-                                                            transition={{ ease: "easeOut"}}
                                                             className="flex flex-col"
                                                         >
                                                             <div className="flex items-center w-full group/loc">
@@ -135,12 +126,6 @@ export default function ProgramSection({
                                                                     aria-expanded={isLocationExpanded}
                                                                     className={`flex items-center py-0.5 text-base max-sm:text-xs uppercase tracking-wider text-black rounded-md hover:cursor-pointer hover:scale-[1.02] transition-all duration-200 text-left ${isLocationExpanded ? 'scale-[1.02]' : ''}`}
                                                                 >
-                                                                    {/*<motion.span*/}
-                                                                    {/*    animate={{rotate: isLocationExpanded ? 90 : 0}}*/}
-                                                                    {/*    className="text-xs"*/}
-                                                                    {/*>*/}
-                                                                    {/*    →*/}
-                                                                    {/*</motion.span>*/}
                                                                     <span
                                                                         className={isLocationExpanded ? 'underline underline-offset-4' : ''}>
                                                                         {location.name}
@@ -175,13 +160,12 @@ export default function ProgramSection({
                                                                         animate={{
                                                                             height: "auto",
                                                                             opacity: 1,
-                                                                            transition: {duration: 0}
                                                                         }}
                                                                         exit={{
                                                                             height: 0,
                                                                             opacity: 0,
-                                                                            transition: {duration: 0}
                                                                         }}
+                                                                        transition={{ duration: 0.3 }}
                                                                         className="overflow-hidden mt-1 pl-1 border-l-2 border-zinc-200"
                                                                     >
                                                                         {location.artists.map((artist, aIdx) => (
@@ -195,7 +179,7 @@ export default function ProgramSection({
                                                                     </motion.ul>
                                                                 )}
                                                             </AnimatePresence>
-                                                        </motion.article>
+                                                        </article>
                                                     );
                                                 })}
                                             </AnimatePresence>
@@ -203,7 +187,7 @@ export default function ProgramSection({
                                     </motion.div>
                                 )}
                             </AnimatePresence>
-                        </motion.div>
+                        </div>
                     );
                 })}
             </AnimatePresence>

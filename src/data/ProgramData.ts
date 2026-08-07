@@ -1,8 +1,8 @@
 import type { NeighborhoodData, HeaderData } from "./Types.ts";
 
 export const programHeader: HeaderData = {
-    tagline: "Kunst und Künstlerinnen\nvor Ort im Quartier",
-    title: "Programm & Orte",
+    tagline: "Wer, wo, was?",
+    title: "Programm",
     description: "Hier findest du alle Orte und Künstler*innen, die an den Kunst- und Ateliertagen teilnehmen, sortiert nach ihren Stadtteilen."
 };
 
@@ -206,3 +206,8 @@ export const neighborhoodData: NeighborhoodData[] = [
         ]
     }
 ];
+
+export const flyerData = {
+    label: "Programm/Flyer 2025",
+    href: "/KuA_2025_Programm_Flyer_Web-2.pdf"
+}

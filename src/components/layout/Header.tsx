@@ -9,10 +9,10 @@ interface HeaderProps {
     children?: ReactNode;
 }
 
-export default function Header({ tagline, title, taglineClassName = "text-blue-800", children
+export default function Header({ tagline, title, taglineClassName = "text-blue-800"
 }: HeaderProps) {
     return (
-        <header className="max-w-4xl flex flex-col mt-4 max-sm:mt-0">
+        <header className="mt-16 w-full max-w-5xl flex flex-col items-center justify-center max-sm:mt-4">
             <motion.p
                 className={`text-xl max-sm:text-xs font-bold uppercase tracking-[0.2em] whitespace-pre-wrap ${taglineClassName}`}
                 initial={{ opacity: 0, y: 12 }}
@@ -31,20 +31,6 @@ export default function Header({ tagline, title, taglineClassName = "text-blue-8
             >
                 {title}
             </motion.h1>
-
-            {/*{description && (*/}
-            {/*    <motion.p*/}
-            {/*        className="mt-4 max-sm:mt-1 whitespace-pre-wrap max-w-4xl text-lg leading-6 text-zinc-800 max-sm:text-xl"*/}
-            {/*        initial={{ opacity: 0, y: 18 }}*/}
-            {/*        animate={{ opacity: 1, y: 0 }}*/}
-            {/*        transition={{ duration: 0.35, delay: 0.1 }}*/}
-            {/*        hidden={!description}*/}
-            {/*    >*/}
-            {/*        {description}*/}
-            {/*    </motion.p>*/}
-            {/*)}*/}
-
-            {children}
         </header>
     );
 }

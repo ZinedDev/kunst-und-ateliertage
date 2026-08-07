@@ -15,11 +15,11 @@ export default function Impressum() {
                 description={impressumHeader.description}
             />
             <section>
-                <div className="flex flex-col items-center justify-center">
-                    <div>
-                        <SectionFacts facts={impressumFacts}/>
-                    </div>
+
+                <div>
+                    <SectionFacts facts={impressumFacts}/>
                 </div>
+
 
                 <motion.div
                     className="mt-8 mb-8 grid gap-6 lg:grid-cols-[1fr_0.8fr]"
@@ -27,7 +27,8 @@ export default function Impressum() {
                     animate={{opacity: 1, y: 0}}
                     transition={{duration: 0.35, delay: 0.15}}
                 >
-                    <article className="rounded-4xl border-2 border-zinc-800 p-4 text-zinc-800 shadow-sm sm:p-8 md:p-10">
+                    <article
+                        className="rounded-4xl border-2 border-zinc-800 p-4 text-zinc-800 shadow-sm sm:p-8 md:p-10">
                         <h2 className="text-2xl font-black text-neutral-950">
                             Verantwortlichkeit
                         </h2>
