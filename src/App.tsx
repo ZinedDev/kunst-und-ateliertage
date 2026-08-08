@@ -1,4 +1,4 @@
-import {Route, Routes, useLocation} from "react-router";
+import {Route, Routes, useLocation, Navigate} from "react-router";
 import {AnimatePresence} from "motion/react";
 
 import AppLayout from "./components/layout/AppLayout";
@@ -24,6 +24,7 @@ export default function App() {
                     {/*<Route path="/galerie" element={<Gallery />} />*/}
                     {/*<Route path="/kontakt" element={<ContactPage/>}/>*/}
                     <Route path="/impressum" element={<Impressum/>}/>
+                    <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
             </AnimatePresence>
         </AppLayout>
