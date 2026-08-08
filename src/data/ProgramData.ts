@@ -82,8 +82,8 @@ export const neighborhoodData: NeighborhoodData[] = [
             },
             {
                 name: "ATELIERHAUS 23",
-                adresse: "Am Veringhof 23, 21107 Hamburg",
-                lat: 53.514917,
+                adresse: "Am Veringhof 23a, 21107 Hamburg",
+                lat: 53.514650,
                 lng: 9.983862,
                 artists: [
                     { name: "Capoeira Angola Hamburg Süd" },

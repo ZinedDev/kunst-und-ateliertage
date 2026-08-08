@@ -47,7 +47,7 @@ export default function Impressum() {
                                     Verein zur Förderung von Kunst und Kultur in den Veringhöfen
                                     e.V.
                                 </p>
-                                <p>Am Veringhof 23</p>
+                                <p>Am Veringhof 23a</p>
                                 <p>21107 Hamburg</p>
                             </div>
 
