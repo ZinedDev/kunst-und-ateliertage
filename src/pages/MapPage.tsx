@@ -112,10 +112,20 @@ function LocationMarker({loc, isFocused, onClick}: { loc: any, isFocused: boolea
                             href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(loc.adresse)}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-sm underline hover:text-blue-900"
+                            className="text-sm underline hover:text-blue-900 block mb-2"
                         >
                             {loc.adresse}
                         </a>
+                    )}
+                    {loc.artists && loc.artists.length > 0 && (
+                        <div className="text-[10px] grid grid-cols-2 gap-x-1 gap-y-0.5 border-t border-blue-200 pt-1">
+                            {[...loc.artists].sort((a, b) => a.name.localeCompare(b.name)).map((artist: any, index: number) => (
+                                <div key={index} className="flex items-center gap-x-1 overflow-hidden">
+                                    <span className="truncate">{artist.name}</span>
+                                    {/*<span className="text-blue-300 shrink-0">|</span>*/}
+                                </div>
+                            ))}
+                        </div>
                     )}
                 </div>
             </Popup>
