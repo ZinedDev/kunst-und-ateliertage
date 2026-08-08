@@ -66,7 +66,7 @@ export default function MobileNav() {
                         />
 
                         <motion.nav
-                            className="w-1/2 fixed left-50 max-sm:left-22.5 top-20 z-50 rounded-3xl border-2 border-zinc-800 bg-white p-4 shadow-2xl"
+                            className="w-1/3 lg:w-1/12 fixed left-1/2 -translate-x-1/2 top-20 z-50 rounded-3xl border-2 border-zinc-800 bg-white p-4 shadow-2xl"
                             initial={{opacity: 0, y: -16, scale: 0.96}}
                             animate={{opacity: 1, y: 0, scale: 1}}
                             exit={{opacity: 0, y: -16, scale: 0.96}}
@@ -75,7 +75,7 @@ export default function MobileNav() {
                                 ease: [0.22, 1, 0.36, 1],
                             }}
                         >
-                            <div className="flex flex-col gap-2">
+                            <div className="flex flex-col items-center gap-2">
                                 {navbarItems.map((item) => (
                                     <NavLink
                                         key={item.path}
