@@ -210,7 +210,7 @@ export default function MapPage() {
                     );
                 })}
             </section>
-            <section className="w-full max-w-5xl px-4 lg:px-0 mt-2 mx-auto">
+            <section className="w-full max-w-5xl mt-2 mx-auto">
                 <div
                     className="w-full h-125 max-sm:h-100 border-2 border-blue-700 rounded-lg overflow-hidden shadow-lg z-0 mx-auto">
                     <MapContainer
