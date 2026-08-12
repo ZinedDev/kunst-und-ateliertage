@@ -1,5 +1,5 @@
 import {useState, useMemo} from "react";
-import {motion, AnimatePresence} from "motion/react";
+import {motion} from "motion/react";
 import {useNavigate} from "react-router";
 import {neighborhoodData} from "../data/ProgramData";
 import {programHeader} from "../data/ProgramData";
@@ -9,6 +9,7 @@ import Header from "../components/layout/Header.tsx";
 
 
 export default function ProgramPage() {
+
     const [selectedNeighborhood, setSelectedNeighborhood] = useState<string | null>(null);
     const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
     const navigate = useNavigate();
@@ -58,92 +59,89 @@ export default function ProgramPage() {
                 title={programHeader.title}
                 description={programHeader.description}
             />
-                <section className="w-full max-w-5xl mb-8 mx-auto">
-                    {/* Neighborhood Filter */}
-                    <div className="flex flex-row justify-center gap-1 mt-8 w-full max-w-5xl px-4 lg:px-0 overflow-x-hidden">
-                        {neighborhoods.map(name => (
+            <section className="w-full max-w-5xl mb-8 mx-auto">
+                {/* Neighborhood Filter */}
+                <div
+                    className="flex flex-row justify-center gap-1 mt-8 w-full max-w-5xl px-4 lg:px-0 overflow-x-hidden">
+                    {neighborhoods.map(name => (
+                        <button
+                            key={name}
+                            onClick={() => {
+                                if (selectedNeighborhood === name) {
+                                    setSelectedNeighborhood(null);
+                                } else {
+                                    setSelectedNeighborhood(name);
+                                }
+                                setSelectedLocation(null);
+                            }}
+                            className={`px-2 rounded-md border-2 uppercase tracking-widest text-base max-sm:text-xs font-bold transition-all duration-300 ${
+                                selectedNeighborhood === name
+                                    ? 'bg-blue-700 border-blue-700 text-white shadow-md'
+                                    : 'bg-transparent border-zinc-300 text-zinc-600 hover:border-blue-700 hover:text-blue-700'
+                            }`}
+                        >
+                            {name.toUpperCase()}
+                        </button>
+                    ))}
+                </div>
+                {selectedNeighborhood && (
+                    <motion.div
+                        key={"neighborhood"}
+                        initial={{opacity: 0, height: 0}}
+                        animate={{opacity: 1, height: 'auto'}}
+                        exit={{opacity: 0, height: 0}}
+                        className="flex flex-wrap justify-center gap-1 mt-2 w-full max-w-5xl px-4 lg:px-0 overflow-hidden mx-auto">
+                        {locations.map(name => (
                             <button
                                 key={name}
                                 onClick={() => {
-                                    if (selectedNeighborhood === name) {
-                                        setSelectedNeighborhood(null);
+                                    if (selectedLocation === name) {
+                                        setSelectedLocation(null);
                                     } else {
-                                        setSelectedNeighborhood(name);
+                                        setSelectedLocation(name);
                                     }
-                                    setSelectedLocation(null);
                                 }}
-                                className={`px-2 rounded-md border-2 uppercase tracking-widest text-base max-sm:text-xs font-bold transition-all duration-300 ${
-                                    selectedNeighborhood === name
-                                        ? 'bg-blue-700 border-blue-700 text-white shadow-md'
-                                        : 'bg-transparent border-zinc-300 text-zinc-600 hover:border-blue-700 hover:text-blue-700'
+                                className={`px-2 py-1.5 rounded-md border-2 text-xs font-bold transition-all ${
+                                    selectedLocation === name
+                                        ? 'bg-zinc-800 border-zinc-800 text-white'
+                                        : 'border-zinc-200 text-zinc-500 hover:border-zinc-800 hover:text-zinc-800'
                                 }`}
                             >
-                                {name.toUpperCase()}
+                                {name}
                             </button>
                         ))}
-                    </div>
-
-                    <AnimatePresence>
-                        {selectedNeighborhood && (
-                            <motion.div
-                                key={"neighborhood"}
-                                initial={{opacity: 0, height: 0}}
-                                animate={{opacity: 1, height: 'auto'}}
-                                exit={{opacity: 0, height: 0}}
-                                className="flex flex-wrap justify-center gap-1 mt-2 w-full max-w-5xl px-4 lg:px-0 overflow-hidden mx-auto">
-                                {locations.map(name => (
-                                    <button
-                                        key={name}
-                                        onClick={() => {
-                                            if (selectedLocation === name) {
-                                                setSelectedLocation(null);
-                                            } else {
-                                                setSelectedLocation(name);
-                                            }
-                                        }}
-                                        className={`px-2 py-1.5 rounded-md border-2 text-xs font-bold transition-all ${
-                                            selectedLocation === name
-                                                ? 'bg-zinc-800 border-zinc-800 text-white'
-                                                : 'border-zinc-200 text-zinc-500 hover:border-zinc-800 hover:text-zinc-800'
-                                        }`}
-                                    >
-                                        {name}
-                                    </button>
-                                ))}
-                            </motion.div>
-                        )}
+                    </motion.div>
+                )}
+                <div className="w-full max-w-5xl mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1 mx-auto">
+                    {filteredArtists.map((artist, index) => (
                         <motion.div
-                            className="w-full max-w-5xl mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1 mx-auto"
+                            key={`${artist.name}-${artist.location}`}
+                            layout
+                            transition={{layout: {duration: .2, type: "spring", stiffness: 100, damping: 20, ease: "easeInOut", } }}
+                            onClick={() => handleArtistClick(artist.neighborhood, artist.location)}
                         >
-                            {filteredArtists.map((artist) => (
-                                <motion.button
-                                    key={`${artist.name}-${artist.location}`}
-                                    layout="position"
-                                    initial={{opacity: 0}}
-                                    animate={{opacity: 1}}
-                                    exit={{opacity: 0}}
-                                    transition={{
-                                    opacity: { duration: 0.2 },
-                                    layout: { duration: 0.3 }
-                                }}
-                                onClick={() => handleArtistClick(artist.neighborhood, artist.location)}
+                            <motion.div
+                                initial={{opacity: 0, y: index % 2 ? 10 : -10}}
+                                whileInView={{opacity: 1, y: 0}}
+                                viewport={{once: false}}
+                                transition={{duration: 0.2, type: "spring", stiffness: 100, delay: index * 0.01, restDelta: 10}}
                                 className="flex flex-col items-start px-4 py-2 bg-white border-2 border-zinc-100 rounded-xl hover:border-blue-700 hover:shadow-xl transition-all group text-left w-full h-full"
                             >
-                                <span
-                                    className="text-lg font-bold text-zinc-900 mb-2 group-hover:text-blue-700 transition-colors">
+                                <span className="text-lg font-bold text-zinc-900 mb-2 group-hover:text-blue-700 transition-colors">
                                     {artist.name}
                                 </span>
-                                    <span className="text-sm text-zinc-500 uppercase tracking-wider font-medium">
+                                <span className="text-sm text-zinc-500 uppercase tracking-wider font-medium">
                                     {artist.location}
                                 </span>
-                                    <span className="text-xs text-blue-600 font-bold mt-1">
+                                <span className="text-xs text-blue-600 font-bold mt-1">
                                     {artist.neighborhood}
                                 </span>
-                                </motion.button>
-                            ))}
+                            </motion.div>
+
                         </motion.div>
-                    </AnimatePresence>
-                </section>
+                    ))}
+                </div>
+            </section>
         </PageTransition>
     );
 }
