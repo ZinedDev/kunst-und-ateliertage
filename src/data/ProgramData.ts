@@ -32,8 +32,8 @@ export const neighborhoodData: NeighborhoodData[] = [
             {
                 name: "KÜNSTLERHAUS GEORGSWERDER",
                 adresse: "Rahmwerder Straße 3, 21109 Hamburg",
-                lat: null,
-                lng: null,
+                lat: 53.512230,
+                lng: 10.019950,
                 artists: [{ name: "Valérie Wagner" }]
             },
             {
@@ -68,9 +68,9 @@ export const neighborhoodData: NeighborhoodData[] = [
             },
             {
                 name: "ATELIERGEM. KREISKOMPLEX",
-                adresse: null,
-                lat: null,
-                lng: null,
+                adresse: "Stenzelring 17, 21107 Hamburg",
+                lat: 53.5191733,
+                lng: 10.0066839,
                 artists: [
                     { name: "Norman Heck" },
                     { name: "Freya Sarge" },
@@ -110,8 +110,8 @@ export const neighborhoodData: NeighborhoodData[] = [
             {
                 name: "ATELIERHOF",
                 adresse: "Veringstraße 22, 21107 Hamburg",
-                lat: null,
-                lng: null,
+                lat: 53.51644,
+                lng: 9.98766,
                 artists: [
                     { name: "Bente Wolke" },
                     { name: "Mareike Alexander" },
@@ -125,8 +125,8 @@ export const neighborhoodData: NeighborhoodData[] = [
             {
                 name: "DACHBODEN",
                 adresse: "Karl-Kunert-Straße 3, 21107 Hamburg",
-                lat: null,
-                lng: null,
+                lat: 53.518835,
+                lng: 9.983836,
                 artists: [{ name: "Jürgen Weber" }]
             },
             {
@@ -171,9 +171,9 @@ export const neighborhoodData: NeighborhoodData[] = [
             },
             {
                 name: "RATTENLOCH",
-                adresse: null,
-                lat: null,
-                lng: null,
+                adresse: "Fährstraße 85, 21107 Hamburg",
+                lat: 53.516586,
+                lng: 9.984074,
                 artists: [
                     { name: "Ilo Toivio" },
                     { name: "Kuno Seltmann" },
@@ -183,8 +183,8 @@ export const neighborhoodData: NeighborhoodData[] = [
             {
                 name: "VITACURARE",
                 adresse: "Sanitasstraße 10, 21107 Hamburg",
-                lat: null,
-                lng: null,
+                lat: 53.5155646,
+                lng: 9.9862596,
                 artists: [
                     { name: "Klaas Goerges, vitaCurare" },
                     { name: "Nathalie Hallmann" }

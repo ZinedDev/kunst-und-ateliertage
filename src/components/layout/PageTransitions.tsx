@@ -12,7 +12,7 @@ export default function PageTransition({children}: PageTransitionProps) {
             animate={{opacity: 1, y: 0, filter: "blur(0px)"}}
             exit={{opacity: 0, y: -12, filter: "blur(8px)"}}
             transition={{
-                duration: 0.2,
+                duration: 0.4,
                 ease: "easeInOut"
             }}
             className="w-full flex flex-col items-center"
