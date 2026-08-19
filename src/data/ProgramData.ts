@@ -64,7 +64,7 @@ export const neighborhoodData: NeighborhoodData[] = [
                 adresse: "Am Veringhof 15–17, 21107 Hamburg",
                 lat: 53.5143,
                 lng: 9.98396,
-                artists: [{ name: "gemeinschaftsausstellung" }]
+                artists: [{ name: "Gemeinschaftsausstellung" }]
             },
             {
                 name: "ATELIERGEM. KREISKOMPLEX",
