@@ -3,6 +3,7 @@ import PageTransition from "../components/layout/PageTransitions.tsx";
 import Header from "../components/layout/Header.tsx";
 import {impressumFacts, impressumHeader} from "../data/ImpressumData.ts";
 import SectionFacts from "../components/sub/SectionFacts.tsx";
+import {getMoinEmail, getMoinMailto} from "../utils/email.ts";
 // import Background from "../components/sub/Background.tsx";
 // import BackgroundImage from "../assets/images/background/image0.jpeg";
 
@@ -53,10 +54,10 @@ export default function Impressum() {
 
                             <div className="mt-2">
                                 <a
-                                    href="mailto:moin@kunstundateliertage.de"
+                                    href={getMoinMailto()}
                                     className="wrap-break-word text-lg font-black text-blue-700 transition hover:text-blue-900"
                                 >
-                                    moin@kunstundateliertage.de
+                                    {getMoinEmail()}
                                 </a>
                             </div>
                         </div>

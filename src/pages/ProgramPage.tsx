@@ -1,6 +1,7 @@
 import {useState, useMemo} from "react";
 import {motion} from "motion/react";
 import {useNavigate} from "react-router";
+import {Search, X} from "lucide-react";
 import {neighborhoodData} from "../data/ProgramData";
 import {programHeader} from "../data/ProgramData";
 
@@ -12,6 +13,7 @@ export default function ProgramPage() {
 
     const [selectedNeighborhood, setSelectedNeighborhood] = useState<string | null>(null);
     const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
+    const [searchQuery, setSearchQuery] = useState("");
     const navigate = useNavigate();
 
     const neighborhoods = useMemo(() => neighborhoodData.map(n => n.name), []);
@@ -23,6 +25,7 @@ export default function ProgramPage() {
 
     const filteredArtists = useMemo(() => {
         const artists: Array<{ name: string; location: string; neighborhood: string }> = [];
+        const query = searchQuery.trim().toLowerCase();
 
         neighborhoodData.forEach(n => {
             if (selectedNeighborhood && n.name !== selectedNeighborhood) return;
@@ -31,6 +34,8 @@ export default function ProgramPage() {
                 if (selectedLocation && l.name !== selectedLocation) return;
 
                 l.artists.forEach(a => {
+                    if (query && !a.name.toLowerCase().includes(query)) return;
+
                     artists.push({
                         name: a.name,
                         location: l.name,
@@ -41,7 +46,7 @@ export default function ProgramPage() {
         });
 
         return artists.sort((a, b) => a.name.localeCompare(b.name));
-    }, [selectedNeighborhood, selectedLocation]);
+    }, [selectedNeighborhood, selectedLocation, searchQuery]);
 
     const handleArtistClick = (neighborhood: string, location: string) => {
         navigate("/besucherinnen", {
@@ -59,10 +64,32 @@ export default function ProgramPage() {
                 title={programHeader.title}
                 description={programHeader.description}
             />
+            <div className="w-full max-w-md mx-auto mt-8 max-sm:mt-4 px-4">
+                <div className="relative flex items-center">
+                    <Search className="absolute left-3 w-5 h-5 text-zinc-400 pointer-events-none" />
+                    <input
+                        type="text"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        placeholder="Künstler*in suchen..."
+                        className="w-full pl-10 pr-10 py-2.5 bg-white border-2 border-zinc-200 rounded-xl text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-blue-700 transition-colors shadow-xs"
+                    />
+                    {searchQuery && (
+                        <button
+                            type="button"
+                            onClick={() => setSearchQuery("")}
+                            className="absolute right-3 text-zinc-400 hover:text-zinc-600 focus:outline-none cursor-pointer"
+                            aria-label="Suchfeld leeren"
+                        >
+                            <X className="w-4 h-4" />
+                        </button>
+                    )}
+                </div>
+            </div>
             <section className="w-full max-w-5xl mb-8 mx-auto">
                 {/* Neighborhood Filter */}
                 <div
-                    className="flex flex-row justify-center gap-1 mt-8 w-full max-w-5xl px-4 lg:px-0 overflow-x-hidden">
+                    className="flex flex-row justify-center gap-1 mt-4 max-sm:mt-2 w-full max-w-5xl px-4 lg:px-0 overflow-x-hidden">
                     {neighborhoods.map(name => (
                         <button
                             key={name}

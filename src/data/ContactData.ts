@@ -1,4 +1,5 @@
 import type {HeaderData, NoticeData, SectionFacts} from "./Types.ts";
+import {getMoinEmail, getMoinMailto} from "../utils/email.ts";
 
 export const contactHeader:HeaderData = {
     tagline: "Schreibe uns,\nwenn du Fragen hast",
@@ -10,8 +11,8 @@ export const contactNotice: NoticeData = {
     title: "Kontakt",
     text: "PR-AG des Atelierhaus 23a",
     link: {
-        label: "moin@kunstundateliertage.de",
-        href: "mailto:moin@kunstundateliertage.de"
+        label: getMoinEmail(),
+        href: getMoinMailto()
     }
 }
 

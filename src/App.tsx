@@ -3,9 +3,6 @@ import {AnimatePresence} from "motion/react";
 
 import AppLayout from "./components/layout/AppLayout";
 import Home from "./pages/Home.tsx";
-// import ArtistsInfo from "./pages/ArtistsInfo.tsx";
-// import Gallery from "./pages/Gallery.tsx";
-//import ContactPage from "./pages/ContactPage.tsx";
 import Impressum from "./pages/Impressum.tsx";
 import MapPage from "./pages/MapPage.tsx";
 import ProgramPage from "./pages/ProgramPage.tsx";
