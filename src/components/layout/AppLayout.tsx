@@ -1,13 +1,13 @@
 import type {ReactNode} from "react";
 import MobileNav from "./MobileNav";
-import {usePageScroll} from "../../hooks/usePageScroll.ts";
+//import {usePageScroll} from "../../hooks/usePageScroll.ts";
 
 type AppLayoutProps = {
     children: ReactNode;
 };
 
 export default function AppLayout({children}: AppLayoutProps) {
-    usePageScroll();
+    //usePageScroll();
     return (
         <div className="min-h-screen lg:h-screen lg:overflow-hidden overflow-x-hidden">
             {/* Accessibility skip link */}

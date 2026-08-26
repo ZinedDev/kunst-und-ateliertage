@@ -1,4 +1,5 @@
 import type { NeighborhoodData, HeaderData } from "./Types.ts";
+import flyerPdf from "../assets/KuA_2026_Programmflyer.pdf";
 
 export const programHeader: HeaderData = {
     tagline: "Wer, wo, was?",
@@ -208,6 +209,6 @@ export const neighborhoodData: NeighborhoodData[] = [
 ];
 
 export const flyerData = {
-    label: "Programm/Flyer 2025",
-    href: "/KuA_2025_Programm_Flyer_Web-2.pdf"
-}
+    label: "Programm/Flyer 2026",
+    href: flyerPdf
+};

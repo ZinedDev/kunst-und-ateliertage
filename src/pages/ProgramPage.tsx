@@ -139,7 +139,7 @@ export default function ProgramPage() {
                         ))}
                     </motion.div>
                 )}
-                <div className="w-full max-w-5xl mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1 mx-auto">
+                <div className="w-full max-w-5xl mt-4 mb-8 max-sm:mb-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1 mx-auto">
                     {filteredArtists.map((artist, index) => (
                         <motion.div
                             key={`${artist.name}-${artist.location}`}

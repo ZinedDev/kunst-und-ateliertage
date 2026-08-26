@@ -21,7 +21,7 @@ export default function Gallery() {
                         transition={{ duration: 0.35, delay: 0.15 }}
                     >
                         <a
-                            href="/KuA_2025_Programm_Flyer_Web-2.pdf"
+                            href="/KuA_2026_Programmflyer.pdf"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center justify-center rounded-2xl bg-neutral-950 px-6 py-4 text-sm font-bold text-white transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
