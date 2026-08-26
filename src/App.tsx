@@ -16,7 +16,7 @@ export default function App() {
                 <Routes location={location} key={location.pathname}>
                     <Route path="/" element={<Home/>}/>
                     {/*<Route path="/kuenstlerinnen" element={<ArtistsInfo />} />*/}
-                    <Route path="/besucherinnen" element={<MapPage/>}/>
+                    <Route path="/karte" element={<MapPage/>}/>
                     <Route path="/programm" element={<ProgramPage/>}/>
                     {/*<Route path="/galerie" element={<Gallery />} />*/}
                     {/*<Route path="/kontakt" element={<ContactPage/>}/>*/}
