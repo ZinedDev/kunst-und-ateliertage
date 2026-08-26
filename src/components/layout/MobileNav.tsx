@@ -84,9 +84,9 @@ export default function MobileNav() {
                                         end={item.path === "/"}
                                         className={({isActive}) =>
                                             [
-                                                "rounded-2xl px-4 py-2 text-lg font-semibold transition-all",
+                                                "rounded-2xl px-1 py-1 text-lg font-semibold transition-all",
                                                 isActive
-                                                    ? "bg-neutral-950 text-white"
+                                                    ? "bg-orange-400/10 border-2 border-orange-400 rounded-xl"
                                                     : "text-neutral-700 hover:bg-neutral-100 hover:text-neutral-950",
                                             ].join(" ")
                                         }

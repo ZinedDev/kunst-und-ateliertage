@@ -191,7 +191,7 @@ export default function MapPage() {
                 title={mapHeader.title}
                 description={mapHeader.description}
             />
-            <section className="flex flex-row justify-center gap-x-1 mt-8 w-full max-w-5xl px-4 lg:px-0 mx-auto">
+            <section className="flex flex-row justify-center gap-x-1 mt-8 max-sm:mt-4 px-4 lg:px-0 w-full max-w-5xl mx-auto">
                 {neighborhoodData.map((neighborhood) => {
                     const isActive = currentNeighborhood === neighborhood.name;
                     return (

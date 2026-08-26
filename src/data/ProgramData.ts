@@ -212,3 +212,4 @@ export const flyerData = {
     label: "Programm/Flyer 2026",
     href: flyerPdf
 };
+
