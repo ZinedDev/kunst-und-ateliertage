@@ -7,6 +7,618 @@ export const programHeader: HeaderData = {
     description: "Hier findest du alle Orte und Künstler*innen, die an den Kunst- und Ateliertagen teilnehmen, sortiert nach ihren Stadtteilen."
 };
 
+export type ArtistEntry = {
+    artist: string;
+    art: string[];
+    area: string;
+
+    email?: string;
+    socialMedia?: string[];
+    website?: string;
+};
+
+export const artists: ArtistEntry[] = [
+    // --------------------------------------------------
+    // 01 | HYCP VEDDEL SPACE
+    // --------------------------------------------------
+
+    {
+        artist: "Aya Alsahel",
+        art: ["IN/EXCLUSIVE ARTS"],
+        area: "HYCP Veddel Space"
+    },
+    {
+        artist: "Marcel Döring",
+        art: ["IN/EXCLUSIVE ARTS"],
+        area: "HYCP Veddel Space",
+        website: "www.idyllerei.de"
+    },
+    {
+        artist: "Rüdiger Frauenhoffer",
+        art: ["IN/EXCLUSIVE ARTS"],
+        area: "HYCP Veddel Space"
+    },
+    {
+        artist: "Jorit Kriesel",
+        art: ["IN/EXCLUSIVE ARTS"],
+        area: "HYCP Veddel Space"
+    },
+    {
+        artist: "Sinje Thoma Meyer",
+        art: ["IN/EXCLUSIVE ARTS"],
+        area: "HYCP Veddel Space"
+    },
+    {
+        artist: "Thomas Oram",
+        art: ["IN/EXCLUSIVE ARTS"],
+        area: "HYCP Veddel Space",
+        website: "www.idyllerei.de"
+    },
+    {
+        artist: "Leon Skok",
+        art: ["IN/EXCLUSIVE ARTS"],
+        area: "HYCP Veddel Space"
+    },
+    {
+        artist: "Selcan Turin",
+        art: ["IN/EXCLUSIVE ARTS"],
+        area: "HYCP Veddel Space"
+    },
+    {
+        artist: "Nilüfer \"Lili\" Yildirim",
+        art: ["IN/EXCLUSIVE ARTS"],
+        area: "HYCP Veddel Space",
+        website: "www.idyllerei.de"
+    },
+
+    // --------------------------------------------------
+    // 02 | IMMANUELKIRCHE
+    // --------------------------------------------------
+
+    {
+        artist: "Lord Nicolaus Dinter",
+        art: ["Photographie", "Painting"],
+        area: "Immanuelkirche",
+        website: "www.nicolaus-dinter.com",
+        socialMedia: ["@dinternicolaus"]
+    },
+
+    {
+        artist: "Kristof",
+        art: ["Gruppenausstellung \"art-help-healing\""],
+        area: "Immanuelkirche"
+    },
+    {
+        artist: "Sandra",
+        art: ["Gruppenausstellung \"art-help-healing\""],
+        area: "Immanuelkirche"
+    },
+    {
+        artist: "Martin",
+        art: ["Gruppenausstellung \"art-help-healing\""],
+        area: "Immanuelkirche"
+    },
+    {
+        artist: "Michael",
+        art: ["Gruppenausstellung \"art-help-healing\""],
+        area: "Immanuelkirche"
+    },
+    {
+        artist: "Tanja",
+        art: ["Gruppenausstellung \"art-help-healing\""],
+        area: "Immanuelkirche"
+    },
+    {
+        artist: "Christina",
+        art: ["Gruppenausstellung \"art-help-healing\""],
+        area: "Immanuelkirche"
+    },
+    {
+        artist: "Rado",
+        art: ["Gruppenausstellung \"art-help-healing\""],
+        area: "Immanuelkirche"
+    },
+
+    // --------------------------------------------------
+    // 03 | KÜNSTLERHAUS GEORGSWERDER
+    // --------------------------------------------------
+
+    {
+        artist: "Michael Eicks",
+        art: ["Fotografie"],
+        area: "Künstlerhaus Georgswerder"
+    },
+    {
+        artist: "Petra Hoppe",
+        art: ["Fotografie", "Federleicht (und Steinschwer)"],
+        area: "Künstlerhaus Georgswerder"
+    },
+
+    // --------------------------------------------------
+    // 04 | WINDMÜHLE JOHANNA
+    // --------------------------------------------------
+
+    {
+        artist: "Katharina Einhoff",
+        art: ["Zeichnung", "Illustration"],
+        area: "Windmühle Johanna",
+        email: "katharinaeinhoff@gmx.de"
+    },
+
+    // --------------------------------------------------
+    // 05 | ÄLTESTES WOHNHAUS WILHELMSBURG
+    // --------------------------------------------------
+
+    {
+        artist: "Katarina Jensen - Piselotten",
+        art: ["Bilder", "Modelabel"],
+        area: "Ältestes Wohnhaus Wilhelmsburg",
+        socialMedia: ["@katarinajensenpiselotten"]
+    },
+
+    // --------------------------------------------------
+    // 06 | ATELIERGEMEINSCHAFT KREISKOMPLEX
+    // --------------------------------------------------
+
+    {
+        artist: "Norman Heck",
+        art: ["gestrickte Objekte"],
+        area: "Ateliergemeinschaft Kreiskomplex"
+    },
+    {
+        artist: "Freya Sarge",
+        art: ["Fotografie"],
+        area: "Ateliergemeinschaft Kreiskomplex"
+    },
+    {
+        artist: "Insa",
+        art: ["Multimedia Basteleien"],
+        area: "Ateliergemeinschaft Kreiskomplex"
+    },
+    {
+        artist: "mk539",
+        art: ["Druckgrafik"],
+        area: "Ateliergemeinschaft Kreiskomplex"
+    },
+    {
+        artist: "mp4zu3",
+        art: ["Videoinstallation"],
+        area: "Ateliergemeinschaft Kreiskomplex"
+    },
+    {
+        artist: "Eike Unrat",
+        art: [
+            "Skulptur",
+            "Zeichnung",
+            "Malerei",
+            "Collage",
+            "Installation"
+        ],
+        area: "Ateliergemeinschaft Kreiskomplex"
+    },
+    {
+        artist: "Michael Schwarze",
+        art: ["Fotografie", "Videokunst"],
+        area: "Ateliergemeinschaft Kreiskomplex",
+        website: "www.michaelschwarze.com",
+        socialMedia: ["@michael.schwarze"]
+    },
+    {
+        artist: "Jonas Gallenkamp",
+        art: ["Malerei"],
+        area: "Ateliergemeinschaft Kreiskomplex | Hidden Gallery",
+        website: "www.jonasgallenkamp.de"
+    },
+    {
+        artist: "Mika Grunwaldt",
+        art: ["Photography"],
+        area: "Ateliergemeinschaft Kreiskomplex | Hidden Gallery",
+        website: "www.mikagrunwaldt.com",
+        socialMedia: ["@mikagrunwaldt"]
+    },
+
+    // --------------------------------------------------
+    // 07 | DEICHDIELE
+    // --------------------------------------------------
+
+    {
+        artist: "Paulina Ohl",
+        art: ["Fotografie"],
+        area: "Deichdiele",
+        email: "pauli.ohl@web.de",
+        socialMedia: ["@paulinaohl"]
+    },
+    {
+        artist: "Nico Manozkow",
+        art: ["Fotografie"],
+        area: "Deichdiele",
+        email: "nicomanozkow@gmail.com",
+        socialMedia: ["@manozkow"]
+    },
+
+    // --------------------------------------------------
+    // 08 | KERAMIKWERKSTATT
+    // --------------------------------------------------
+
+    {
+        artist: "Anqi Lyu",
+        art: ["handgemachte Keramikwaren"],
+        area: "Keramikwerkstatt",
+        email: "hallo@studioanqi.de",
+        socialMedia: ["@angellv1920"]
+    },
+
+    // --------------------------------------------------
+    // 09 | ZINNWERKE E.V.
+    // --------------------------------------------------
+
+    {
+        artist: "Nicole Rzepka und Michael Heim - Atelier Samtmammut",
+        art: ["Druckkunst"],
+        area: "Zinnwerke e.V."
+    },
+    {
+        artist: "Berenice Möller",
+        art: ["Textilkunst"],
+        area: "Zinnwerke e.V.",
+        website: "www.studioboldo.com",
+        email: "berenice@studioboldo.com",
+        socialMedia: ["@studioboldo"]
+    },
+    {
+        artist: "Martin Schramm",
+        art: ["Kollagen"],
+        area: "Zinnwerke e.V."
+    },
+    {
+        artist: "Katja Marx",
+        art: ["Holzschnitte"],
+        area: "Zinnwerke e.V."
+    },
+    {
+        artist: "Tattoo Atelier",
+        art: ["Tattoo", "Flashday"],
+        area: "Zinnwerke e.V.",
+        socialMedia: [
+            "@guffel_tattoo",
+            "@Theos_tats",
+            "@help.artwork",
+            "@raphitattoo"
+        ]
+    },
+
+    // --------------------------------------------------
+    // 10 | ATELIER FREISTIL
+    // --------------------------------------------------
+
+    {
+        artist: "Atelier Freistil",
+        art: ["verschiedene Kunstformen"],
+        area: "Atelier Freistil",
+        website: "www.atelier-freistil.de",
+        socialMedia: ["@atelierfreistil"]
+    },
+
+    // --------------------------------------------------
+    // 11 | ATELIERHOF
+    // --------------------------------------------------
+
+    {
+        artist: "Bente Wolke",
+        art: ["Bildobjekte", "Malerei"],
+        area: "Atelierhof | Garten",
+        website: "www.bente-wolke.de",
+        email: "mail@bente-wolke.de",
+        socialMedia: ["@bente_wolke"]
+    },
+    {
+        artist: "Mareike Alexander",
+        art: ["Kostümgestaltung", "Textilkunst"],
+        area: "Atelierhof | Hinterhof | 1. Stock",
+        email: "fraumareikealexander@gmail.com",
+        socialMedia: ["@almamaalalma"]
+    },
+    {
+        artist: "Lotte Bräuning",
+        art: ["Kinderbuchillustration"],
+        area: "Atelierhof | Hinterhof | 1. Stock",
+        website: "www.lottebraeuning.de",
+        email: "post@lottebraeuning.de",
+        socialMedia: ["@lottebraeuning_illustration"]
+    },
+    {
+        artist: "Nikita Bürger",
+        art: ["Zeichnung", "Illustration"],
+        area: "Atelierhof | Hinterhof | 1. Stock",
+        socialMedia: ["@nikita.buerger"]
+    },
+    {
+        artist: "Lena Galitsch",
+        art: ["Webdesign", "Experimente"],
+        area: "Atelierhof | Hinterhof | 1. Stock",
+        website: "www.galitsch.de"
+    },
+    {
+        artist: "Karin Kraemer",
+        art: ["Keramik", "Zeichnung"],
+        area: "Atelierhof | Hinterhof | 1. Stock",
+        socialMedia: ["@karin__kraemer"]
+    },
+    {
+        artist: "Gosia Machon",
+        art: ["Malerei"],
+        area: "Atelierhof | Hinterhof | 1. Stock",
+        website: "www.gosiamachon.de"
+    },
+
+    // --------------------------------------------------
+    // 12 | VITACURARE KUNSTLABOR
+    // --------------------------------------------------
+
+    {
+        artist: "Kunst-Gruppe und Kreativgruppe",
+        art: ["Werke der Klientinnen und Klienten"],
+        area: "Vitacurare Kunstlabor"
+    },
+    {
+        artist: "Klaas Goerges",
+        art: ["Malerei"],
+        area: "Vitacurare Kunstlabor",
+        website: "www.vitacurare.de",
+        email: "kg@vitacurare.de"
+    },
+    {
+        artist: "Nathalie Hallmann",
+        art: ["Makramee für Anfänger:innen"],
+        area: "Vitacurare Kunstlabor",
+        website: "www.vitacurare.de",
+        email: "nah@vitacurare.de"
+    },
+
+    // --------------------------------------------------
+    // 13 | RATTENLOCH 4.0
+    // --------------------------------------------------
+
+    {
+        artist: "Ilo Toivio",
+        art: [
+            "crochet installation with audio",
+            "drop-in mending workshop",
+            "Illustration",
+            "Installation"
+        ],
+        area: "Rattenloch 4.0"
+    },
+    {
+        artist: "Marlene Busch",
+        art: [
+            "crochet installation with audio",
+            "drop-in mending workshop",
+            "Illustration",
+            "Installation"
+        ],
+        area: "Rattenloch 4.0"
+    },
+    {
+        artist: "Kuno Seltmann",
+        art: [
+            "crochet installation with audio",
+            "drop-in mending workshop",
+            "Illustration",
+            "Installation"
+        ],
+        area: "Rattenloch 4.0"
+    },
+
+    // --------------------------------------------------
+    // 14 | DER GEHEIMNISVOLLE DACHBODEN
+    // --------------------------------------------------
+
+    {
+        artist: "Jürgen Weber",
+        art: ["3d Collagen", "Maschinen", "Zeichnungen"],
+        area: "Der geheimnisvolle Dachboden",
+        email: "juergenweber.zeitmomente@gmail.com",
+        socialMedia: ["@zeitmomente_in_3d"]
+    },
+
+    // --------------------------------------------------
+    // 15 | HOFA - HONIGFABRIK
+    // --------------------------------------------------
+
+    {
+        artist: "Tamara Niederweis - La Graffeuse",
+        art: ["Urban Art Malerei"],
+        area: "HoFa - Kommunikationszentrum Honigfabrik | Malerei Atelier",
+        email: "tamara.niederweis@gmail.com",
+        socialMedia: ["@lagraffeusearts"]
+    },
+    {
+        artist: "Leonor Duque",
+        art: ["Malerei"],
+        area: "HoFa - Kommunikationszentrum Honigfabrik | Malerei Atelier",
+        email: "leonorrecio.duque@gmail.com",
+        socialMedia: ["@leonorduque_"]
+    },
+    {
+        artist: "Johanna Sarah Schmidt und Ana Luisa Amaral Lucena - ClayGround",
+        art: ["Keramik"],
+        area: "HoFa - Kommunikationszentrum Honigfabrik"
+    },
+    {
+        artist: "Julio Celis Rodriguez",
+        art: ["Musik"],
+        area: "HoFa - Kommunikationszentrum Honigfabrik | Musik Atelier",
+        email: "celiselgato@gmail.com",
+        socialMedia: ["@celiselgato"]
+    },
+
+    // --------------------------------------------------
+    // 16 | ATELIERHAUS 23 | 2. ETAGE
+    // --------------------------------------------------
+
+    {
+        artist: "Thomas Kleine",
+        art: ["Papierschnitt", "Monotypie", "Installation"],
+        area: "Atelierhaus 23 | 2. Etage",
+        website: "www.thomas-kleine.de",
+        email: "mail@thomas-kleine.de",
+        socialMedia: ["@thomaskleinestudio"]
+    },
+    {
+        artist: "Katja Sattelkau - Atelier 90°",
+        art: ["Malerei", "Objekte"],
+        area: "Atelierhaus 23 | 2. Etage",
+        website: "www.katjasattelkau.de",
+        socialMedia: ["@atelier_90_grad"]
+    },
+    {
+        artist: "Kristin Strauß - Scheinwerfer Dance Center",
+        art: ["Tanz"],
+        area: "Atelierhaus 23 | 2. Etage",
+        website: "www.scheinwerfer-dancecenter.de",
+        socialMedia: ["@scheinwerfer_dance_center"]
+    },
+    {
+        artist: "Elke Ehninger",
+        art: ["Collage"],
+        area: "Atelierhaus 23 | 2. Etage",
+        website: "www.elke-ehninger.de",
+        email: "mail@elke-ehninger.de"
+    },
+    {
+        artist: "Jann Kaune",
+        art: ["Ölmalerei"],
+        area: "Atelierhaus 23 | 2. Etage",
+        email: "info@kaune-online.de"
+    },
+    {
+        artist: "Ulrich Mertens",
+        art: ["visual arts", "Beauty of Wind"],
+        area: "Atelierhaus 23 | 2. Etage"
+    },
+    {
+        artist: "Valerie Wagner",
+        art: ["Fotografie", "Linoldruck"],
+        area: "Atelierhaus 23 | 2. Etage",
+        socialMedia: ["@valeriewagner_photography"]
+    },
+
+    // --------------------------------------------------
+    // 16 | ATELIERHAUS 23 | 1. ETAGE
+    // --------------------------------------------------
+
+    {
+        artist: "Katharina Bick",
+        art: ["Malerei", "Zeichnung"],
+        area: "Atelierhaus 23 | 1. Etage",
+        email: "katharina.bick@web.de"
+    },
+    {
+        artist: "Claudia Eschborn - books and photographs",
+        art: ["Fotografie", "Buchbinderei"],
+        area: "Atelierhaus 23 | 1. Etage",
+        website: "www.claudiaeschborn.de",
+        socialMedia: ["@claudiaeschborn2404"]
+    },
+    {
+        artist: "Stephanie Krengel",
+        art: ["Malerei"],
+        area: "Atelierhaus 23 | 1. Etage",
+        email: "skrengel@online.de",
+        socialMedia: ["@stephanie_krengel"]
+    },
+    {
+        artist: "Catalina González González",
+        art: ["film", "drawing", "text"],
+        area: "Atelierhaus 23 | 1. Etage",
+        socialMedia: ["@gonzalezgonzalezacostalopez"]
+    },
+    {
+        artist: "Katharina Langer",
+        art: ["Malerei", "Siebdruck"],
+        area: "Atelierhaus 23 | 1. Etage",
+        website: "www.katharinalanger.de",
+        socialMedia: ["@Katharinalangerstudio"]
+    },
+    {
+        artist: "Claire Ewbank",
+        art: ["Malerei"],
+        area: "Atelierhaus 23 | 1. Etage",
+        socialMedia: ["@claire.ewbank"]
+    },
+
+    // --------------------------------------------------
+    // 16 | ATELIERHAUS 23 | ERDGESCHOSS
+    // --------------------------------------------------
+
+    {
+        artist: "Carla Binter",
+        art: [
+            "Wandbilder",
+            "charakterstarke keramische Einzelstücke"
+        ],
+        area: "Atelierhaus 23 | Erdgeschoss",
+        website: "www.keramik-carla-binter.de",
+        email: "info@keramik-carla-binter.de"
+    },
+    {
+        artist: "Melanie Cramer - vonLani",
+        art: ["Schmuck", "Accessoires"],
+        area: "Atelierhaus 23 | Erdgeschoss",
+        website: "www.vonlani.de",
+        socialMedia: ["@von.lani"]
+    },
+    {
+        artist: "Frieder Falk",
+        art: ["Zeichnung", "Objekt"],
+        area: "Atelierhaus 23 | Erdgeschoss",
+        website: "www.friederfalk.de",
+        email: "fcfalk@posteo.de",
+        socialMedia: ["@falk_frieder"]
+    },
+    {
+        artist: "Sabine Hahn-Nicol",
+        art: ["Bildhauerei"],
+        area: "Atelierhaus 23 | Erdgeschoss",
+        email: "sabine.hahn-nicol@hamburg.de"
+    },
+    {
+        artist: "Capoeira",
+        art: ["Fitness", "Kampf", "Rhythmus"],
+        area: "Atelierhaus 23 | Erdgeschoss",
+        website: "www.capoeira-hamburg-sued.org",
+        socialMedia: ["@capoeira_angola_hamburg_sued"]
+    },
+    {
+        artist: "Martin Graf - edition8x8",
+        art: ["Druckgrafik", "Bastelbögen", "Heftchen"],
+        area: "Atelierhaus 23 | Erdgeschoss | Ateliergemeinschaft",
+        website: "www.edition8x8.de",
+        email: "martin.graf@edition8x8.de"
+    },
+    {
+        artist: "Miriam Elze",
+        art: ["Illustration"],
+        area: "Atelierhaus 23 | Erdgeschoss | Ateliergemeinschaft",
+        website: "www.miriamelze.de",
+        email: "illustration@miriamelze.de",
+        socialMedia: ["@miriamelze_illustration"]
+    },
+
+    // --------------------------------------------------
+    // 17 | GALERIE 23 | KAFFEELIEBE
+    // --------------------------------------------------
+
+    {
+        artist: "Stephanie Krengel",
+        art: ["Malerei und mehr"],
+        area: "Galerie 23 | Kaffeeliebe",
+        email: "skrengel@online.de",
+        socialMedia: ["@stephanie_krengel"]
+    }
+];
+
 export const neighborhoodData: NeighborhoodData[] = [
     {
         name: "Veddel",
