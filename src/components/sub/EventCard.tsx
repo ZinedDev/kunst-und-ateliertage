@@ -43,6 +43,7 @@ export default function EventCard({event, index = 0, onClick}: EventCardProps) {
             state: {
                 neighborhood: event.where.neighborhood.replace(/^HH-/, ""),
                 location: event.where.venue,
+                address: event.where.address,
             },
         });
     };

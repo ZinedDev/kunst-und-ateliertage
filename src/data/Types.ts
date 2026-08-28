@@ -20,13 +20,15 @@ export type NoticeData = {
     textClassName?: string;
 }
 
-export interface Artist {
-    name: string;
-    description?: string;
+export interface ArtistEntry {
+    artist: string;
+    art: string[];
+    area: string;
+
+    email?: string;
+    socialMedia?: string[];
+    website?: string;
 }
-
-
-
 
 export interface Location {
     name: string;
@@ -43,6 +45,6 @@ export interface NeighborhoodData {
         adresse?: string | null;
         lat?: number | null;
         lng?: number | null;
-        artists: Artist[];
+        artists: ArtistEntry[];
     }[];
 }

@@ -1,14 +1,25 @@
 import {useState, useMemo} from "react";
 import {motion} from "motion/react";
 import {neighborhoodData} from "../../data/ProgramData.ts";
-import ArtistCard, {type ArtistEntry} from "./ArtistCard.tsx";
+import ArtistCard, {type ArtistCardEntry} from "./ArtistCard.tsx";
 
 interface ArtistsSectionProps {
     searchQuery: string;
     onResetSearch?: () => void;
+    focusedArtist?: {
+        artist: string;
+        location?: string;
+        neighborhood?: string;
+    };
+    onFocusedArtistDismiss?: () => void;
 }
 
-export default function ArtistsSection({searchQuery, onResetSearch}: ArtistsSectionProps) {
+export default function ArtistsSection({
+    searchQuery,
+    onResetSearch,
+    focusedArtist,
+    onFocusedArtistDismiss,
+}: ArtistsSectionProps) {
     const [selectedNeighborhood, setSelectedNeighborhood] = useState<string | null>(null);
     const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
 
@@ -20,7 +31,7 @@ export default function ArtistsSection({searchQuery, onResetSearch}: ArtistsSect
     }, [selectedNeighborhood]);
 
     const filteredArtists = useMemo(() => {
-        const artists: Array<ArtistEntry> = [];
+        const artists: Array<ArtistCardEntry> = [];
         const query = searchQuery.trim().toLowerCase();
 
         neighborhoodData.forEach(n => {
@@ -30,10 +41,10 @@ export default function ArtistsSection({searchQuery, onResetSearch}: ArtistsSect
                 if (selectedLocation && l.name !== selectedLocation) return;
 
                 l.artists.forEach(a => {
-                    if (query && !a.name.toLowerCase().includes(query)) return;
+                    if (query && !a.artist.toLowerCase().includes(query)) return;
 
                     artists.push({
-                        name: a.name,
+                        ...a,
                         location: l.name,
                         neighborhood: n.name
                     });
@@ -41,7 +52,11 @@ export default function ArtistsSection({searchQuery, onResetSearch}: ArtistsSect
             });
         });
 
-        return artists.sort((a, b) => a.name.localeCompare(b.name));
+        return artists.sort((a, b) => {
+            const nameA = a.artist || a.name || "";
+            const nameB = b.artist || b.name || "";
+            return nameA.localeCompare(nameB);
+        });
     }, [selectedNeighborhood, selectedLocation, searchQuery]);
 
     const handleResetFilters = () => {
@@ -110,9 +125,15 @@ export default function ArtistsSection({searchQuery, onResetSearch}: ArtistsSect
             <div className="w-full max-w-5xl mt-6 mb-8 max-sm:mb-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mx-auto">
                 {filteredArtists.map((artist, index) => (
                     <ArtistCard
-                        key={`${artist.name}-${artist.location}`}
+                        key={`${artist.artist || artist.name}-${artist.location || artist.area}`}
                         artist={artist}
                         index={index}
+                        isFocused={
+                            artist.artist === focusedArtist?.artist &&
+                            artist.location === focusedArtist?.location &&
+                            artist.neighborhood === focusedArtist?.neighborhood
+                        }
+                        onFocusDismiss={onFocusedArtistDismiss}
                     />
                 ))}
 

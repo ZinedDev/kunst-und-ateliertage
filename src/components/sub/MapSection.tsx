@@ -173,7 +173,7 @@ export default function MapSection({
                                                                                 key={aIdx}
                                                                                 className="text-md max-sm:text-sm text-neutral-700 italic"
                                                                             >
-                                                                                {artist.name}
+                                                                                {artist.artist}
                                                                             </li>
                                                                         ))}
                                                                     </motion.ul>

@@ -1,5 +1,7 @@
-import type { NeighborhoodData, HeaderData } from "./Types.ts";
+import type { NeighborhoodData, HeaderData, ArtistEntry } from "./Types.ts";
 import flyerPdf from "../assets/KuA_2026_Programmflyer.pdf";
+
+export type { ArtistEntry } from "./Types.ts";
 
 export const programHeader: HeaderData = {
     tagline: "Wer, wo, was?",
@@ -7,617 +9,675 @@ export const programHeader: HeaderData = {
     description: "Hier findest du alle Orte und Künstler*innen, die an den Kunst- und Ateliertagen teilnehmen, sortiert nach ihren Stadtteilen."
 };
 
-export type ArtistEntry = {
-    artist: string;
-    art: string[];
-    area: string;
+// --------------------------------------------------
+// 01 | HYCP VEDDEL SPACE
+// --------------------------------------------------
 
-    email?: string;
-    socialMedia?: string[];
-    website?: string;
+export const ayaAlsahel: ArtistEntry = {
+    artist: "Aya Alsahel",
+    art: ["IN/EXCLUSIVE ARTS"],
+    area: "HYCP Veddel Space"
 };
 
-export const artists: ArtistEntry[] = [
-    // --------------------------------------------------
-    // 01 | HYCP VEDDEL SPACE
-    // --------------------------------------------------
+export const marcelDoering: ArtistEntry = {
+    artist: "Marcel Döring",
+    art: ["IN/EXCLUSIVE ARTS"],
+    area: "HYCP Veddel Space",
+    website: "www.idyllerei.de"
+};
 
-    {
-        artist: "Aya Alsahel",
-        art: ["IN/EXCLUSIVE ARTS"],
-        area: "HYCP Veddel Space"
-    },
-    {
-        artist: "Marcel Döring",
-        art: ["IN/EXCLUSIVE ARTS"],
-        area: "HYCP Veddel Space",
-        website: "www.idyllerei.de"
-    },
-    {
-        artist: "Rüdiger Frauenhoffer",
-        art: ["IN/EXCLUSIVE ARTS"],
-        area: "HYCP Veddel Space"
-    },
-    {
-        artist: "Jorit Kriesel",
-        art: ["IN/EXCLUSIVE ARTS"],
-        area: "HYCP Veddel Space"
-    },
-    {
-        artist: "Sinje Thoma Meyer",
-        art: ["IN/EXCLUSIVE ARTS"],
-        area: "HYCP Veddel Space"
-    },
-    {
-        artist: "Thomas Oram",
-        art: ["IN/EXCLUSIVE ARTS"],
-        area: "HYCP Veddel Space",
-        website: "www.idyllerei.de"
-    },
-    {
-        artist: "Leon Skok",
-        art: ["IN/EXCLUSIVE ARTS"],
-        area: "HYCP Veddel Space"
-    },
-    {
-        artist: "Selcan Turin",
-        art: ["IN/EXCLUSIVE ARTS"],
-        area: "HYCP Veddel Space"
-    },
-    {
-        artist: "Nilüfer \"Lili\" Yildirim",
-        art: ["IN/EXCLUSIVE ARTS"],
-        area: "HYCP Veddel Space",
-        website: "www.idyllerei.de"
-    },
+export const ruedigerFrauenhoffer: ArtistEntry = {
+    artist: "Rüdiger Frauenhoffer",
+    art: ["IN/EXCLUSIVE ARTS"],
+    area: "HYCP Veddel Space"
+};
 
-    // --------------------------------------------------
-    // 02 | IMMANUELKIRCHE
-    // --------------------------------------------------
+export const joritKriesel: ArtistEntry = {
+    artist: "Jorit Kriesel",
+    art: ["IN/EXCLUSIVE ARTS"],
+    area: "HYCP Veddel Space"
+};
 
-    {
-        artist: "Lord Nicolaus Dinter",
-        art: ["Photographie", "Painting"],
-        area: "Immanuelkirche",
-        website: "www.nicolaus-dinter.com",
-        socialMedia: ["@dinternicolaus"]
-    },
+export const sinjeThomaMeyer: ArtistEntry = {
+    artist: "Sinje Thoma Meyer",
+    art: ["IN/EXCLUSIVE ARTS"],
+    area: "HYCP Veddel Space"
+};
 
-    {
-        artist: "Kristof",
-        art: ["Gruppenausstellung \"art-help-healing\""],
-        area: "Immanuelkirche"
-    },
-    {
-        artist: "Sandra",
-        art: ["Gruppenausstellung \"art-help-healing\""],
-        area: "Immanuelkirche"
-    },
-    {
-        artist: "Martin",
-        art: ["Gruppenausstellung \"art-help-healing\""],
-        area: "Immanuelkirche"
-    },
-    {
-        artist: "Michael",
-        art: ["Gruppenausstellung \"art-help-healing\""],
-        area: "Immanuelkirche"
-    },
-    {
-        artist: "Tanja",
-        art: ["Gruppenausstellung \"art-help-healing\""],
-        area: "Immanuelkirche"
-    },
-    {
-        artist: "Christina",
-        art: ["Gruppenausstellung \"art-help-healing\""],
-        area: "Immanuelkirche"
-    },
-    {
-        artist: "Rado",
-        art: ["Gruppenausstellung \"art-help-healing\""],
-        area: "Immanuelkirche"
-    },
+export const thomasOram: ArtistEntry = {
+    artist: "Thomas Oram",
+    art: ["IN/EXCLUSIVE ARTS"],
+    area: "HYCP Veddel Space",
+    website: "www.idyllerei.de"
+};
 
-    // --------------------------------------------------
-    // 03 | KÜNSTLERHAUS GEORGSWERDER
-    // --------------------------------------------------
+export const leonSkok: ArtistEntry = {
+    artist: "Leon Skok",
+    art: ["IN/EXCLUSIVE ARTS"],
+    area: "HYCP Veddel Space"
+};
 
-    {
-        artist: "Michael Eicks",
-        art: ["Fotografie"],
-        area: "Künstlerhaus Georgswerder"
-    },
-    {
-        artist: "Petra Hoppe",
-        art: ["Fotografie", "Federleicht (und Steinschwer)"],
-        area: "Künstlerhaus Georgswerder"
-    },
+export const selcanTurin: ArtistEntry = {
+    artist: "Selcan Turin",
+    art: ["IN/EXCLUSIVE ARTS"],
+    area: "HYCP Veddel Space"
+};
 
-    // --------------------------------------------------
-    // 04 | WINDMÜHLE JOHANNA
-    // --------------------------------------------------
+export const nilueferLiliYildirim: ArtistEntry = {
+    artist: "Nilüfer \"Lili\" Yildirim",
+    art: ["IN/EXCLUSIVE ARTS"],
+    area: "HYCP Veddel Space",
+    website: "www.idyllerei.de"
+};
 
-    {
-        artist: "Katharina Einhoff",
-        art: ["Zeichnung", "Illustration"],
-        area: "Windmühle Johanna",
-        email: "katharinaeinhoff@gmx.de"
-    },
+// --------------------------------------------------
+// 02 | IMMANUELKIRCHE
+// --------------------------------------------------
 
-    // --------------------------------------------------
-    // 05 | ÄLTESTES WOHNHAUS WILHELMSBURG
-    // --------------------------------------------------
+export const lordNicolausDinter: ArtistEntry = {
+    artist: "Lord Nicolaus Dinter",
+    art: ["Photographie", "Painting"],
+    area: "Immanuelkirche",
+    website: "www.nicolaus-dinter.com",
+    socialMedia: ["@dinternicolaus"]
+};
 
-    {
-        artist: "Katarina Jensen - Piselotten",
-        art: ["Bilder", "Modelabel"],
-        area: "Ältestes Wohnhaus Wilhelmsburg",
-        socialMedia: ["@katarinajensenpiselotten"]
-    },
+export const kristof: ArtistEntry = {
+    artist: "Kristof",
+    art: ["Gruppenausstellung \"art-help-healing\""],
+    area: "Immanuelkirche"
+};
 
-    // --------------------------------------------------
-    // 06 | ATELIERGEMEINSCHAFT KREISKOMPLEX
-    // --------------------------------------------------
+export const sandra: ArtistEntry = {
+    artist: "Sandra",
+    art: ["Gruppenausstellung \"art-help-healing\""],
+    area: "Immanuelkirche"
+};
 
-    {
-        artist: "Norman Heck",
-        art: ["gestrickte Objekte"],
-        area: "Ateliergemeinschaft Kreiskomplex"
-    },
-    {
-        artist: "Freya Sarge",
-        art: ["Fotografie"],
-        area: "Ateliergemeinschaft Kreiskomplex"
-    },
-    {
-        artist: "Insa",
-        art: ["Multimedia Basteleien"],
-        area: "Ateliergemeinschaft Kreiskomplex"
-    },
-    {
-        artist: "mk539",
-        art: ["Druckgrafik"],
-        area: "Ateliergemeinschaft Kreiskomplex"
-    },
-    {
-        artist: "mp4zu3",
-        art: ["Videoinstallation"],
-        area: "Ateliergemeinschaft Kreiskomplex"
-    },
-    {
-        artist: "Eike Unrat",
-        art: [
-            "Skulptur",
-            "Zeichnung",
-            "Malerei",
-            "Collage",
-            "Installation"
-        ],
-        area: "Ateliergemeinschaft Kreiskomplex"
-    },
-    {
-        artist: "Michael Schwarze",
-        art: ["Fotografie", "Videokunst"],
-        area: "Ateliergemeinschaft Kreiskomplex",
-        website: "www.michaelschwarze.com",
-        socialMedia: ["@michael.schwarze"]
-    },
-    {
-        artist: "Jonas Gallenkamp",
-        art: ["Malerei"],
-        area: "Ateliergemeinschaft Kreiskomplex | Hidden Gallery",
-        website: "www.jonasgallenkamp.de"
-    },
-    {
-        artist: "Mika Grunwaldt",
-        art: ["Photography"],
-        area: "Ateliergemeinschaft Kreiskomplex | Hidden Gallery",
-        website: "www.mikagrunwaldt.com",
-        socialMedia: ["@mikagrunwaldt"]
-    },
+export const martin: ArtistEntry = {
+    artist: "Martin",
+    art: ["Gruppenausstellung \"art-help-healing\""],
+    area: "Immanuelkirche"
+};
 
-    // --------------------------------------------------
-    // 07 | DEICHDIELE
-    // --------------------------------------------------
+export const michael: ArtistEntry = {
+    artist: "Michael",
+    art: ["Gruppenausstellung \"art-help-healing\""],
+    area: "Immanuelkirche"
+};
 
-    {
-        artist: "Paulina Ohl",
-        art: ["Fotografie"],
-        area: "Deichdiele",
-        email: "pauli.ohl@web.de",
-        socialMedia: ["@paulinaohl"]
-    },
-    {
-        artist: "Nico Manozkow",
-        art: ["Fotografie"],
-        area: "Deichdiele",
-        email: "nicomanozkow@gmail.com",
-        socialMedia: ["@manozkow"]
-    },
+export const tanja: ArtistEntry = {
+    artist: "Tanja",
+    art: ["Gruppenausstellung \"art-help-healing\""],
+    area: "Immanuelkirche"
+};
 
-    // --------------------------------------------------
-    // 08 | KERAMIKWERKSTATT
-    // --------------------------------------------------
+export const christina: ArtistEntry = {
+    artist: "Christina",
+    art: ["Gruppenausstellung \"art-help-healing\""],
+    area: "Immanuelkirche"
+};
 
-    {
-        artist: "Anqi Lyu",
-        art: ["handgemachte Keramikwaren"],
-        area: "Keramikwerkstatt",
-        email: "hallo@studioanqi.de",
-        socialMedia: ["@angellv1920"]
-    },
+export const rado: ArtistEntry = {
+    artist: "Rado",
+    art: ["Gruppenausstellung \"art-help-healing\""],
+    area: "Immanuelkirche"
+};
 
-    // --------------------------------------------------
-    // 09 | ZINNWERKE E.V.
-    // --------------------------------------------------
+// --------------------------------------------------
+// 03 | KÜNSTLERHAUS GEORGSWERDER
+// --------------------------------------------------
 
-    {
-        artist: "Nicole Rzepka und Michael Heim - Atelier Samtmammut",
-        art: ["Druckkunst"],
-        area: "Zinnwerke e.V."
-    },
-    {
-        artist: "Berenice Möller",
-        art: ["Textilkunst"],
-        area: "Zinnwerke e.V.",
-        website: "www.studioboldo.com",
-        email: "berenice@studioboldo.com",
-        socialMedia: ["@studioboldo"]
-    },
-    {
-        artist: "Martin Schramm",
-        art: ["Kollagen"],
-        area: "Zinnwerke e.V."
-    },
-    {
-        artist: "Katja Marx",
-        art: ["Holzschnitte"],
-        area: "Zinnwerke e.V."
-    },
-    {
-        artist: "Tattoo Atelier",
-        art: ["Tattoo", "Flashday"],
-        area: "Zinnwerke e.V.",
-        socialMedia: [
-            "@guffel_tattoo",
-            "@Theos_tats",
-            "@help.artwork",
-            "@raphitattoo"
-        ]
-    },
+export const michaelEicks: ArtistEntry = {
+    artist: "Michael Eicks",
+    art: ["Fotografie"],
+    area: "Künstlerhaus Georgswerder"
+};
 
-    // --------------------------------------------------
-    // 10 | ATELIER FREISTIL
-    // --------------------------------------------------
+export const petraHoppe: ArtistEntry = {
+    artist: "Petra Hoppe",
+    art: ["Fotografie", "Federleicht (und Steinschwer)"],
+    area: "Künstlerhaus Georgswerder"
+};
 
-    {
-        artist: "Atelier Freistil",
-        art: ["verschiedene Kunstformen"],
-        area: "Atelier Freistil",
-        website: "www.atelier-freistil.de",
-        socialMedia: ["@atelierfreistil"]
-    },
+// --------------------------------------------------
+// 04 | WINDMÜHLE JOHANNA
+// --------------------------------------------------
 
-    // --------------------------------------------------
-    // 11 | ATELIERHOF
-    // --------------------------------------------------
+export const katharinaEinhoff: ArtistEntry = {
+    artist: "Katharina Einhoff",
+    art: ["Zeichnung", "Illustration"],
+    area: "Windmühle Johanna",
+    email: "katharinaeinhoff@gmx.de"
+};
 
-    {
-        artist: "Bente Wolke",
-        art: ["Bildobjekte", "Malerei"],
-        area: "Atelierhof | Garten",
-        website: "www.bente-wolke.de",
-        email: "mail@bente-wolke.de",
-        socialMedia: ["@bente_wolke"]
-    },
-    {
-        artist: "Mareike Alexander",
-        art: ["Kostümgestaltung", "Textilkunst"],
-        area: "Atelierhof | Hinterhof | 1. Stock",
-        email: "fraumareikealexander@gmail.com",
-        socialMedia: ["@almamaalalma"]
-    },
-    {
-        artist: "Lotte Bräuning",
-        art: ["Kinderbuchillustration"],
-        area: "Atelierhof | Hinterhof | 1. Stock",
-        website: "www.lottebraeuning.de",
-        email: "post@lottebraeuning.de",
-        socialMedia: ["@lottebraeuning_illustration"]
-    },
-    {
-        artist: "Nikita Bürger",
-        art: ["Zeichnung", "Illustration"],
-        area: "Atelierhof | Hinterhof | 1. Stock",
-        socialMedia: ["@nikita.buerger"]
-    },
-    {
-        artist: "Lena Galitsch",
-        art: ["Webdesign", "Experimente"],
-        area: "Atelierhof | Hinterhof | 1. Stock",
-        website: "www.galitsch.de"
-    },
-    {
-        artist: "Karin Kraemer",
-        art: ["Keramik", "Zeichnung"],
-        area: "Atelierhof | Hinterhof | 1. Stock",
-        socialMedia: ["@karin__kraemer"]
-    },
-    {
-        artist: "Gosia Machon",
-        art: ["Malerei"],
-        area: "Atelierhof | Hinterhof | 1. Stock",
-        website: "www.gosiamachon.de"
-    },
+// --------------------------------------------------
+// 05 | ÄLTESTES WOHNHAUS WILHELMSBURG
+// --------------------------------------------------
 
-    // --------------------------------------------------
-    // 12 | VITACURARE KUNSTLABOR
-    // --------------------------------------------------
+export const katarinaJensen: ArtistEntry = {
+    artist: "Katarina Jensen - Piselotten",
+    art: ["Bilder", "Modelabel"],
+    area: "Ältestes Wohnhaus Wilhelmsburg",
+    socialMedia: ["@katarinajensenpiselotten"]
+};
 
-    {
-        artist: "Kunst-Gruppe und Kreativgruppe",
-        art: ["Werke der Klientinnen und Klienten"],
-        area: "Vitacurare Kunstlabor"
-    },
-    {
-        artist: "Klaas Goerges",
-        art: ["Malerei"],
-        area: "Vitacurare Kunstlabor",
-        website: "www.vitacurare.de",
-        email: "kg@vitacurare.de"
-    },
-    {
-        artist: "Nathalie Hallmann",
-        art: ["Makramee für Anfänger:innen"],
-        area: "Vitacurare Kunstlabor",
-        website: "www.vitacurare.de",
-        email: "nah@vitacurare.de"
-    },
+// --------------------------------------------------
+// 06 | ATELIERGEMEINSCHAFT KREISKOMPLEX
+// --------------------------------------------------
 
-    // --------------------------------------------------
-    // 13 | RATTENLOCH 4.0
-    // --------------------------------------------------
+export const normanHeck: ArtistEntry = {
+    artist: "Norman Heck",
+    art: ["gestrickte Objekte"],
+    area: "Ateliergemeinschaft Kreiskomplex"
+};
 
-    {
-        artist: "Ilo Toivio",
-        art: [
-            "crochet installation with audio",
-            "drop-in mending workshop",
-            "Illustration",
-            "Installation"
-        ],
-        area: "Rattenloch 4.0"
-    },
-    {
-        artist: "Marlene Busch",
-        art: [
-            "crochet installation with audio",
-            "drop-in mending workshop",
-            "Illustration",
-            "Installation"
-        ],
-        area: "Rattenloch 4.0"
-    },
-    {
-        artist: "Kuno Seltmann",
-        art: [
-            "crochet installation with audio",
-            "drop-in mending workshop",
-            "Illustration",
-            "Installation"
-        ],
-        area: "Rattenloch 4.0"
-    },
+export const freyaSarge: ArtistEntry = {
+    artist: "Freya Sarge",
+    art: ["Fotografie"],
+    area: "Ateliergemeinschaft Kreiskomplex"
+};
 
-    // --------------------------------------------------
-    // 14 | DER GEHEIMNISVOLLE DACHBODEN
-    // --------------------------------------------------
+export const insa: ArtistEntry = {
+    artist: "Insa",
+    art: ["Multimedia Basteleien"],
+    area: "Ateliergemeinschaft Kreiskomplex"
+};
 
-    {
-        artist: "Jürgen Weber",
-        art: ["3d Collagen", "Maschinen", "Zeichnungen"],
-        area: "Der geheimnisvolle Dachboden",
-        email: "juergenweber.zeitmomente@gmail.com",
-        socialMedia: ["@zeitmomente_in_3d"]
-    },
+export const mk539: ArtistEntry = {
+    artist: "mk539",
+    art: ["Druckgrafik"],
+    area: "Ateliergemeinschaft Kreiskomplex"
+};
 
-    // --------------------------------------------------
-    // 15 | HOFA - HONIGFABRIK
-    // --------------------------------------------------
+export const mp4zu3: ArtistEntry = {
+    artist: "mp4zu3",
+    art: ["Videoinstallation"],
+    area: "Ateliergemeinschaft Kreiskomplex"
+};
 
-    {
-        artist: "Tamara Niederweis - La Graffeuse",
-        art: ["Urban Art Malerei"],
-        area: "HoFa - Kommunikationszentrum Honigfabrik | Malerei Atelier",
-        email: "tamara.niederweis@gmail.com",
-        socialMedia: ["@lagraffeusearts"]
-    },
-    {
-        artist: "Leonor Duque",
-        art: ["Malerei"],
-        area: "HoFa - Kommunikationszentrum Honigfabrik | Malerei Atelier",
-        email: "leonorrecio.duque@gmail.com",
-        socialMedia: ["@leonorduque_"]
-    },
-    {
-        artist: "Johanna Sarah Schmidt und Ana Luisa Amaral Lucena - ClayGround",
-        art: ["Keramik"],
-        area: "HoFa - Kommunikationszentrum Honigfabrik"
-    },
-    {
-        artist: "Julio Celis Rodriguez",
-        art: ["Musik"],
-        area: "HoFa - Kommunikationszentrum Honigfabrik | Musik Atelier",
-        email: "celiselgato@gmail.com",
-        socialMedia: ["@celiselgato"]
-    },
+export const eikeUnrat: ArtistEntry = {
+    artist: "Eike Unrat",
+    art: [
+        "Skulptur",
+        "Zeichnung",
+        "Malerei",
+        "Collage",
+        "Installation"
+    ],
+    area: "Ateliergemeinschaft Kreiskomplex"
+};
 
-    // --------------------------------------------------
-    // 16 | ATELIERHAUS 23 | 2. ETAGE
-    // --------------------------------------------------
+export const michaelSchwarze: ArtistEntry = {
+    artist: "Michael Schwarze",
+    art: ["Fotografie", "Videokunst"],
+    area: "Ateliergemeinschaft Kreiskomplex",
+    website: "www.michaelschwarze.com",
+    socialMedia: ["@michael.schwarze"]
+};
 
-    {
-        artist: "Thomas Kleine",
-        art: ["Papierschnitt", "Monotypie", "Installation"],
-        area: "Atelierhaus 23 | 2. Etage",
-        website: "www.thomas-kleine.de",
-        email: "mail@thomas-kleine.de",
-        socialMedia: ["@thomaskleinestudio"]
-    },
-    {
-        artist: "Katja Sattelkau - Atelier 90°",
-        art: ["Malerei", "Objekte"],
-        area: "Atelierhaus 23 | 2. Etage",
-        website: "www.katjasattelkau.de",
-        socialMedia: ["@atelier_90_grad"]
-    },
-    {
-        artist: "Kristin Strauß - Scheinwerfer Dance Center",
-        art: ["Tanz"],
-        area: "Atelierhaus 23 | 2. Etage",
-        website: "www.scheinwerfer-dancecenter.de",
-        socialMedia: ["@scheinwerfer_dance_center"]
-    },
-    {
-        artist: "Elke Ehninger",
-        art: ["Collage"],
-        area: "Atelierhaus 23 | 2. Etage",
-        website: "www.elke-ehninger.de",
-        email: "mail@elke-ehninger.de"
-    },
-    {
-        artist: "Jann Kaune",
-        art: ["Ölmalerei"],
-        area: "Atelierhaus 23 | 2. Etage",
-        email: "info@kaune-online.de"
-    },
-    {
-        artist: "Ulrich Mertens",
-        art: ["visual arts", "Beauty of Wind"],
-        area: "Atelierhaus 23 | 2. Etage"
-    },
-    {
-        artist: "Valerie Wagner",
-        art: ["Fotografie", "Linoldruck"],
-        area: "Atelierhaus 23 | 2. Etage",
-        socialMedia: ["@valeriewagner_photography"]
-    },
+export const jonasGallenkamp: ArtistEntry = {
+    artist: "Jonas Gallenkamp",
+    art: ["Malerei"],
+    area: "Ateliergemeinschaft Kreiskomplex | Hidden Gallery",
+    website: "www.jonasgallenkamp.de"
+};
 
-    // --------------------------------------------------
-    // 16 | ATELIERHAUS 23 | 1. ETAGE
-    // --------------------------------------------------
+export const mikaGrunwaldt: ArtistEntry = {
+    artist: "Mika Grunwaldt",
+    art: ["Photography"],
+    area: "Ateliergemeinschaft Kreiskomplex | Hidden Gallery",
+    website: "www.mikagrunwaldt.com",
+    socialMedia: ["@mikagrunwaldt"]
+};
 
-    {
-        artist: "Katharina Bick",
-        art: ["Malerei", "Zeichnung"],
-        area: "Atelierhaus 23 | 1. Etage",
-        email: "katharina.bick@web.de"
-    },
-    {
-        artist: "Claudia Eschborn - books and photographs",
-        art: ["Fotografie", "Buchbinderei"],
-        area: "Atelierhaus 23 | 1. Etage",
-        website: "www.claudiaeschborn.de",
-        socialMedia: ["@claudiaeschborn2404"]
-    },
-    {
-        artist: "Stephanie Krengel",
-        art: ["Malerei"],
-        area: "Atelierhaus 23 | 1. Etage",
-        email: "skrengel@online.de",
-        socialMedia: ["@stephanie_krengel"]
-    },
-    {
-        artist: "Catalina González González",
-        art: ["film", "drawing", "text"],
-        area: "Atelierhaus 23 | 1. Etage",
-        socialMedia: ["@gonzalezgonzalezacostalopez"]
-    },
-    {
-        artist: "Katharina Langer",
-        art: ["Malerei", "Siebdruck"],
-        area: "Atelierhaus 23 | 1. Etage",
-        website: "www.katharinalanger.de",
-        socialMedia: ["@Katharinalangerstudio"]
-    },
-    {
-        artist: "Claire Ewbank",
-        art: ["Malerei"],
-        area: "Atelierhaus 23 | 1. Etage",
-        socialMedia: ["@claire.ewbank"]
-    },
+// --------------------------------------------------
+// 07 | DEICHDIELE
+// --------------------------------------------------
 
-    // --------------------------------------------------
-    // 16 | ATELIERHAUS 23 | ERDGESCHOSS
-    // --------------------------------------------------
+export const paulinaOhl: ArtistEntry = {
+    artist: "Paulina Ohl",
+    art: ["Fotografie"],
+    area: "Deichdiele",
+    email: "pauli.ohl@web.de",
+    socialMedia: ["@paulinaohl"]
+};
 
-    {
-        artist: "Carla Binter",
-        art: [
-            "Wandbilder",
-            "charakterstarke keramische Einzelstücke"
-        ],
-        area: "Atelierhaus 23 | Erdgeschoss",
-        website: "www.keramik-carla-binter.de",
-        email: "info@keramik-carla-binter.de"
-    },
-    {
-        artist: "Melanie Cramer - vonLani",
-        art: ["Schmuck", "Accessoires"],
-        area: "Atelierhaus 23 | Erdgeschoss",
-        website: "www.vonlani.de",
-        socialMedia: ["@von.lani"]
-    },
-    {
-        artist: "Frieder Falk",
-        art: ["Zeichnung", "Objekt"],
-        area: "Atelierhaus 23 | Erdgeschoss",
-        website: "www.friederfalk.de",
-        email: "fcfalk@posteo.de",
-        socialMedia: ["@falk_frieder"]
-    },
-    {
-        artist: "Sabine Hahn-Nicol",
-        art: ["Bildhauerei"],
-        area: "Atelierhaus 23 | Erdgeschoss",
-        email: "sabine.hahn-nicol@hamburg.de"
-    },
-    {
-        artist: "Capoeira",
-        art: ["Fitness", "Kampf", "Rhythmus"],
-        area: "Atelierhaus 23 | Erdgeschoss",
-        website: "www.capoeira-hamburg-sued.org",
-        socialMedia: ["@capoeira_angola_hamburg_sued"]
-    },
-    {
-        artist: "Martin Graf - edition8x8",
-        art: ["Druckgrafik", "Bastelbögen", "Heftchen"],
-        area: "Atelierhaus 23 | Erdgeschoss | Ateliergemeinschaft",
-        website: "www.edition8x8.de",
-        email: "martin.graf@edition8x8.de"
-    },
-    {
-        artist: "Miriam Elze",
-        art: ["Illustration"],
-        area: "Atelierhaus 23 | Erdgeschoss | Ateliergemeinschaft",
-        website: "www.miriamelze.de",
-        email: "illustration@miriamelze.de",
-        socialMedia: ["@miriamelze_illustration"]
-    },
+export const nicoManozkow: ArtistEntry = {
+    artist: "Nico Manozkow",
+    art: ["Fotografie"],
+    area: "Deichdiele",
+    email: "nicomanozkow@gmail.com",
+    socialMedia: ["@manozkow"]
+};
 
-    // --------------------------------------------------
-    // 17 | GALERIE 23 | KAFFEELIEBE
-    // --------------------------------------------------
+// --------------------------------------------------
+// 08 | KERAMIKWERKSTATT
+// --------------------------------------------------
 
-    {
-        artist: "Stephanie Krengel",
-        art: ["Malerei und mehr"],
-        area: "Galerie 23 | Kaffeeliebe",
-        email: "skrengel@online.de",
-        socialMedia: ["@stephanie_krengel"]
-    }
-];
+export const anqiLyu: ArtistEntry = {
+    artist: "Anqi Lyu",
+    art: ["handgemachte Keramikwaren"],
+    area: "Keramikwerkstatt",
+    email: "hallo@studioanqi.de",
+    socialMedia: ["@angellv1920"]
+};
+
+// --------------------------------------------------
+// 09 | ZINNWERKE E.V.
+// --------------------------------------------------
+
+export const nicoleRzepka: ArtistEntry = {
+    artist: "Nicole Rzepka - Atelier Samtmammut",
+    art: ["Druckkunst"],
+    area: "Zinnwerke e.V."
+};
+
+export const michaelHeim: ArtistEntry = {
+    artist: "Michael Heim - Atelier Samtmammut",
+    art: ["Druckkunst"],
+    area: "Zinnwerke e.V."
+};
+
+export const bereniceMoeller: ArtistEntry = {
+    artist: "Berenice Möller",
+    art: ["Textilkunst"],
+    area: "Zinnwerke e.V.",
+    website: "www.studioboldo.com",
+    email: "berenice@studioboldo.com",
+    socialMedia: ["@studioboldo"]
+};
+
+export const martinSchramm: ArtistEntry = {
+    artist: "Martin Schramm",
+    art: ["Kollagen"],
+    area: "Zinnwerke e.V."
+};
+
+export const katjaMarx: ArtistEntry = {
+    artist: "Katja Marx",
+    art: ["Holzschnitte"],
+    area: "Zinnwerke e.V."
+};
+
+export const tattooAtelier: ArtistEntry = {
+    artist: "Tattoo Atelier",
+    art: ["Tattoo", "Flashday"],
+    area: "Zinnwerke e.V.",
+    socialMedia: [
+        "@guffel_tattoo",
+        "@Theos_tats",
+        "@help.artwork",
+        "@raphitattoo"
+    ]
+};
+
+// --------------------------------------------------
+// 10 | ATELIER FREISTIL
+// --------------------------------------------------
+
+export const atelierFreistil: ArtistEntry = {
+    artist: "Atelier Freistil",
+    art: ["verschiedene Kunstformen"],
+    area: "Atelier Freistil",
+    website: "www.atelier-freistil.de",
+    socialMedia: ["@atelierfreistil"]
+};
+
+// --------------------------------------------------
+// 11 | ATELIERHOF
+// --------------------------------------------------
+
+export const benteWolke: ArtistEntry = {
+    artist: "Bente Wolke",
+    art: ["Bildobjekte", "Malerei"],
+    area: "Atelierhof | Garten",
+    website: "www.bente-wolke.de",
+    email: "mail@bente-wolke.de",
+    socialMedia: ["@bente_wolke"]
+};
+
+export const mareikeAlexander: ArtistEntry = {
+    artist: "Mareike Alexander",
+    art: ["Kostümgestaltung", "Textilkunst"],
+    area: "Atelierhof | Hinterhof | 1. Stock",
+    email: "fraumareikealexander@gmail.com",
+    socialMedia: ["@almamaalalma"]
+};
+
+export const lotteBraeuning: ArtistEntry = {
+    artist: "Lotte Bräuning",
+    art: ["Kinderbuchillustration"],
+    area: "Atelierhof | Hinterhof | 1. Stock",
+    website: "www.lottebraeuning.de",
+    email: "post@lottebraeuning.de",
+    socialMedia: ["@lottebraeuning_illustration"]
+};
+
+export const nikitaBuerger: ArtistEntry = {
+    artist: "Nikita Bürger",
+    art: ["Zeichnung", "Illustration"],
+    area: "Atelierhof | Hinterhof | 1. Stock",
+    socialMedia: ["@nikita.buerger"]
+};
+
+export const lenaGalitsch: ArtistEntry = {
+    artist: "Lena Galitsch",
+    art: ["Webdesign", "Experimente"],
+    area: "Atelierhof | Hinterhof | 1. Stock",
+    website: "www.galitsch.de"
+};
+
+export const karinKraemer: ArtistEntry = {
+    artist: "Karin Kraemer",
+    art: ["Keramik", "Zeichnung"],
+    area: "Atelierhof | Hinterhof | 1. Stock",
+    socialMedia: ["@karin__kraemer"]
+};
+
+export const gosiaMachon: ArtistEntry = {
+    artist: "Gosia Machon",
+    art: ["Malerei"],
+    area: "Atelierhof | Hinterhof | 1. Stock",
+    website: "www.gosiamachon.de"
+};
+
+// --------------------------------------------------
+// 12 | VITACURARE KUNSTLABOR
+// --------------------------------------------------
+
+export const kunstGruppeUndKreativgruppe: ArtistEntry = {
+    artist: "Kunst- und Kreativgruppe",
+    art: ["Werke der Klientinnen und Klienten"],
+    area: "Vitacurare Kunstlabor"
+};
+
+export const klaasGoerges: ArtistEntry = {
+    artist: "Klaas Goerges",
+    art: ["Malerei"],
+    area: "Vitacurare Kunstlabor",
+    website: "www.vitacurare.de",
+    email: "kg@vitacurare.de"
+};
+
+export const nathalieHallmann: ArtistEntry = {
+    artist: "Nathalie Hallmann",
+    art: ["Makramee für Anfänger:innen"],
+    area: "Vitacurare Kunstlabor",
+    website: "www.vitacurare.de",
+    email: "nah@vitacurare.de"
+};
+
+// --------------------------------------------------
+// 13 | RATTENLOCH 4.0
+// --------------------------------------------------
+
+export const iloToivio: ArtistEntry = {
+    artist: "Ilo Toivio",
+    art: [
+        "crochet installation with audio",
+        "drop-in mending workshop",
+        "Illustration",
+        "Installation"
+    ],
+    area: "Rattenloch 4.0"
+};
+
+export const marleneBusch: ArtistEntry = {
+    artist: "Marlene Busch",
+    art: [
+        "crochet installation with audio",
+        "drop-in mending workshop",
+        "Illustration",
+        "Installation"
+    ],
+    area: "Rattenloch 4.0"
+};
+
+export const kunoSeltmann: ArtistEntry = {
+    artist: "Kuno Seltmann",
+    art: [
+        "crochet installation with audio",
+        "drop-in mending workshop",
+        "Illustration",
+        "Installation"
+    ],
+    area: "Rattenloch 4.0"
+};
+
+// --------------------------------------------------
+// 14 | DER GEHEIMNISVOLLE DACHBODEN
+// --------------------------------------------------
+
+export const juergenWeber: ArtistEntry = {
+    artist: "Jürgen Weber",
+    art: ["3d Collagen", "Maschinen", "Zeichnungen"],
+    area: "Der geheimnisvolle Dachboden",
+    email: "juergenweber.zeitmomente@gmail.com",
+    socialMedia: ["@zeitmomente_in_3d"]
+};
+
+// --------------------------------------------------
+// 15 | HOFA - HONIGFABRIK
+// --------------------------------------------------
+
+export const tamaraNiederweis: ArtistEntry = {
+    artist: "Tamara Niederweis",
+    art: ["Urban Art Malerei"],
+    area: "HoFa - Kommunikationszentrum Honigfabrik | Malerei Atelier",
+    email: "tamara.niederweis@gmail.com",
+    socialMedia: ["@lagraffeusearts"]
+};
+
+export const leonorDuque: ArtistEntry = {
+    artist: "Leonor Duque",
+    art: ["Malerei"],
+    area: "HoFa - Kommunikationszentrum Honigfabrik | Malerei Atelier",
+    email: "leonorrecio.duque@gmail.com",
+    socialMedia: ["@leonorduque_"]
+};
+
+export const johannaSchmidt: ArtistEntry = {
+    artist: "Johanna Sarah Schmidt",
+    art: ["Keramik"],
+    area: "HoFa - Kommunikationszentrum Honigfabrik"
+};
+
+export const anaLucena: ArtistEntry = {
+    artist: "Ana Luisa Amaral Lucena",
+    art: ["Keramik"],
+    area: "HoFa - Kommunikationszentrum Honigfabrik"
+};
+
+export const julioCelisRodriguez: ArtistEntry = {
+    artist: "Julio Celis Rodriguez",
+    art: ["Musik"],
+    area: "HoFa - Kommunikationszentrum Honigfabrik | Musik Atelier",
+    email: "celiselgato@gmail.com",
+    socialMedia: ["@celiselgato"]
+};
+
+// --------------------------------------------------
+// 16 | ATELIERHAUS 23 | 2. ETAGE
+// --------------------------------------------------
+
+export const thomasKleine: ArtistEntry = {
+    artist: "Thomas Kleine",
+    art: ["Papierschnitt", "Monotypie", "Installation"],
+    area: "Atelierhaus 23 | 2. Etage",
+    website: "www.thomas-kleine.de",
+    email: "mail@thomas-kleine.de",
+    socialMedia: ["@thomaskleinestudio"]
+};
+
+export const katjaSattelkau: ArtistEntry = {
+    artist: "Katja Sattelkau - Atelier 90°",
+    art: ["Malerei", "Objekte"],
+    area: "Atelierhaus 23 | 2. Etage",
+    website: "www.katjasattelkau.de",
+    socialMedia: ["@atelier_90_grad"]
+};
+
+export const kristinStrauss: ArtistEntry = {
+    artist: "Kristin Strauß",
+    art: ["Tanz"],
+    area: "Atelierhaus 23 | 2. Etage",
+    website: "www.scheinwerfer-dancecenter.de",
+    socialMedia: ["@scheinwerfer_dance_center"]
+};
+
+export const elkeEhninger: ArtistEntry = {
+    artist: "Elke Ehninger",
+    art: ["Collage"],
+    area: "Atelierhaus 23 | 2. Etage",
+    website: "www.elke-ehninger.de",
+    email: "mail@elke-ehninger.de"
+};
+
+export const jannKaune: ArtistEntry = {
+    artist: "Jann Kaune",
+    art: ["Ölmalerei"],
+    area: "Atelierhaus 23 | 2. Etage",
+    email: "info@kaune-online.de"
+};
+
+export const ulrichMertens: ArtistEntry = {
+    artist: "Ulrich Mertens",
+    art: ["visual arts", "Beauty of Wind"],
+    area: "Atelierhaus 23 | 2. Etage"
+};
+
+export const valerieWagner: ArtistEntry = {
+    artist: "Valerie Wagner",
+    art: ["Fotografie", "Linoldruck"],
+    area: "Atelierhaus 23 | 2. Etage",
+    socialMedia: ["@valeriewagner_photography"]
+};
+
+// --------------------------------------------------
+// 16 | ATELIERHAUS 23 | 1. ETAGE
+// --------------------------------------------------
+
+export const katharinaBick: ArtistEntry = {
+    artist: "Katharina Bick",
+    art: ["Malerei", "Zeichnung"],
+    area: "Atelierhaus 23 | 1. Etage",
+    email: "katharina.bick@web.de"
+};
+
+export const claudiaEschborn: ArtistEntry = {
+    artist: "Claudia Eschborn",
+    art: ["Fotografie", "Buchbinderei"],
+    area: "Atelierhaus 23 | 1. Etage",
+    website: "www.claudiaeschborn.de",
+    socialMedia: ["@claudiaeschborn2404"]
+};
+
+export const stephanieKrengel: ArtistEntry = {
+    artist: "Stephanie Krengel",
+    art: ["Malerei"],
+    area: "Atelierhaus 23 | 1. Etage",
+    email: "skrengel@online.de",
+    socialMedia: ["@stephanie_krengel"]
+};
+
+export const catalinaGonzalezGonzalez: ArtistEntry = {
+    artist: "Catalina González González",
+    art: ["film", "drawing", "text"],
+    area: "Atelierhaus 23 | 1. Etage",
+    socialMedia: ["@gonzalezgonzalezacostalopez"]
+};
+
+export const katharinaLanger: ArtistEntry = {
+    artist: "Katharina Langer",
+    art: ["Malerei", "Siebdruck"],
+    area: "Atelierhaus 23 | 1. Etage",
+    website: "www.katharinalanger.de",
+    socialMedia: ["@Katharinalangerstudio"]
+};
+
+export const claireEwbank: ArtistEntry = {
+    artist: "Claire Ewbank",
+    art: ["Malerei"],
+    area: "Atelierhaus 23 | 1. Etage",
+    socialMedia: ["@claire.ewbank"]
+};
+
+// --------------------------------------------------
+// 16 | ATELIERHAUS 23 | ERDGESCHOSS
+// --------------------------------------------------
+
+export const carlaBinter: ArtistEntry = {
+    artist: "Carla Binter",
+    art: [
+        "Wandbilder",
+        "keramische Einzelstücke"
+    ],
+    area: "Atelierhaus 23 | Erdgeschoss",
+    website: "www.keramik-carla-binter.de",
+    email: "info@keramik-carla-binter.de"
+};
+
+export const melanieCramer: ArtistEntry = {
+    artist: "Melanie Cramer - vonLani",
+    art: ["Schmuck", "Accessoires"],
+    area: "Atelierhaus 23 | Erdgeschoss",
+    website: "www.vonlani.de",
+    socialMedia: ["@von.lani"]
+};
+
+export const friederFalk: ArtistEntry = {
+    artist: "Frieder Falk",
+    art: ["Zeichnung", "Objekt"],
+    area: "Atelierhaus 23 | Erdgeschoss",
+    website: "www.friederfalk.de",
+    email: "fcfalk@posteo.de",
+    socialMedia: ["@falk_frieder"]
+};
+
+export const sabineHahnNicol: ArtistEntry = {
+    artist: "Sabine Hahn-Nicol",
+    art: ["Bildhauerei"],
+    area: "Atelierhaus 23 | Erdgeschoss",
+    email: "sabine.hahn-nicol@hamburg.de"
+};
+
+export const capoeira: ArtistEntry = {
+    artist: "Capoeira Angola Hamburg-Süd",
+    art: ["Fitness", "Kampf", "Rhythmus"],
+    area: "Atelierhaus 23 | Erdgeschoss",
+    website: "www.capoeira-hamburg-sued.org",
+    socialMedia: ["@capoeira_angola_hamburg_sued"]
+};
+
+export const martinGraf: ArtistEntry = {
+    artist: "Martin Graf - edition8x8",
+    art: ["Druckgrafik", "Bastelbögen", "Heftchen"],
+    area: "Atelierhaus 23 | Erdgeschoss | Ateliergemeinschaft",
+    website: "www.edition8x8.de",
+    email: "martin.graf@edition8x8.de"
+};
+
+export const miriamElze: ArtistEntry = {
+    artist: "Miriam Elze",
+    art: ["Illustration"],
+    area: "Atelierhaus 23 | Erdgeschoss | Ateliergemeinschaft",
+    website: "www.miriamelze.de",
+    email: "illustration@miriamelze.de",
+    socialMedia: ["@miriamelze_illustration"]
+};
+
+// --------------------------------------------------
+// 17 | GALERIE 23 | KAFFEELIEBE
+// --------------------------------------------------
+
+export const stephanieKrengelGalerie23: ArtistEntry = {
+    artist: "Stephanie Krengel",
+    art: ["Malerei und mehr"],
+    area: "Galerie 23 | Kaffeeliebe",
+    email: "skrengel@online.de",
+    socialMedia: ["@stephanie_krengel"]
+};
 
 export const neighborhoodData: NeighborhoodData[] = [
     {
@@ -628,14 +688,33 @@ export const neighborhoodData: NeighborhoodData[] = [
                 adresse: "Sieldeich 36, 20539 Hamburg",
                 lat: 53.52682,
                 lng: 10.02827,
-                artists: [{ name: "Gruppenausstellung local artists" }]
+                artists: [
+                    ayaAlsahel,
+                    marcelDoering,
+                    ruedigerFrauenhoffer,
+                    joritKriesel,
+                    sinjeThomaMeyer,
+                    thomasOram,
+                    leonSkok,
+                    selcanTurin,
+                    nilueferLiliYildirim
+                ]
             },
             {
                 name: "IMMANUELKIRCHE",
                 adresse: "Wilhelmsburger Straße 73, 20539 Hamburg",
                 lat: 53.525589,
                 lng: 10.017181,
-                artists: [{ name: "Lord Nikolaus" }]
+                artists: [
+                    lordNicolausDinter,
+                    kristof,
+                    sandra,
+                    martin,
+                    michael,
+                    tanja,
+                    christina,
+                    rado
+                ]
             }
         ]
     },
@@ -647,7 +726,10 @@ export const neighborhoodData: NeighborhoodData[] = [
                 adresse: "Rahmwerder Straße 3, 21109 Hamburg",
                 lat: 53.512230,
                 lng: 10.019950,
-                artists: [{ name: "Valérie Wagner" }]
+                artists: [
+                    michaelEicks,
+                    petraHoppe
+                ]
             },
             {
                 name: "WINDMÜHLE JOHANNA",
@@ -655,9 +737,7 @@ export const neighborhoodData: NeighborhoodData[] = [
                 lat: 53.49982,
                 lng: 10.02316,
                 artists: [
-                    { name: "Die Müller" },
-                    { name: "Katharina Einhoff" },
-                    { name: "kleiner Kunsthandwerkermarkt" }
+                    katharinaEinhoff
                 ]
             },
             {
@@ -665,7 +745,9 @@ export const neighborhoodData: NeighborhoodData[] = [
                 adresse: "Schönenfelder Straße 33, 21109 Hamburg",
                 lat: 53.503992,
                 lng: 10.015822,
-                artists: [{ name: "Piselotten | Katarina Jensen" }]
+                artists: [
+                    katarinaJensen
+                ]
             }
         ]
     },
@@ -677,7 +759,9 @@ export const neighborhoodData: NeighborhoodData[] = [
                 adresse: "Am Veringhof 15–17, 21107 Hamburg",
                 lat: 53.5143,
                 lng: 9.98396,
-                artists: [{ name: "Gemeinschaftsausstellung" }]
+                artists: [
+                    atelierFreistil
+                ]
             },
             {
                 name: "ATELIERGEM. KREISKOMPLEX",
@@ -685,12 +769,13 @@ export const neighborhoodData: NeighborhoodData[] = [
                 lat: 53.5191733,
                 lng: 10.0066839,
                 artists: [
-                    { name: "Norman Heck" },
-                    { name: "Freya Sarge" },
-                    { name: "Insa" },
-                    { name: "mk539" },
-                    { name: "mp4zu3" },
-                    { name: "Eike Unrat" }
+                    normanHeck,
+                    freyaSarge,
+                    insa,
+                    mk539,
+                    mp4zu3,
+                    eikeUnrat,
+                    michaelSchwarze
                 ]
             },
             {
@@ -699,25 +784,26 @@ export const neighborhoodData: NeighborhoodData[] = [
                 lat: 53.514650,
                 lng: 9.983862,
                 artists: [
-                    { name: "Capoeira Angola Hamburg Süd" },
-                    { name: "Carla Binter" },
-                    { name: "Catalina González González" },
-                    { name: "Claire Suliman" },
-                    { name: "Claudia Eschborn" },
-                    { name: "Elke Ehninger" },
-                    { name: "Frieder Falk" },
-                    { name: "Jann Kaune" },
-                    { name: "Katharina Langer" },
-                    { name: "Katja Sattelkau" },
-                    { name: "Kristin Strauß" },
-                    { name: "Martin Graf" },
-                    { name: "Melanie Cramer" },
-                    { name: "Michael Schwarze" },
-                    { name: "Miriam Elze" },
-                    { name: "Sabine Hahn-Nicol" },
-                    { name: "Stephanie Krengel" },
-                    { name: "Thomas Kleine" },
-                    { name: "Katharina Bick" }
+                    thomasKleine,
+                    katjaSattelkau,
+                    kristinStrauss,
+                    elkeEhninger,
+                    jannKaune,
+                    ulrichMertens,
+                    valerieWagner,
+                    katharinaBick,
+                    claudiaEschborn,
+                    stephanieKrengel,
+                    catalinaGonzalezGonzalez,
+                    katharinaLanger,
+                    claireEwbank,
+                    carlaBinter,
+                    melanieCramer,
+                    friederFalk,
+                    sabineHahnNicol,
+                    capoeira,
+                    martinGraf,
+                    miriamElze,
                 ]
             },
             {
@@ -726,13 +812,13 @@ export const neighborhoodData: NeighborhoodData[] = [
                 lat: 53.51644,
                 lng: 9.98766,
                 artists: [
-                    { name: "Bente Wolke" },
-                    { name: "Mareike Alexander" },
-                    { name: "Lotte Bräuning" },
-                    { name: "Nikita Bürger" },
-                    { name: "Lena & Galitsch" },
-                    { name: "Karin Kraemer" },
-                    { name: "Gosia Machon" }
+                    benteWolke,
+                    mareikeAlexander,
+                    lotteBraeuning,
+                    nikitaBuerger,
+                    lenaGalitsch,
+                    karinKraemer,
+                    gosiaMachon
                 ]
             },
             {
@@ -740,7 +826,9 @@ export const neighborhoodData: NeighborhoodData[] = [
                 adresse: "Karl-Kunert-Straße 3, 21107 Hamburg",
                 lat: 53.518835,
                 lng: 9.983836,
-                artists: [{ name: "Jürgen Weber" }]
+                artists: [
+                    juergenWeber
+                ]
             },
             {
                 name: "DEICHDIELE",
@@ -748,8 +836,8 @@ export const neighborhoodData: NeighborhoodData[] = [
                 lat: 53.505358,
                 lng: 9.98618,
                 artists: [
-                    { name: "Nico Manozkow" },
-                    { name: "Paulina Ohl" }
+                    paulinaOhl,
+                    nicoManozkow
                 ]
             },
             {
@@ -758,8 +846,8 @@ export const neighborhoodData: NeighborhoodData[] = [
                 lat: 53.514917,
                 lng: 9.983862,
                 artists: [
-                    { name: "Jonas Gallenkamp" },
-                    { name: "Mika Grunwaldt" }
+                    jonasGallenkamp,
+                    mikaGrunwaldt
                 ]
             },
             {
@@ -767,7 +855,9 @@ export const neighborhoodData: NeighborhoodData[] = [
                 adresse: "Neuhöfer Straße 23, Puhsthof, 21107 Hamburg",
                 lat: 53.5103,
                 lng: 9.98551,
-                artists: [{ name: "Anqi Lyu" }]
+                artists: [
+                    anqiLyu
+                ]
             },
             {
                 name: "HONIGFABRIK",
@@ -775,11 +865,11 @@ export const neighborhoodData: NeighborhoodData[] = [
                 lat: 53.515877,
                 lng: 9.982554,
                 artists: [
-                    { name: "Johanna Sarah Schmidt" },
-                    { name: "Ana Luisa Amaral Lucena" },
-                    { name: "Julio Celis Rodriguez" },
-                    { name: "Leonor Duque" },
-                    { name: "Tamara Niederweis" }
+                    tamaraNiederweis,
+                    leonorDuque,
+                    johannaSchmidt,
+                    anaLucena,
+                    julioCelisRodriguez
                 ]
             },
             {
@@ -788,9 +878,9 @@ export const neighborhoodData: NeighborhoodData[] = [
                 lat: 53.516586,
                 lng: 9.984074,
                 artists: [
-                    { name: "Ilo Toivio" },
-                    { name: "Kuno Seltmann" },
-                    { name: "Marlene Busch" }
+                    iloToivio,
+                    marleneBusch,
+                    kunoSeltmann
                 ]
             },
             {
@@ -799,8 +889,9 @@ export const neighborhoodData: NeighborhoodData[] = [
                 lat: 53.5155646,
                 lng: 9.9862596,
                 artists: [
-                    { name: "Klaas Goerges, vitaCurare" },
-                    { name: "Nathalie Hallmann" }
+                    kunstGruppeUndKreativgruppe,
+                    klaasGoerges,
+                    nathalieHallmann
                 ]
             },
             {
@@ -809,11 +900,12 @@ export const neighborhoodData: NeighborhoodData[] = [
                 lat: 53.513175,
                 lng: 9.984564,
                 artists: [
-                    { name: "Berenice Möller" },
-                    { name: "Nicole Rzepka" },
-                    { name: "Michael Heim" },
-                    { name: "TAK" },
-                    { name: "Weitere Gastkünstler" }
+                    nicoleRzepka,
+                    michaelHeim,
+                    bereniceMoeller,
+                    martinSchramm,
+                    katjaMarx,
+                    tattooAtelier
                 ]
             }
         ]
@@ -824,4 +916,3 @@ export const flyerData = {
     label: "Programm/Flyer 2026",
     href: flyerPdf
 };
-

@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {Search, X} from "lucide-react";
+import {useLocation} from "react-router";
 import {programHeader} from "../data/ProgramData.ts";
 
 import PageTransition from "../components/layout/PageTransitions.tsx";
@@ -8,8 +9,15 @@ import ArtistsSection from "../components/sub/ArtistsSection.tsx";
 import EventsSection from "../components/sub/EventsSection.tsx";
 
 export default function ProgramPage() {
+    const location = useLocation();
+    const routeFocusedArtist = location.state as {
+        artist: string;
+        location?: string;
+        neighborhood?: string;
+    } | null;
     const [viewMode, setViewMode] = useState<"artists" | "events">("artists");
     const [searchQuery, setSearchQuery] = useState("");
+    const [focusedArtist, setFocusedArtist] = useState(routeFocusedArtist);
 
     return (
         <PageTransition>
@@ -78,6 +86,8 @@ export default function ProgramPage() {
                     <ArtistsSection
                         searchQuery={searchQuery}
                         onResetSearch={() => setSearchQuery("")}
+                        focusedArtist={focusedArtist?.artist ? focusedArtist : undefined}
+                        onFocusedArtistDismiss={() => setFocusedArtist(null)}
                     />
                 ) : (
                     <EventsSection
