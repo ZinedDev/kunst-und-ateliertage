@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react";
+import {useState} from "react";
 import {motion, AnimatePresence} from "motion/react";
 import {neighborhoodData} from "../../data/ProgramData.ts";
 import {useNavigate} from "react-router";
@@ -12,6 +12,11 @@ interface MapSectionProps {
     showNeighborhoodButtons?: boolean;
 }
 
+interface ExpandedLocation {
+    neighborhoodName: string;
+    locationName: string;
+}
+
 export default function MapSection({
                                            selectedNeighborhood,
                                            selectedLocation,
@@ -20,56 +25,37 @@ export default function MapSection({
                                            showNeighborhoodButtons = true
                                        }: MapSectionProps) {
     console.log("[MapSection] Rendering", { selectedNeighborhood, selectedLocation, showNeighborhoodButtons });
-    const [expandedNeighborhoods, setExpandedNeighborhoods] = useState<Record<string, boolean>>({});
-    const [expandedLocations, setExpandedLocations] = useState<Record<string, boolean>>({});
+    const [uncontrolledExpandedLocation, setUncontrolledExpandedLocation] = useState<ExpandedLocation | null>(null);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        console.log("[MapSection] useEffect (selectedNeighborhood)", { selectedNeighborhood });
-        if (selectedNeighborhood) {
-            setExpandedNeighborhoods({
-                [selectedNeighborhood]: true
-            });
-        } else {
-            setExpandedNeighborhoods({});
-            setExpandedLocations({});
-        }
-    }, [selectedNeighborhood]);
-
-    useEffect(() => {
-        console.log("[MapSection] useEffect (selectedLocation)", { selectedLocation, selectedNeighborhood });
-        if (selectedLocation && selectedNeighborhood) {
-            const key = `${selectedNeighborhood}-${selectedLocation}`;
-            setExpandedLocations({
-                [key]: true
-            });
-        } else if (!selectedLocation) {
-            setExpandedLocations({});
-        }
-    }, [selectedLocation, selectedNeighborhood]);
+    const isLocationControlled = selectedLocation !== undefined;
+    const expandedLocation = isLocationControlled
+        ? selectedNeighborhood && selectedLocation
+            ? {neighborhoodName: selectedNeighborhood, locationName: selectedLocation}
+            : null
+        : uncontrolledExpandedLocation;
 
     const toggleLocation = (neighborhoodName: string, locationName: string) => {
-        const key = `${neighborhoodName}-${locationName}`;
-        const isExpanding = !expandedLocations[key];
+        const isExpanding = expandedLocation?.neighborhoodName !== neighborhoodName
+            || expandedLocation.locationName !== locationName;
         console.log("[MapSection] toggleLocation", { neighborhoodName, locationName, isExpanding });
 
         if (onLocationToggle) {
             onLocationToggle(neighborhoodName, isExpanding ? locationName : null);
         }
 
-        setExpandedLocations(prev => ({
-            ...prev,
-            [key]: !prev[key]
-        }));
+        if (!isLocationControlled) {
+            setUncontrolledExpandedLocation(isExpanding ? {neighborhoodName, locationName} : null);
+        }
     };
 
-    const anyNeighborhoodExpanded = Object.values(expandedNeighborhoods).some(Boolean);
+    const anyNeighborhoodExpanded = Boolean(selectedNeighborhood);
 
     return (
         <section className="flex flex-col w-full max-w-5xl mx-auto">
             <AnimatePresence>
                 {neighborhoodData.map((neighborhood) => {
-                    const isExpanded = expandedNeighborhoods[neighborhood.name];
+                    const isExpanded = selectedNeighborhood === neighborhood.name;
 
                     if (showNeighborhoodButtons) {
                         if (anyNeighborhoodExpanded && !isExpanded) {
@@ -103,13 +89,11 @@ export default function MapSection({
                                         <div className={`${showNeighborhoodButtons ? 'pl-6' : ''} flex flex-col`}>
                                             <AnimatePresence>
                                                 {neighborhood.locations.map((location) => {
-                                                    const locationKey = `${neighborhood.name}-${location.name}`;
-                                                    const isLocationExpanded = expandedLocations[locationKey];
+                                                    const isLocationExpanded = expandedLocation?.neighborhoodName === neighborhood.name
+                                                        && expandedLocation.locationName === location.name;
 
                                                     // If any location is expanded, only show the expanded one
-                                                    const anyLocationExpanded = Object.keys(expandedLocations).some(key =>
-                                                        key.startsWith(`${neighborhood.name}-`) && expandedLocations[key]
-                                                    );
+                                                    const anyLocationExpanded = expandedLocation?.neighborhoodName === neighborhood.name;
 
                                                     if (anyLocationExpanded && !isLocationExpanded) {
                                                         return null;
