@@ -16,8 +16,8 @@ export default function App() {
             <AnimatePresence mode="wait">
                 <Routes location={location} key={routeTransitionKey}>
                     <Route path="/" element={<Home/>}/>
-                    <Route path="/karte" element={<MapPage/>}/>
                     <Route path="/programm" element={<ProgramPage/>}/>
+                    <Route path="/karte" element={<MapPage/>}/>
                     <Route path="/impressum" element={<Impressum/>}/>
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>

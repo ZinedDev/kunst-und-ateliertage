@@ -7,6 +7,7 @@ import PageTransition from "../components/layout/PageTransitions.tsx";
 import Header from "../components/layout/Header.tsx";
 import ArtistsSection from "../components/sub/ArtistsSection.tsx";
 import EventsSection from "../components/sub/EventsSection.tsx";
+import {motion} from "motion/react";
 
 export default function ProgramPage() {
     const location = useLocation();
@@ -21,6 +22,8 @@ export default function ProgramPage() {
 
     return (
         <PageTransition>
+
+            {/* Header */}
             <Header
                 tagline={programHeader.tagline}
                 title={programHeader.title}
@@ -60,7 +63,7 @@ export default function ProgramPage() {
             {/* Search Input */}
             <div className="w-full max-w-md mx-auto mt-6 max-sm:mt-4 px-4">
                 <div className="relative flex items-center">
-                    <Search className="absolute left-3 w-5 h-5 text-zinc-400 pointer-events-none" />
+                    <Search className="absolute left-3 w-5 h-5 text-zinc-400 pointer-events-none"/>
                     <input
                         type="text"
                         value={searchQuery}
@@ -68,33 +71,54 @@ export default function ProgramPage() {
                         placeholder={viewMode === "artists" ? "Künstler*in suchen..." : "Event, Künstler*in oder Ort suchen..."}
                         className="w-full pl-10 pr-10 py-2.5 bg-white border-2 border-zinc-200 rounded-xl text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-blue-700 transition-colors shadow-xs"
                     />
-                    {searchQuery && (
-                        <button
-                            type="button"
-                            onClick={() => setSearchQuery("")}
-                            className="absolute right-3 text-zinc-400 hover:text-zinc-600 focus:outline-none cursor-pointer"
-                            aria-label="Suchfeld leeren"
-                        >
-                            <X className="w-4 h-4" />
-                        </button>
-                    )}
+                    <button
+                        type="button"
+                        onClick={() => setSearchQuery("")}
+                        className="absolute right-3 text-zinc-400 hover:text-zinc-600 focus:outline-none cursor-pointer"
+                        aria-label="Suchfeld leeren"
+                    >
+                        <X className="w-4 h-4"/>
+                    </button>
                 </div>
             </div>
 
-            <section className="w-full max-w-5xl mb-8 mx-auto px-4 lg:px-0">
-                {viewMode === "artists" ? (
+            <section className="grid w-full max-w-5xl mb-8 mx-auto px-4 lg:px-0">
+                {/* Both panels stay mounted so their local state is preserved. */}
+                <motion.div
+                    className="col-start-1 row-start-1"
+                    initial={false}
+                    animate={{opacity: viewMode === "artists" ? 1 : 0}}
+                    transition={{duration: 0.2}}
+                    style={{
+                        pointerEvents: viewMode === "artists" ? "auto" : "none",
+                        visibility: viewMode === "artists" ? "visible" : "hidden",
+                    }}
+                    aria-hidden={viewMode !== "artists"}
+                >
                     <ArtistsSection
                         searchQuery={searchQuery}
                         onResetSearch={() => setSearchQuery("")}
                         focusedArtist={focusedArtist?.artist ? focusedArtist : undefined}
                         onFocusedArtistDismiss={() => setFocusedArtist(null)}
                     />
-                ) : (
+                </motion.div>
+
+                <motion.div
+                    className="col-start-1 row-start-1"
+                    initial={false}
+                    animate={{opacity: viewMode === "events" ? 1 : 0}}
+                    transition={{duration: 0.2}}
+                    style={{
+                        pointerEvents: viewMode === "events" ? "auto" : "none",
+                        visibility: viewMode === "events" ? "visible" : "hidden",
+                    }}
+                    aria-hidden={viewMode !== "events"}
+                >
                     <EventsSection
                         searchQuery={searchQuery}
                         onResetSearch={() => setSearchQuery("")}
                     />
-                )}
+                </motion.div>
             </section>
         </PageTransition>
     );

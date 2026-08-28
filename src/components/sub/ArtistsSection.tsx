@@ -2,6 +2,7 @@ import {useState, useMemo} from "react";
 import {motion} from "motion/react";
 import {neighborhoodData} from "../../data/ProgramData.ts";
 import ArtistCard, {type ArtistCardEntry} from "./ArtistCard.tsx";
+import ResetFiltersButton from "./ResetFiltersButton.tsx";
 
 interface ArtistsSectionProps {
     searchQuery: string;
@@ -91,7 +92,6 @@ export default function ArtistsSection({
                 ))}
             </div>
 
-            {selectedNeighborhood && (
                 <motion.div
                     key="neighborhood"
                     initial={{opacity: 0, height: 0}}
@@ -109,7 +109,7 @@ export default function ArtistsSection({
                                     setSelectedLocation(name);
                                 }
                             }}
-                            className={`px-2 py-1.5 rounded-md border-2 text-xs font-bold transition-all cursor-pointer ${
+                            className={`px-2 py-1.5 rounded-md border-2 text-[10px] font-bold transition-all cursor-pointer ${
                                 selectedLocation === name
                                     ? "border-2 border-orange-400 bg-orange-400/10 shadow-md shadow-blue-700/20"
                                     : "bg-white border-2 border-zinc-200 text-zinc-600 hover:border-blue-700 hover:text-blue-700"
@@ -119,13 +119,14 @@ export default function ArtistsSection({
                         </button>
                     ))}
                 </motion.div>
-            )}
+
+            <ResetFiltersButton onClick={handleResetFilters} />
 
             {/* Artists Grid */}
             <div className="w-full max-w-5xl mt-6 mb-8 max-sm:mb-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mx-auto">
                 {filteredArtists.map((artist, index) => (
                     <ArtistCard
-                        key={`${artist.artist || artist.name}-${artist.location || artist.area}`}
+                        key={`${artist.artist}-${artist.location}`}
                         artist={artist}
                         index={index}
                         isFocused={
@@ -136,19 +137,6 @@ export default function ArtistsSection({
                         onFocusDismiss={onFocusedArtistDismiss}
                     />
                 ))}
-
-                {filteredArtists.length === 0 && (
-                    <div className="col-span-full text-center py-12 px-4">
-                        <p className="text-zinc-500 text-base">Keine Künstler*innen gefunden.</p>
-                        <button
-                            type="button"
-                            onClick={handleResetFilters}
-                            className="mt-3 text-sm font-semibold text-blue-700 hover:underline cursor-pointer"
-                        >
-                            Filter zurücksetzen
-                        </button>
-                    </div>
-                )}
             </div>
         </>
     );
