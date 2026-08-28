@@ -9,17 +9,15 @@ import ProgramPage from "./pages/ProgramPage.tsx";
 
 export default function App() {
     const location = useLocation();
+    const routeTransitionKey = location.pathname.replace(/\/+$/, "") || "/";
 
     return (
         <AppLayout>
             <AnimatePresence mode="wait">
-                <Routes location={location} key={location.pathname}>
+                <Routes location={location} key={routeTransitionKey}>
                     <Route path="/" element={<Home/>}/>
-                    {/*<Route path="/kuenstlerinnen" element={<ArtistsInfo />} />*/}
                     <Route path="/karte" element={<MapPage/>}/>
                     <Route path="/programm" element={<ProgramPage/>}/>
-                    {/*<Route path="/galerie" element={<Gallery />} />*/}
-                    {/*<Route path="/kontakt" element={<ContactPage/>}/>*/}
                     <Route path="/impressum" element={<Impressum/>}/>
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>

@@ -123,7 +123,7 @@ export default function MapSection({
                                                                                 top: 0,
                                                                                 behavior: 'smooth'
                                                                             });
-                                                                            navigate("/besucherinnen", {
+                                                                            navigate("/karte", {
                                                                                 state: {
                                                                                     location: location.name,
                                                                                     neighborhood: neighborhood.name

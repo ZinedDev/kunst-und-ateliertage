@@ -23,11 +23,6 @@ export default function AppLayout({children}: AppLayoutProps) {
                 <MobileNav/>
             </div>
 
-            {/* Desktop sidebar navigation */}
-            {/*<div className="hidden lg:block">*/}
-            {/*    <SidebarNav/>*/}
-            {/*</div>*/}
-
             {/* Main content */}
             <main
                 id="main-content"

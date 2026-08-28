@@ -30,10 +30,10 @@ export default function Gallery() {
                         </a>
 
                         <Link
-                            to="/besucherinnen"
+                            to="/karte"
                             className="inline-flex items-center justify-center rounded-2xl border border-neutral-300 bg-white px-6 py-4 text-sm font-bold text-neutral-950 transition hover:border-neutral-950 hover:bg-neutral-100"
                         >
-                            Besucher*innen-Infos
+                            Karte
                         </Link>
                     </motion.div>
                 </Header>

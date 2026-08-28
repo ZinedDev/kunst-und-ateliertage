@@ -1,9 +1,10 @@
-import {useState, useEffect, useRef} from "react";
+import {memo, useCallback, useEffect, useMemo, useReducer, useRef} from "react";
 import PageTransition from "../components/layout/PageTransitions.tsx";
 import Header from "../components/layout/Header.tsx";
 import {neighborhoodData} from "../data/ProgramData.ts";
 import {MapContainer, TileLayer, Marker, Popup, useMap} from "react-leaflet";
 import L from "leaflet";
+import {useIsPresent} from "motion/react";
 import "leaflet/dist/leaflet.css";
 import {mapHeader} from "../data/MapData.ts";
 import {useLocation, useNavigate} from "react-router";
@@ -18,6 +19,8 @@ L.Icon.Default.mergeOptions({
     iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
     shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
 });
+
+const defaultIcon = new L.Icon.Default();
 
 // Highlighted icon for selected marker
 const highlightedIcon = L.icon({
@@ -36,48 +39,84 @@ const neighborhoodCoordinates: Record<string, { lat: number; lon: number; zoom: 
     "Wilhelmsburg": {lat: 53.510, lon: 9.985, zoom: 15},
 };
 
-function ChangeView({bounds, center, zoom}: {
-    bounds: L.LatLngBoundsExpression | null;
-    center: [number, number];
+interface MapView {
+    bounds: L.LatLngBounds | null;
+    center: L.LatLngTuple;
     zoom: number;
-}) {
-    console.log("[ChangeView] Rendering", {bounds, center, zoom});
+}
+
+const defaultMapCenter: L.LatLngTuple = [53.505, 10.005];
+
+function applyMapView(map: L.Map, view: MapView) {
+    const container = map.getContainer();
+    const size = map.getSize();
+
+    if (!container.isConnected || size.x <= 0 || size.y <= 0) return;
+
+    if (view.bounds) {
+        const padding = [size.x * 0.1, size.y * 0.1] as L.PointTuple;
+        map.fitBounds(view.bounds, {padding, animate: false});
+    } else {
+        map.setView(view.center, view.zoom, {animate: false});
+    }
+}
+
+function ChangeView({view}: {view: MapView}) {
     const map = useMap();
+    const isPresent = useIsPresent();
+    const latestView = useRef(view);
 
     useEffect(() => {
-        console.log("[ChangeView] useEffect triggered", {bounds, center, zoom});
-        const handleResize = () => {
-            console.log("[ChangeView] handleResize called");
-            map.invalidateSize();
-            if (bounds) {
-                console.log("[ChangeView] fitting bounds", bounds);
-                const size = map.getSize();
-                const padding = [size.x * 0.1, size.y * 0.1] as [number, number];
-                map.fitBounds(bounds, {padding});
-            } else {
-                console.log("[ChangeView] setting view", {center, zoom});
-                map.setView(center, zoom);
-            }
-        };
+        latestView.current = view;
+        if (!isPresent) return;
 
-        handleResize(); // Initial fit
+        applyMapView(map, view);
+    }, [isPresent, map, view]);
+
+    useEffect(() => {
+        if (!isPresent) return;
 
         const container = map.getContainer();
-        const resizeObserver = new ResizeObserver(() => {
-            handleResize();
+        const initialRect = container.getBoundingClientRect();
+        let previousWidth = initialRect.width;
+        let previousHeight = initialRect.height;
+        let resizeTimer: number | undefined;
+
+        const resizeObserver = new ResizeObserver(([entry]) => {
+            if (!entry || !container.isConnected) return;
+
+            const {width, height} = entry.contentRect;
+            if (width <= 0 || height <= 0) return;
+            if (width === previousWidth && height === previousHeight) return;
+
+            previousWidth = width;
+            previousHeight = height;
+            window.clearTimeout(resizeTimer);
+            resizeTimer = window.setTimeout(() => {
+                if (!container.isConnected || container.clientWidth <= 0 || container.clientHeight <= 0) return;
+
+                map.invalidateSize({animate: false, pan: false, debounceMoveend: true});
+                applyMapView(map, latestView.current);
+            }, 100);
         });
 
         resizeObserver.observe(container);
 
         return () => {
+            window.clearTimeout(resizeTimer);
             resizeObserver.disconnect();
         };
-    }, [bounds, center, zoom, map]);
+    }, [isPresent, map]);
 
     return null;
 }
 
-type MapLocation = NeighborhoodData["locations"][number] & {neighborhood: string};
+type MapLocation = NeighborhoodData["locations"][number] & {
+    neighborhood: string;
+    markerPosition: L.LatLngTuple | null;
+};
+
+type GeocodedMapLocation = MapLocation & {markerPosition: L.LatLngTuple};
 
 type MapRouteState = {
     neighborhood?: string;
@@ -90,7 +129,14 @@ const mapLocations: MapLocation[] = neighborhoodData.flatMap(neighborhood =>
     neighborhood.locations.map(mapLocation => ({
         ...mapLocation,
         neighborhood: neighborhood.name,
+        markerPosition: mapLocation.lat != null && mapLocation.lng != null
+            ? [mapLocation.lat, mapLocation.lng]
+            : null,
     })),
+);
+
+const geocodedMapLocations = mapLocations.filter(
+    (location): location is GeocodedMapLocation => location.markerPosition !== null,
 );
 
 function normalizeLocationValue(value: string): string {
@@ -150,23 +196,83 @@ function resolveMapLocation(state: MapRouteState | null): MapLocation | null {
     return rankedLocations[0]?.score >= 50 ? rankedLocations[0].mapLocation : null;
 }
 
-function LocationMarker({loc, isFocused, selectedArtist, onClick, onArtistClick}: {
-    loc: MapLocation;
+interface MapSelection {
+    currentNeighborhood: string | null;
+    focusedLocation: string | null;
+    selectedArtist: string | null;
+}
+
+type MapSelectionAction =
+    | {type: "toggle-neighborhood"; neighborhood: string}
+    | {type: "toggle-location"; location: MapLocation};
+
+function createInitialMapSelection(state: MapRouteState | null): MapSelection {
+    const initialLocation = resolveMapLocation(state);
+
+    return {
+        currentNeighborhood: initialLocation?.neighborhood || state?.neighborhood || null,
+        focusedLocation: initialLocation?.name || null,
+        selectedArtist: state?.artist || null,
+    };
+}
+
+function mapSelectionReducer(selection: MapSelection, action: MapSelectionAction): MapSelection {
+    if (action.type === "toggle-neighborhood") {
+        return {
+            currentNeighborhood: selection.currentNeighborhood === action.neighborhood
+                ? null
+                : action.neighborhood,
+            focusedLocation: null,
+            selectedArtist: null,
+        };
+    }
+
+    if (selection.focusedLocation === action.location.name) {
+        return {
+            ...selection,
+            focusedLocation: null,
+            selectedArtist: null,
+        };
+    }
+
+    return {
+        currentNeighborhood: action.location.neighborhood,
+        focusedLocation: action.location.name,
+        selectedArtist: null,
+    };
+}
+
+interface LocationMarkerProps {
+    loc: GeocodedMapLocation;
     isFocused: boolean;
     selectedArtist: string | null;
-    onClick: () => void;
-    onArtistClick: (artist: string) => void;
-}) {
-    console.log(`[LocationMarker] Rendering: ${loc.name}`, {isFocused});
+    onClick: (location: MapLocation) => void;
+    onArtistClick: (location: MapLocation, artist: string) => void;
+}
+
+const LocationMarker = memo(function LocationMarker({
+    loc,
+    isFocused,
+    selectedArtist,
+    onClick,
+    onArtistClick,
+}: LocationMarkerProps) {
     const markerRef = useRef<L.Marker>(null);
+    const sortedArtists = useMemo(
+        () => [...loc.artists].sort((a, b) => a.artist.localeCompare(b.artist)),
+        [loc.artists],
+    );
+    const eventHandlers = useMemo<L.LeafletEventHandlerFnMap>(() => ({
+        click: (event) => {
+            L.DomEvent.stopPropagation(event);
+            onClick(loc);
+        },
+    }), [loc, onClick]);
 
     useEffect(() => {
-        console.log(`[LocationMarker] useEffect (isFocused): ${loc.name}`, {isFocused});
         if (isFocused && markerRef.current) {
-            console.log(`[LocationMarker] Opening popup: ${loc.name}`);
             markerRef.current.openPopup();
-        } else if (!isFocused && markerRef.current) {
-            console.log(`[LocationMarker] Closing popup: ${loc.name}`);
+        } else if (markerRef.current?.isPopupOpen()) {
             markerRef.current.closePopup();
         }
     }, [isFocused, loc.name]);
@@ -174,14 +280,9 @@ function LocationMarker({loc, isFocused, selectedArtist, onClick, onArtistClick}
     return (
         <Marker
             ref={markerRef}
-            position={[loc.lat!, loc.lng!]}
-            icon={isFocused ? highlightedIcon : new L.Icon.Default()}
-            eventHandlers={{
-                click: (e) => {
-                    L.DomEvent.stopPropagation(e);
-                    onClick();
-                },
-            }}
+            position={loc.markerPosition}
+            icon={isFocused ? highlightedIcon : defaultIcon}
+            eventHandlers={eventHandlers}
         >
             <Popup>
                 <div className="text-blue-700">
@@ -198,13 +299,13 @@ function LocationMarker({loc, isFocused, selectedArtist, onClick, onArtistClick}
                     )}
                     {loc.artists && loc.artists.length > 0 && (
                         <div className="text-[10px] grid grid-cols-2 gap-x-1 gap-y-0.5 border-t border-blue-200 pt-1">
-                            {[...loc.artists].sort((a, b) => a.artist.localeCompare(b.artist)).map((artist, index: number) => (
+                            {sortedArtists.map((artist) => (
                                 <button
                                     type="button"
-                                    key={index}
+                                    key={artist.artist}
                                     onClick={(event) => {
                                         event.stopPropagation();
-                                        onArtistClick(artist.artist);
+                                        onArtistClick(loc, artist.artist);
                                     }}
                                     className={`flex items-center gap-x-1 overflow-hidden text-left cursor-pointer transition-all origin-left hover:underline hover:text-blue-900 ${
                                         selectedArtist === artist.artist
@@ -222,51 +323,67 @@ function LocationMarker({loc, isFocused, selectedArtist, onClick, onArtistClick}
             </Popup>
         </Marker>
     );
-}
+});
 
 export default function MapPage() {
-    console.log("[MapPage] Rendering");
     const location = useLocation();
     const navigate = useNavigate();
     const state = location.state as MapRouteState | null;
-    const initialRouteLocation = resolveMapLocation(state);
+    const [selection, dispatch] = useReducer(mapSelectionReducer, state, createInitialMapSelection);
+    const {currentNeighborhood, focusedLocation, selectedArtist} = selection;
 
-    const [currentNeighborhood, setCurrentNeighborhood] = useState<string | null>(
-        initialRouteLocation?.neighborhood || state?.neighborhood || null,
-    );
-    const [focusedLocation, setFocusedLocation] = useState<string | null>(
-        initialRouteLocation?.name || null,
-    );
-    const [selectedArtist, setSelectedArtist] = useState<string | null>(state?.artist || null);
+    const activeView = useMemo<MapView>(() => {
+        const currentLocations = !currentNeighborhood
+            ? neighborhoodData.flatMap(neighborhood => neighborhood.locations)
+            : neighborhoodData.find(neighborhood => neighborhood.name === currentNeighborhood)?.locations || [];
+        const geoLocations = currentLocations.filter(location => location.lat != null && location.lng != null);
 
-    const currentLocations = !currentNeighborhood
-        ? neighborhoodData.flatMap(n => n.locations)
-        : neighborhoodData.find(n => n.name === currentNeighborhood)?.locations || [];
+        let bounds: L.LatLngBounds | null = null;
+        let center = defaultMapCenter;
+        let zoom = 13;
 
-    const geoLocations = currentLocations.filter(loc => loc.lat !== null && loc.lng !== null && loc.lat !== undefined && loc.lng !== undefined);
+        if (focusedLocation) {
+            const focusedMapLocation = currentLocations.find(mapLocation => mapLocation.name === focusedLocation);
+            if (focusedMapLocation?.lat != null && focusedMapLocation.lng != null) {
+                center = [focusedMapLocation.lat, focusedMapLocation.lng];
+                zoom = 17;
+            }
+        } else {
+            if (currentNeighborhood) {
+                const coordinates = neighborhoodCoordinates[currentNeighborhood];
+                if (coordinates) {
+                    center = [coordinates.lat, coordinates.lon];
+                    zoom = coordinates.zoom;
+                }
+            }
 
-    let activeBounds: L.LatLngBoundsExpression | null = null;
-    let activeCenter: [number, number] = [53.505, 10.005];
-    let activeZoom = 13;
-
-    if (focusedLocation) {
-        const loc = currentLocations.find(l => l.name === focusedLocation);
-        if (loc && loc.lat != null && loc.lng != null) {
-            activeCenter = [loc.lat, loc.lng];
-            activeZoom = 17;
+            if (geoLocations.length > 0) {
+                bounds = L.latLngBounds(
+                    geoLocations.map(mapLocation => [mapLocation.lat!, mapLocation.lng!] as L.LatLngTuple),
+                );
+            }
         }
-    } else if (currentNeighborhood) {
-        const coords = neighborhoodCoordinates[currentNeighborhood];
-        if (coords) {
-            activeCenter = [coords.lat, coords.lon];
-            activeZoom = coords.zoom;
-        }
-        if (geoLocations.length > 0) {
-            activeBounds = L.latLngBounds(geoLocations.map(loc => [loc.lat!, loc.lng!]));
-        }
-    } else if (geoLocations.length > 0) {
-        activeBounds = L.latLngBounds(geoLocations.map(loc => [loc.lat!, loc.lng!]));
-    }
+
+        return {bounds, center, zoom};
+    }, [currentNeighborhood, focusedLocation]);
+
+    const handleNeighborhoodToggle = useCallback((neighborhood: string) => {
+        dispatch({type: "toggle-neighborhood", neighborhood});
+    }, []);
+
+    const handleLocationToggle = useCallback((mapLocation: MapLocation) => {
+        dispatch({type: "toggle-location", location: mapLocation});
+    }, []);
+
+    const handleArtistClick = useCallback((mapLocation: MapLocation, artist: string) => {
+        navigate("/programm", {
+            state: {
+                artist,
+                location: mapLocation.name,
+                neighborhood: mapLocation.neighborhood,
+            },
+        });
+    }, [navigate]);
 
     return (
         <PageTransition>
@@ -281,19 +398,7 @@ export default function MapPage() {
                     return (
                         <button
                             key={neighborhood.name}
-                            onClick={() => {
-                                console.log("[MapPage] Neighborhood button clicked", {
-                                    name: neighborhood.name,
-                                    isActive
-                                });
-                                if (isActive) {
-                                    setCurrentNeighborhood(null);
-                                } else {
-                                    setCurrentNeighborhood(neighborhood.name);
-                                }
-                                setFocusedLocation(null);
-                                setSelectedArtist(null);
-                            }}
+                            onClick={() => handleNeighborhoodToggle(neighborhood.name)}
                             className={`px-2 rounded-md border-2 uppercase tracking-widest text-base max-sm:text-xs font-bold transition-all duration-300 ${
                                 isActive
                                     ? 'bg-blue-700 border-blue-700 text-white shadow-md'
@@ -309,52 +414,26 @@ export default function MapPage() {
                 <div
                     className="w-full h-125 max-sm:h-100 border-2 border-blue-700 rounded-lg overflow-hidden shadow-lg z-0 mx-auto">
                     <MapContainer
-                        center={activeCenter}
-                        zoom={activeZoom}
+                        center={activeView.center}
+                        zoom={activeView.zoom}
                         scrollWheelZoom={false}
                         style={{height: "100%", width: "100%"}}
                     >
-                        <ChangeView bounds={activeBounds} center={activeCenter} zoom={activeZoom}/>
+                        <ChangeView view={activeView}/>
                         <TileLayer
                             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         />
-                        {mapLocations
-                            .filter(loc => loc.lat !== null && loc.lng !== null && loc.lat !== undefined && loc.lng !== undefined)
-                            .map((loc, idx) => (
-                                <LocationMarker
-                                    key={`${loc.name}-${idx}`}
-                                    loc={loc}
-                                    isFocused={focusedLocation === loc.name}
-                                    selectedArtist={focusedLocation === loc.name ? selectedArtist : null}
-                                    onClick={() => {
-                                        console.log("[MapPage] Marker clicked", {
-                                            name: loc.name,
-                                            neighborhood: loc.neighborhood
-                                        });
-                                        if (focusedLocation === loc.name) {
-                                            setFocusedLocation(null);
-                                            setSelectedArtist(null);
-                                        } else {
-                                            if (currentNeighborhood !== loc.neighborhood) {
-                                                console.log("[MapPage] Switching neighborhood from marker click", loc.neighborhood);
-                                                setCurrentNeighborhood(loc.neighborhood);
-                                            }
-                                            setFocusedLocation(loc.name);
-                                            setSelectedArtist(null);
-                                        }
-                                    }}
-                                    onArtistClick={(artist) => {
-                                        navigate("/programm", {
-                                            state: {
-                                                artist,
-                                                location: loc.name,
-                                                neighborhood: loc.neighborhood,
-                                            },
-                                        });
-                                    }}
-                                />
-                            ))}
+                        {geocodedMapLocations.map((loc) => (
+                            <LocationMarker
+                                key={`${loc.neighborhood}-${loc.name}`}
+                                loc={loc}
+                                isFocused={focusedLocation === loc.name}
+                                selectedArtist={focusedLocation === loc.name ? selectedArtist : null}
+                                onClick={handleLocationToggle}
+                                onArtistClick={handleArtistClick}
+                            />
+                        ))}
                     </MapContainer>
                 </div>
             </section>
