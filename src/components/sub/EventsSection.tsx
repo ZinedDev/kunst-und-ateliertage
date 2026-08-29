@@ -4,15 +4,15 @@ import EventCard from "./EventCard.tsx";
 import ResetFiltersButton from "./ResetFiltersButton.tsx";
 
 const categoryFilters: { key: ProgramCategory | "ALL"; label: string }[] = [
-    { key: "PERFORMANCE_WORKSHOP", label: "Workshops & Performances" },
-    { key: "BILDERBUCHKINO", label: "Bilderbuchkino" },
-    { key: "CONCERT", label: "Konzerte" },
+    {key: "PERFORMANCE_WORKSHOP", label: "Workshops & Performances"},
+    {key: "BILDERBUCHKINO", label: "Bilderbuchkino"},
+    {key: "CONCERT", label: "Konzerte"},
 ];
 
 const dateFilters = [
-    { date: "2026-09-18", label: "Fr, 18.09." },
-    { date: "2026-09-19", label: "Sa, 19.09." },
-    { date: "2026-09-20", label: "So, 20.09." },
+    {date: "2026-09-18", label: "Fr, 18.09."},
+    {date: "2026-09-19", label: "Sa, 19.09."},
+    {date: "2026-09-20", label: "So, 20.09."},
 ];
 
 interface EventsSectionProps {
@@ -28,11 +28,11 @@ interface EventsSectionProps {
 }
 
 export default function EventsSection({
-    searchQuery,
-    onResetSearch,
-    focusedEvent,
-    onFocusedEventDismiss,
-}: EventsSectionProps) {
+                                          searchQuery,
+                                          onResetSearch,
+                                          focusedEvent,
+                                          onFocusedEventDismiss,
+                                      }: EventsSectionProps) {
     const [selectedCategory, setSelectedCategory] = useState<ProgramCategory | "ALL">("ALL");
     const [selectedDate, setSelectedDate] = useState<string>("ALL");
 
@@ -78,7 +78,8 @@ export default function EventsSection({
     return (
         <>
             {/* Event Category Filters */}
-            <div className="flex flex-wrap max-sm:flex-col items-center justify-center gap-1.5 mt-4 max-sm:mt-2 w-full max-w-5xl">
+            <div
+                className="flex flex-wrap max-sm:flex-col items-center justify-center gap-1.5 mt-4 max-sm:mt-2 w-full max-w-5xl">
                 {categoryFilters.map(filter => (
                     <button
                         key={filter.key}
@@ -111,10 +112,10 @@ export default function EventsSection({
                 ))}
             </div>
 
-            <ResetFiltersButton onClick={handleResetFilters} />
+            <ResetFiltersButton onClick={handleResetFilters}/>
 
             {/* Events Grid */}
-            <div className="w-full max-w-5xl mt-6 mb-8 max-sm:mb-2 columns-1 md:columns-2 lg:columns-3 gap-4 mx-auto">
+            <div className="w-full mt-6 mb-8 max-sm:mb-2 columns-1 md:columns-2 lg:columns-3 gap-4 mx-auto">
                 {filteredEvents.map((event, index) => (
                     <EventCard
                         key={event.id}
@@ -128,13 +129,14 @@ export default function EventsSection({
                         onFocusDismiss={onFocusedEventDismiss}
                     />
                 ))}
-
-                {filteredEvents.length === 0 && (
-                    <div className="text-center py-12 px-4">
-                        <p className="text-zinc-500 text-base">Keine Events gefunden.</p>
-                    </div>
-                )}
             </div>
+
+            {filteredEvents.length === 0 && (
+                <div className="text-center py-12 px-4">
+                    <p className="text-zinc-500 text-base">Keine Events gefunden.</p>
+                </div>
+            )}
+
         </>
     );
 }

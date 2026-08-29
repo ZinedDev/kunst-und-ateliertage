@@ -12,16 +12,37 @@ import {useLocation, useNavigate} from "react-router";
 import type {NeighborhoodData} from "../data/Types.ts";
 
 
-// Fix for default marker icon in Leaflet with React
-// @ts-expect-error - Leaflet icon property deletion for React-Leaflet compatibility
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-    iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
-    iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-    shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-});
+// Keep marker artwork inline so opening the map does not trigger separate
+// requests to unpkg.com or GitHub for the default/highlighted icons.
+function markerSvg(fill: string): string {
+    return `data:image/svg+xml,${encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="41" viewBox="0 0 25 41">
+            <path fill="${fill}" stroke="#fff" stroke-width="1.5"
+                d="M12.5 1C6.15 1 1 6.15 1 12.5c0 8.2 11.5 26.2 11.5 26.2S24 20.7 24 12.5C24 6.15 18.85 1 12.5 1Z"/>
+            <circle cx="12.5" cy="12.5" r="4" fill="#fff"/>
+        </svg>
+    `)}`;
+}
 
-const defaultIcon = new L.Icon.Default();
+const markerShadow = `data:image/svg+xml,${encodeURIComponent(`
+    <svg xmlns="http://www.w3.org/2000/svg" width="41" height="41" viewBox="0 0 41 41">
+        <ellipse cx="20.5" cy="37" rx="12" ry="3" fill="#000" opacity=".25"/>
+    </svg>
+`)}`;
+
+function createMarkerIcon(fill: string): L.Icon {
+    return new L.Icon({
+        iconRetinaUrl: markerSvg(fill),
+        iconUrl: markerSvg(fill),
+        shadowUrl: markerShadow,
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41],
+    });
+}
+
+const defaultIcon = createMarkerIcon("#2a6fbb");
 
 const eventDateFilters = [
     {date: "2026-09-18", label: "Fr, 18.09."},
@@ -30,15 +51,7 @@ const eventDateFilters = [
 ];
 
 // Highlighted icon for selected marker
-const highlightedIcon = L.icon({
-    iconRetinaUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
-    iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
-    shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41]
-});
+const highlightedIcon = createMarkerIcon("#dc2626");
 
 const neighborhoodCoordinates: Record<string, { lat: number; lon: number; zoom: number }> = {
     "Veddel": {lat: 53.522, lon: 10.020, zoom: 15},
@@ -600,6 +613,9 @@ export default function MapPage() {
                         <TileLayer
                             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                            keepBuffer={1}
+                            updateWhenIdle
+                            updateWhenZooming={false}
                         />
                         {geocodedMapLocations.map((loc) => (
                             <LocationMarker

@@ -4,8 +4,6 @@ import Header from "../components/layout/Header.tsx";
 import {impressumFacts, impressumHeader} from "../data/ImpressumData.ts";
 import SectionFacts from "../components/sub/SectionFacts.tsx";
 import {getMoinEmail, getMoinMailto} from "../utils/email.ts";
-// import Background from "../components/sub/Background.tsx";
-// import BackgroundImage from "../assets/images/background/image0.jpeg";
 
 export default function Impressum() {
     return (

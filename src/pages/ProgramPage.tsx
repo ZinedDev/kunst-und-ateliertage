@@ -107,7 +107,7 @@ export default function ProgramPage() {
             <section className="grid w-full max-w-5xl mb-8 mx-auto px-4 lg:px-0">
                 {/* Both panels stay mounted so their local state is preserved. */}
                 <motion.div
-                    className="col-start-1 row-start-1"
+                    className={`col-start-1 row-start-1 w-full ${viewMode === "artists" ? "" : "hidden"}`}
                     initial={false}
                     animate={{opacity: viewMode === "artists" ? 1 : 0}}
                     transition={{duration: 0.2}}
@@ -126,7 +126,7 @@ export default function ProgramPage() {
                 </motion.div>
 
                 <motion.div
-                    className="col-start-1 row-start-1"
+                    className={`col-start-1 row-start-1 w-full ${viewMode === "events" ? "" : "hidden"}`}
                     initial={false}
                     animate={{opacity: viewMode === "events" ? 1 : 0}}
                     transition={{duration: 0.2}}
