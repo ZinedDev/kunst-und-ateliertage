@@ -11,14 +11,36 @@ import {motion} from "motion/react";
 
 export default function ProgramPage() {
     const location = useLocation();
-    const routeFocusedArtist = location.state as {
-        artist: string;
+    const routeState = location.state as {
+        artist?: string;
         location?: string;
         neighborhood?: string;
+        eventId?: string;
+        event?: string;
+        viewMode?: "artists" | "events";
     } | null;
-    const [viewMode, setViewMode] = useState<"artists" | "events">("artists");
+    const initialViewMode = routeState?.viewMode || (routeState?.eventId || routeState?.event ? "events" : "artists");
+    const [viewMode, setViewMode] = useState<"artists" | "events">(initialViewMode);
     const [searchQuery, setSearchQuery] = useState("");
-    const [focusedArtist, setFocusedArtist] = useState(routeFocusedArtist);
+    const [focusedArtist, setFocusedArtist] = useState(
+        routeState?.artist
+            ? {
+                  artist: routeState.artist,
+                  location: routeState.location,
+                  neighborhood: routeState.neighborhood,
+              }
+            : null,
+    );
+    const [focusedEvent, setFocusedEvent] = useState(
+        routeState?.eventId || routeState?.event
+            ? {
+                  eventId: routeState.eventId,
+                  event: routeState.event,
+                  location: routeState.location,
+                  neighborhood: routeState.neighborhood,
+              }
+            : null,
+    );
 
     return (
         <PageTransition>
@@ -117,6 +139,8 @@ export default function ProgramPage() {
                     <EventsSection
                         searchQuery={searchQuery}
                         onResetSearch={() => setSearchQuery("")}
+                        focusedEvent={focusedEvent?.eventId || focusedEvent?.event ? focusedEvent : undefined}
+                        onFocusedEventDismiss={() => setFocusedEvent(null)}
                     />
                 </motion.div>
             </section>

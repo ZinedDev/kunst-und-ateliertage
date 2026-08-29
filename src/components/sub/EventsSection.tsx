@@ -18,9 +18,21 @@ const dateFilters = [
 interface EventsSectionProps {
     searchQuery: string;
     onResetSearch?: () => void;
+    focusedEvent?: {
+        eventId?: string;
+        event?: string;
+        location?: string;
+        neighborhood?: string;
+    };
+    onFocusedEventDismiss?: () => void;
 }
 
-export default function EventsSection({searchQuery, onResetSearch}: EventsSectionProps) {
+export default function EventsSection({
+    searchQuery,
+    onResetSearch,
+    focusedEvent,
+    onFocusedEventDismiss,
+}: EventsSectionProps) {
     const [selectedCategory, setSelectedCategory] = useState<ProgramCategory | "ALL">("ALL");
     const [selectedDate, setSelectedDate] = useState<string>("ALL");
 
@@ -104,7 +116,17 @@ export default function EventsSection({searchQuery, onResetSearch}: EventsSectio
             {/* Events Grid */}
             <div className="w-full max-w-5xl mt-6 mb-8 max-sm:mb-2 columns-1 md:columns-2 lg:columns-3 gap-4 mx-auto">
                 {filteredEvents.map((event, index) => (
-                    <EventCard key={event.id} event={event} index={index} />
+                    <EventCard
+                        key={event.id}
+                        event={event}
+                        index={index}
+                        isFocused={
+                            focusedEvent?.eventId
+                                ? event.id === focusedEvent.eventId
+                                : Boolean(focusedEvent?.event && event.what === focusedEvent.event)
+                        }
+                        onFocusDismiss={onFocusedEventDismiss}
+                    />
                 ))}
 
                 {filteredEvents.length === 0 && (

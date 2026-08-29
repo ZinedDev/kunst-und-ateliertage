@@ -4,6 +4,7 @@ import {useNavigate} from "react-router";
 //import {Globe, AtSign, Mail} from "lucide-react";
 import type {ArtistEntry} from "../../data/Types.ts";
 import {MapPin} from "lucide-react";
+import ArtistCardDetails from "./ArtistCardDetails.tsx";
 
 export type ArtistCardEntry = (ArtistEntry | { name: string; location: string; neighborhood: string }) & {
     name?: string;
@@ -82,11 +83,6 @@ export default function ArtistCard({
         });
     };
 
-    const hasAdditionalInfo = (artist.art && artist.art.length > 0) ||
-        artist.website ||
-        (artist.socialMedia && artist.socialMedia.length > 0) ||
-        artist.email;
-
     return (
         <motion.div
             ref={cardRef}
@@ -102,20 +98,15 @@ export default function ArtistCard({
                 whileInView={{opacity: 1, x: 0}}
                 viewport={{once: false}}
                 transition={{duration: 0.2, type: "spring", stiffness: 100, delay: index * 0.001, restDelta: 10}}
-                className={`flex flex-col items-start px-4 py-3 bg-white border-2 rounded-xl hover:border-blue-700 hover:shadow-xl transition-all duration-300 group text-left w-full h-auto min-h-26 justify-between ${
+                className={`flex flex-col items-start px-4 py-3 bg-white border-2 rounded-xl hover:border-blue-700 hover:shadow-lg transition-all duration-200 group text-left w-full h-auto min-h-26 justify-between ${
                     isFocused || isRevealed
-                        ? "border-orange-400 shadow-xl scale-[1.02]"
+                        ? "border-orange-400 shadow-lg scale-[1.02]"
                         : "border-zinc-100"
                 }`}
             >
                 <AnimatePresence mode="wait" initial={false}>
-                    <motion.div
-                        initial={{opacity: 0, filter: "blur(6px)", height: "auto"}}
-                        animate={{opacity: 1, filter: "blur(0px)"}}
-                        exit={{opacity: 0, filter: "blur(6px)"}}
-                        transition={{duration: 0.2}}
-                        className="flex flex-col items-center justify-center w-full"
-                    >
+                    <div className="flex flex-col items-center justify-center w-full">
+
                         {/* Artist Name */}
                         <span className="border-b mb-3 text-lg font-bold text-zinc-900">
                             {name}
@@ -142,6 +133,7 @@ export default function ArtistCard({
                             </button>
                         </div>
 
+                        {/* Artist Details Container */}
                         <motion.div
                             initial={{opacity: 0}}
                             animate={{opacity: isCardRevealed ? 1 : 0}}
@@ -152,64 +144,9 @@ export default function ArtistCard({
                                 isCardRevealed ? "pointer-events-auto" : "pointer-events-none"
                             }`}
                         >
-                            {/* Arts */}
-                            <h2 className="w-full text-center text-sm font-bold text-zinc-700">
-                                {artist.art?.join(" | ")}
-                            </h2>
-
-                            {/* Contact & Links */}
-                            {hasAdditionalInfo ? (
-                                <div
-                                    className="flex flex-col items-center justify-center gap-0.5 text-xs text-zinc-600 w-full">
-                                    {artist.website && (
-                                        <a
-                                            href={artist.website.startsWith("http") ? artist.website : `https://${artist.website}`}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            onClick={(e) => e.stopPropagation()}
-                                            className="inline-flex items-center gap-1.5 text-blue-600 hover:underline break-all"
-                                        >
-                                            {/*<Globe className="w-3.5 h-3.5 shrink-0" />*/}
-                                            <span>{artist.website}</span>
-                                        </a>
-                                    )}
-
-                                    {artist.socialMedia && artist.socialMedia.length > 0 && (
-                                        <div className="flex flex-wrap items-center gap-2">
-                                            {artist.socialMedia.map((sm, idx) => {
-                                                const handle = sm.replace(/^@/, "");
-                                                const href = sm.startsWith("http") ? sm : `https://instagram.com/${handle}`;
-                                                return (
-                                                    <a
-                                                        key={idx}
-                                                        href={href}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        onClick={(e) => e.stopPropagation()}
-                                                        className="inline-flex items-center gap-1.5 text-pink-600 hover:underline"
-                                                    >
-                                                        {/*<AtSign className="w-3.5 h-3.5 shrink-0" />*/}
-                                                        <span>{sm}</span>
-                                                    </a>
-                                                );
-                                            })}
-                                        </div>
-                                    )}
-
-                                    {artist.email && (
-                                        <a
-                                            href={`mailto:${artist.email}`}
-                                            onClick={(e) => e.stopPropagation()}
-                                            className="inline-flex items-center gap-1.5 text-zinc-600 hover:text-blue-600 hover:underline break-all"
-                                        >
-                                            {/*<Mail className="w-3.5 h-3.5 shrink-0" />*/}
-                                            <span>{artist.email}</span>
-                                        </a>
-                                    )}
-                                </div>
-                            ) : null}
+                            <ArtistCardDetails artist={artist}/>
                         </motion.div>
-                    </motion.div>
+                    </div>
                 </AnimatePresence>
             </motion.div>
         </motion.div>

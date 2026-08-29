@@ -1,7 +1,8 @@
-import {memo, useCallback, useEffect, useMemo, useReducer, useRef} from "react";
+import {memo, useCallback, useEffect, useMemo, useReducer, useRef, useState} from "react";
 import PageTransition from "../components/layout/PageTransitions.tsx";
 import Header from "../components/layout/Header.tsx";
 import {neighborhoodData} from "../data/ProgramData.ts";
+import {allEvents, type ProgramEntry} from "../data/EventData.ts";
 import {MapContainer, TileLayer, Marker, Popup, useMap} from "react-leaflet";
 import L from "leaflet";
 import {useIsPresent} from "motion/react";
@@ -21,6 +22,12 @@ L.Icon.Default.mergeOptions({
 });
 
 const defaultIcon = new L.Icon.Default();
+
+const eventDateFilters = [
+    {date: "2026-09-18", label: "Fr, 18.09."},
+    {date: "2026-09-19", label: "Sa, 19.09."},
+    {date: "2026-09-20", label: "So, 20.09."},
+];
 
 // Highlighted icon for selected marker
 const highlightedIcon = L.icon({
@@ -123,6 +130,8 @@ type MapRouteState = {
     location?: string;
     address?: string;
     artist?: string;
+    eventId?: string;
+    event?: string;
 };
 
 const mapLocations: MapLocation[] = neighborhoodData.flatMap(neighborhood =>
@@ -196,10 +205,30 @@ function resolveMapLocation(state: MapRouteState | null): MapLocation | null {
     return rankedLocations[0]?.score >= 50 ? rankedLocations[0].mapLocation : null;
 }
 
+const locationEventsMap: Record<string, ProgramEntry[]> = (() => {
+    const map: Record<string, ProgramEntry[]> = {};
+    for (const event of allEvents) {
+        const resolved = resolveMapLocation({
+            location: event.where.venue,
+            address: event.where.address,
+            neighborhood: event.where.neighborhood.replace(/^HH-/, ""),
+        });
+        if (resolved) {
+            if (!map[resolved.name]) {
+                map[resolved.name] = [];
+            }
+            map[resolved.name].push(event);
+        }
+    }
+    return map;
+})();
+
 interface MapSelection {
     currentNeighborhood: string | null;
     focusedLocation: string | null;
     selectedArtist: string | null;
+    selectedEventId: string | null;
+    selectedEvent: string | null;
 }
 
 type MapSelectionAction =
@@ -213,6 +242,8 @@ function createInitialMapSelection(state: MapRouteState | null): MapSelection {
         currentNeighborhood: initialLocation?.neighborhood || state?.neighborhood || null,
         focusedLocation: initialLocation?.name || null,
         selectedArtist: state?.artist || null,
+        selectedEventId: state?.eventId || null,
+        selectedEvent: state?.event || null,
     };
 }
 
@@ -224,6 +255,8 @@ function mapSelectionReducer(selection: MapSelection, action: MapSelectionAction
                 : action.neighborhood,
             focusedLocation: null,
             selectedArtist: null,
+            selectedEventId: null,
+            selectedEvent: null,
         };
     }
 
@@ -232,6 +265,8 @@ function mapSelectionReducer(selection: MapSelection, action: MapSelectionAction
             ...selection,
             focusedLocation: null,
             selectedArtist: null,
+            selectedEventId: null,
+            selectedEvent: null,
         };
     }
 
@@ -239,6 +274,8 @@ function mapSelectionReducer(selection: MapSelection, action: MapSelectionAction
         currentNeighborhood: action.location.neighborhood,
         focusedLocation: action.location.name,
         selectedArtist: null,
+        selectedEventId: null,
+        selectedEvent: null,
     };
 }
 
@@ -246,21 +283,46 @@ interface LocationMarkerProps {
     loc: GeocodedMapLocation;
     isFocused: boolean;
     selectedArtist: string | null;
+    selectedEventId: string | null;
+    selectedEvent: string | null;
+    locationEvents: ProgramEntry[];
     onClick: (location: MapLocation) => void;
     onArtistClick: (location: MapLocation, artist: string) => void;
+    onEventClick: (location: MapLocation, event: ProgramEntry) => void;
 }
 
 const LocationMarker = memo(function LocationMarker({
     loc,
     isFocused,
     selectedArtist,
+    selectedEventId,
+    selectedEvent,
+    locationEvents,
     onClick,
     onArtistClick,
+    onEventClick,
 }: LocationMarkerProps) {
     const markerRef = useRef<L.Marker>(null);
+    const defaultTab: "artists" | "events" = (selectedEventId || selectedEvent)
+        ? "events"
+        : (selectedArtist ? "artists" : (loc.artists.length === 0 && locationEvents.length > 0 ? "events" : "artists"));
+    const [selectedTab, setSelectedTab] = useState<"artists" | "events" | null>(null);
+    const [selectedDate, setSelectedDate] = useState("ALL");
+    const popupTab = selectedTab ?? defaultTab;
+
     const sortedArtists = useMemo(
         () => [...loc.artists].sort((a, b) => a.artist.localeCompare(b.artist)),
         [loc.artists],
+    );
+    const sortedLocationEvents = useMemo(
+        () => [...locationEvents].sort((a, b) => a.what.localeCompare(b.what, "de-DE")),
+        [locationEvents],
+    );
+    const filteredLocationEvents = useMemo(
+        () => selectedDate === "ALL"
+            ? sortedLocationEvents
+            : sortedLocationEvents.filter(event => event.occurrences.some(occurrence => occurrence.date === selectedDate)),
+        [selectedDate, sortedLocationEvents],
     );
     const eventHandlers = useMemo<L.LeafletEventHandlerFnMap>(() => ({
         click: (event) => {
@@ -285,39 +347,141 @@ const LocationMarker = memo(function LocationMarker({
             eventHandlers={eventHandlers}
         >
             <Popup>
-                <div className="text-blue-700">
-                    <h3 className="font-bold">{loc.name}</h3>
+                <div className="text-blue-700 w-50 h-auto overflow-y-scroll">
+                    <h3 className="font-bold text-base leading-snug">{loc.name}</h3>
                     {loc.adresse && (
                         <a
                             href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(loc.adresse)}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-sm underline hover:text-blue-900 block mb-2"
+                            className="text-xs text-zinc-500 hover:text-blue-900 block mb-1.5 underline"
                         >
                             {loc.adresse}
                         </a>
                     )}
-                    {loc.artists && loc.artists.length > 0 && (
-                        <div className="text-[10px] grid grid-cols-2 gap-x-1 gap-y-0.5 border-t border-blue-200 pt-1">
-                            {sortedArtists.map((artist) => (
-                                <button
-                                    type="button"
-                                    key={artist.artist}
-                                    onClick={(event) => {
-                                        event.stopPropagation();
-                                        onArtistClick(loc, artist.artist);
-                                    }}
-                                    className={`flex items-center gap-x-1 overflow-hidden text-left cursor-pointer transition-all origin-left hover:underline hover:text-blue-900 ${
-                                        selectedArtist === artist.artist
-                                            ? "font-bold underline underline-offset-2 text-blue-900"
-                                            : ""
-                                    }`}
-                                    aria-current={selectedArtist === artist.artist ? "true" : undefined}
-                                >
-                                    <span className="truncate">{artist.artist}</span>
-                                </button>
-                            ))}
-                        </div>
+
+                    {/* Switch / Toggle between Artists and Events */}
+                    <div className="relative flex items-center justify-between my-2 border-b py-2 w-50 h-auto">
+
+                        {/* Artist Button */}
+                        <button
+                            type="button"
+                            onClick={(event) => {
+                                event.stopPropagation();
+                                setSelectedTab("artists");
+                            }}
+                            className={`py-1 px-1 rounded ${
+                                popupTab === "artists" ? "text-[12px]" : "text-[10px]"
+                            } font-bold text-center transition-all cursor-pointer ${
+                                popupTab === "artists"
+                                    ? "bg-orange-400/20 text-orange-950 border border-orange-400 shadow-xs"
+                                    : "text-zinc-600 hover:text-blue-900 bg-white/70 border border-transparent"
+                            }`}
+                        >
+                            Künstler*innen ({loc.artists?.length || 0})
+                        </button>
+
+                        {/* Events Button */}
+                        {locationEvents.length > 0 ?
+                        <button
+                            type="button"
+                            onClick={(event) => {
+                                event.stopPropagation();
+                                setSelectedTab("events");
+                            }}
+                            className={`py-1 px-1 rounded ${
+                                popupTab === "events" ? "text-[12px]" : "text-[10px]"
+                            } font-bold text-center transition-all cursor-pointer ${
+                                popupTab === "events"
+                                    ? "bg-orange-400/20 text-orange-950 border border-orange-400 shadow-xs"
+                                    : "text-zinc-600 hover:text-blue-900 bg-white/70 border border-transparent"
+                            }`}
+                        >
+                            Events ({locationEvents.length})
+                        </button> : null}
+
+                    </div>
+
+                    {popupTab === "artists" ? (
+                        loc.artists && loc.artists.length > 0 ? (
+                            <div className="text-[10px] grid grid-cols-2 gap-x-1 gap-y-1 pt-0.5 max-h-48 overflow-y-auto">
+                                {sortedArtists.map((artist) => (
+                                    <button
+                                        type="button"
+                                        key={artist.artist}
+                                        onClick={(event) => {
+                                            event.stopPropagation();
+                                            onArtistClick(loc, artist.artist);
+                                        }}
+                                        className={`flex items-center gap-x-1 overflow-hidden text-left cursor-pointer transition-all origin-left hover:underline hover:text-blue-900 ${
+                                            selectedArtist === artist.artist
+                                                ? "font-bold underline underline-offset-2 text-blue-900"
+                                                : "text-zinc-800"
+                                        }`}
+                                        aria-current={selectedArtist === artist.artist ? "true" : undefined}
+                                    >
+                                        <span className="truncate">{artist.artist}</span>
+                                    </button>
+                                ))}
+                            </div>
+                        ) : (
+                            <p className="text-[10px] text-zinc-400 italic py-1 text-center">Keine Künstler*innen an diesem Ort</p>
+                        )
+                    ) : (
+                        locationEvents.length > 0 ? (
+                            <>
+                                <div className="flex flex-wrap items justify-center gap-1 mb-2">
+                                    {eventDateFilters.map((filter) => (
+                                        <button
+                                            type="button"
+                                            key={filter.date}
+                                            onClick={(event) => {
+                                                event.stopPropagation();
+                                                setSelectedDate(selectedDate === filter.date ? "ALL" : filter.date);
+                                            }}
+                                            className={`px-1.5 py-0.5 rounded border text-[9px] font-semibold transition-colors cursor-pointer ${
+                                                selectedDate === filter.date
+                                                    ? "border-orange-400 bg-orange-400/10 text-orange-950"
+                                                    : "border-zinc-200 text-zinc-600 hover:border-blue-700 hover:text-blue-700"
+                                            }`}
+                                            aria-pressed={selectedDate === filter.date}
+                                        >
+                                            {filter.label}
+                                        </button>
+                                    ))}
+                                </div>
+                                {filteredLocationEvents.length > 0 ? (
+                                    <div className="text-[10px] flex flex-col gap-x-1 gap-y-1 pt-0.5 max-h-48 overflow-y-auto">
+                                    {filteredLocationEvents.map((event) => {
+                                    const isSelected = selectedEventId === event.id || selectedEvent === event.what;
+                                    return (
+                                        <button
+                                            type="button"
+                                            key={event.id}
+                                            onClick={(clickEvent) => {
+                                                clickEvent.stopPropagation();
+                                                onEventClick(loc, event);
+                                            }}
+                                            className={`flex flex-col items-start text-left cursor-pointer transition-all ${
+                                                isSelected
+                                                    ? " bg-orange-400/10 border rounded-lg p-1 border-orange-300 text-blue-950"
+                                                    : "text-zinc-800"
+                                            }`}
+                                            aria-current={isSelected ? "true" : undefined}
+                                        >
+                                            <span className="font-semibold leading-tight">{event.what}</span>
+                                            <span className="text-[9px] text-zinc-500">{event.who}</span>
+                                        </button>
+                                        );
+                                    })}
+                                    </div>
+                                ) : (
+                                    <p className="text-[10px] text-zinc-400 italic py-1 text-center">Keine Events an diesem Datum</p>
+                                )}
+                            </>
+                        ) : (
+                            <p className="text-[10px] text-zinc-400 italic py-1 text-center">Keine Events an diesem Ort</p>
+                        )
                     )}
                 </div>
             </Popup>
@@ -330,7 +494,7 @@ export default function MapPage() {
     const navigate = useNavigate();
     const state = location.state as MapRouteState | null;
     const [selection, dispatch] = useReducer(mapSelectionReducer, state, createInitialMapSelection);
-    const {currentNeighborhood, focusedLocation, selectedArtist} = selection;
+    const {currentNeighborhood, focusedLocation, selectedArtist, selectedEventId, selectedEvent} = selection;
 
     const activeView = useMemo<MapView>(() => {
         const currentLocations = !currentNeighborhood
@@ -381,6 +545,19 @@ export default function MapPage() {
                 artist,
                 location: mapLocation.name,
                 neighborhood: mapLocation.neighborhood,
+                viewMode: "artists",
+            },
+        });
+    }, [navigate]);
+
+    const handleEventClick = useCallback((mapLocation: MapLocation, event: ProgramEntry) => {
+        navigate("/programm", {
+            state: {
+                eventId: event.id,
+                event: event.what,
+                location: mapLocation.name,
+                neighborhood: mapLocation.neighborhood,
+                viewMode: "events",
             },
         });
     }, [navigate]);
@@ -430,8 +607,12 @@ export default function MapPage() {
                                 loc={loc}
                                 isFocused={focusedLocation === loc.name}
                                 selectedArtist={focusedLocation === loc.name ? selectedArtist : null}
+                                selectedEventId={focusedLocation === loc.name ? selectedEventId : null}
+                                selectedEvent={focusedLocation === loc.name ? selectedEvent : null}
+                                locationEvents={locationEventsMap[loc.name] || []}
                                 onClick={handleLocationToggle}
                                 onArtistClick={handleArtistClick}
+                                onEventClick={handleEventClick}
                             />
                         ))}
                     </MapContainer>
