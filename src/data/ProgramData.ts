@@ -268,13 +268,13 @@ export const anqiLyu: ArtistEntry = {
 // --------------------------------------------------
 
 export const nicoleRzepka: ArtistEntry = {
-    artist: "Nicole Rzepka - Atelier Samtmammut",
+    artist: "Nicole Rzepka - At. Samtmammut",
     art: ["Druckkunst"],
     area: "Zinnwerke e.V."
 };
 
 export const michaelHeim: ArtistEntry = {
-    artist: "Michael Heim - Atelier Samtmammut",
+    artist: "Michael Heim - At. Samtmammut",
     art: ["Druckkunst"],
     area: "Zinnwerke e.V."
 };
