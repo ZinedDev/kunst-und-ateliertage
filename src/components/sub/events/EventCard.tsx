@@ -2,8 +2,8 @@ import {useEffect, useRef} from "react";
 import {motion} from "motion/react";
 import {useNavigate} from "react-router";
 import {Calendar, MapPin, User} from "lucide-react";
-import type {ProgramEntry} from "../../data/EventData.ts";
-import {getCategoryBadgeStyle} from "../../data/EventData.ts";
+import type {ProgramEntry} from "../../../data/EventData.ts";
+import {getCategoryBadgeStyle} from "../../../data/EventData.ts";
 
 function formatDate(isoDate: string): string {
     const parts = isoDate.split("-");

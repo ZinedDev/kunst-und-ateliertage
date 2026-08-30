@@ -5,8 +5,8 @@ import {programHeader} from "../data/ProgramData.ts";
 
 import PageTransition from "../components/layout/PageTransitions.tsx";
 import Header from "../components/layout/Header.tsx";
-import ArtistsSection from "../components/sub/ArtistsSection.tsx";
-import EventsSection from "../components/sub/EventsSection.tsx";
+import ArtistsSection from "../components/sub/artists/ArtistsSection.tsx";
+import EventsSection from "../components/sub/events/EventsSection.tsx";
 import {motion} from "motion/react";
 
 export default function ProgramPage() {

@@ -1,8 +1,8 @@
 import {useState, useMemo} from "react";
 import {motion} from "motion/react";
-import {neighborhoodData} from "../../data/ProgramData.ts";
+import {neighborhoodData} from "../../../data/ProgramData.ts";
 import ArtistCard, {type ArtistCardEntry} from "./ArtistCard.tsx";
-import ResetFiltersButton from "./ResetFiltersButton.tsx";
+import ResetFiltersButton from "../ResetFiltersButton.tsx";
 
 interface ArtistsSectionProps {
     searchQuery: string;

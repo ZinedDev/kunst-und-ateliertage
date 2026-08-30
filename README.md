@@ -4,7 +4,7 @@ A modern React application for the **Kunst- und Ateliertage 2026** event. This p
 
 ## Tech Stack
 
-- **Framework:** React 18
+- **Framework:** React 19
 - **Build Tool:** Vite
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS

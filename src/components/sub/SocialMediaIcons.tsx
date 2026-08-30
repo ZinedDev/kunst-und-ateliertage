@@ -1,6 +1,6 @@
 import {motion} from "motion/react";
 import type {Variants} from "motion";
-import {socialMediaIcons} from "../../assets/icons/SocialMediaIcons.tsx";
+import {socialMediaIcons} from "./icons/SocialMediaIcons.tsx";
 
 
 export default function SocialMediaIcons() {

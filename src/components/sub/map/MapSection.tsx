@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {motion, AnimatePresence} from "motion/react";
-import {neighborhoodData} from "../../data/ProgramData.ts";
+import {neighborhoodData} from "../../../data/ProgramData.ts";
 import {useNavigate} from "react-router";
 import {MapPin} from "lucide-react";
 

@@ -1,7 +1,7 @@
 import {useState, useMemo} from "react";
-import {allEvents, getCategoryBadgeStyle, type ProgramCategory} from "../../data/EventData.ts";
+import {allEvents, getCategoryBadgeStyle, type ProgramCategory} from "../../../data/EventData.ts";
 import EventCard from "./EventCard.tsx";
-import ResetFiltersButton from "./ResetFiltersButton.tsx";
+import ResetFiltersButton from "../ResetFiltersButton.tsx";
 
 const categoryFilters: { key: ProgramCategory | "ALL"; label: string }[] = [
     {key: "PERFORMANCE_WORKSHOP", label: "Workshops & Performances"},

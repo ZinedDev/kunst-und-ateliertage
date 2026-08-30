@@ -2,7 +2,7 @@ import {useEffect, useRef, useState, type MouseEvent} from "react";
 import {motion, AnimatePresence} from "motion/react";
 import {useNavigate} from "react-router";
 //import {Globe, AtSign, Mail} from "lucide-react";
-import type {ArtistEntry} from "../../data/Types.ts";
+import type {ArtistEntry} from "../../../data/Types.ts";
 import {MapPin} from "lucide-react";
 import ArtistCardDetails from "./ArtistCardDetails.tsx";
 

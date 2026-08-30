@@ -2,7 +2,7 @@
 import AtIcon from 'remixicon-react/AtLineIcon'
 import InstagramLineIcon from "remixicon-react/InstagramLineIcon";
 import FacebookCircleLineIcon from "remixicon-react/FacebookCircleLineIcon";
-import {getMoinMailto} from "../../utils/email.ts";
+import {getMoinMailto} from "../../../utils/email.ts";
 
 export const socialMediaIcons = [
     {
