@@ -98,7 +98,7 @@ export default function ArtistCard({
                 whileInView={{opacity: 1, x: 0}}
                 viewport={{once: false}}
                 transition={{duration: 0.2, type: "spring", stiffness: 100, delay: index * 0.001, restDelta: 10}}
-                className={`flex flex-col items-start px-4 py-3 bg-white border-2 rounded-xl hover:border-blue-700 hover:shadow-lg transition-all duration-200 group text-left w-full h-auto min-h-26 justify-between ${
+                className={`flex flex-col items-start px-4 py-3 bg-white border-2 rounded-xl group text-left w-full h-auto min-h-26 justify-between hover:scale-[1.02] hover:border-blue-700 hover:shadow-lg transition-all duration-200  ${
                     isFocused || isRevealed
                         ? "border-orange-400 shadow-lg scale-[1.02]"
                         : "border-zinc-100"

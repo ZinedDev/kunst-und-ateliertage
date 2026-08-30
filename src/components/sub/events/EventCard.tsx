@@ -106,9 +106,9 @@ export default function EventCard({
                 whileInView={{opacity: 1, y: 0}}
                 viewport={{once: false}}
                 transition={{duration: 0.2, type: "spring", stiffness: 100, delay: index * 0.01, restDelta: 10}}
-                className={`flex flex-col justify-between items-start p-4 rounded-2xl hover:border-blue-700 hover:shadow-xl transition-all group text-left ${getCategoryBadgeStyle(event.category)} ${
+                className={`flex flex-col items-start px-4 py-3 rounded-xl group text-left w-full h-auto min-h-26 justify-between hover:scale-[1.02] hover:shadow-lg transition-all duration-200 ${getCategoryBadgeStyle(event.category)} hover:border-2 ${
                     isFocused
-                        ? "border-orange-400 shadow-lg scale-[1.02]"
+                        ? "border-4 shadow-lg scale-[1.02]"
                         : ""
                 }`}
             >

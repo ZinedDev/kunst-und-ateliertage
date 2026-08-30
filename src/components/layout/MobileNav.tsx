@@ -46,7 +46,7 @@ export default function MobileNav() {
                         onClick={() => setIsOpen((current) => !current)}
                         aria-label={isOpen ? "Menü schließen" : "Menü öffnen"}
                         aria-expanded={isOpen}
-                        className="inline-flex h-8 w-8 mr-2 ml-3 items-center justify-center rounded-1xl border-2 border-zinc-800 bg-transparent text-zinc transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                        className="inline-flex h-8 w-8 mr-2 ml-3 items-center justify-center rounded-xl border-2 border-zinc-800 bg-transparent text-zinc transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                     >
                         {isOpen ? <X size={24}/> : <Menu size={18}/>}
                     </button>
@@ -66,7 +66,7 @@ export default function MobileNav() {
                         />
 
                         <motion.nav
-                            className="w-1/3 lg:w-1/12 fixed left-1/2 -translate-x-1/2 top-20 z-50 rounded-3xl border-2 border-zinc-800 bg-white p-4 shadow-2xl"
+                            className="w-1/2 lg:w-1/6 fixed left-1/2 -translate-x-1/2 top-20 z-50 rounded-xl border-2 border-zinc-800 bg-white p-4 shadow-2xl"
                             initial={{opacity: 0, y: -16, scale: 0.96}}
                             animate={{opacity: 1, y: 0, scale: 1}}
                             exit={{opacity: 0, y: -16, scale: 0.96}}
@@ -84,10 +84,10 @@ export default function MobileNav() {
                                         end={item.path === "/"}
                                         className={({isActive}) =>
                                             [
-                                                "rounded-2xl px-1 py-1 text-lg font-semibold transition-all",
+                                                "rounded-xl px-4 py-3 text-lg font-semibold transition-all",
                                                 isActive
                                                     ? "bg-orange-400/10 border-2 border-orange-400 rounded-xl"
-                                                    : "text-neutral-700 hover:bg-neutral-100 hover:text-neutral-950",
+                                                    : "text-neutral-700 hover:scale-[1.04] hover:text-neutral-950",
                                             ].join(" ")
                                         }
                                     >
