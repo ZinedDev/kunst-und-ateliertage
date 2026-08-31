@@ -16,10 +16,7 @@ export default function AppLayout({children}: AppLayoutProps) {
                 Zum Inhalt springen
             </a>
 
-            {/* Mobile navigation */}
-            <div className="">
-                <MobileNav/>
-            </div>
+            <MobileNav/>
 
             {/* Main content */}
             <main

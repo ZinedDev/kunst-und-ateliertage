@@ -82,7 +82,10 @@ const LocationMarker = memo(function LocationMarker({
             icon={isFocused ? highlightedIcon : defaultIcon}
             eventHandlers={eventHandlers}
         >
-            <Popup>
+            <Popup
+                keepInView
+                autoPanPadding={[16, 16]}
+            >
                 <LocationPopup
                     location={location}
                     locationEvents={locationEvents}

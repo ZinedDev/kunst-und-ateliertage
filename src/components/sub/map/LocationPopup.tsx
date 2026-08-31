@@ -22,12 +22,11 @@ interface LocationPopupProps {
 
 interface PopupTabsProps {
     selectedTab: PopupTab;
-    artistCount: number;
     eventCount: number;
     onSelect: (tab: PopupTab) => void;
 }
 
-function PopupTabs({selectedTab, artistCount, eventCount, onSelect}: PopupTabsProps) {
+function PopupTabs({selectedTab, eventCount, onSelect}: PopupTabsProps) {
     const tabClassName = (tab: PopupTab) => `py-1 px-1 rounded ${
         selectedTab === tab ? "text-[12px]" : "text-[10px]"
     } font-bold text-center transition-all cursor-pointer ${
@@ -37,7 +36,7 @@ function PopupTabs({selectedTab, artistCount, eventCount, onSelect}: PopupTabsPr
     }`;
 
     return (
-        <div className="relative flex items-center justify-between my-2 border-b py-2 w-50 h-auto">
+        <div className="relative flex items-center justify-center my-2 border-b py-2 w-50 h-auto">
             <button
                 type="button"
                 onClick={event => {
@@ -46,7 +45,7 @@ function PopupTabs({selectedTab, artistCount, eventCount, onSelect}: PopupTabsPr
                 }}
                 className={tabClassName("artists")}
             >
-                Künstler*innen ({artistCount})
+                Künstler*innen
             </button>
 
             {eventCount > 0 && (
@@ -58,7 +57,7 @@ function PopupTabs({selectedTab, artistCount, eventCount, onSelect}: PopupTabsPr
                     }}
                     className={tabClassName("events")}
                 >
-                    Events ({eventCount})
+                    Events
                 </button>
             )}
         </div>
@@ -229,7 +228,6 @@ export default function LocationPopup({
 
             <PopupTabs
                 selectedTab={activeTab}
-                artistCount={location.artists.length}
                 eventCount={locationEvents.length}
                 onSelect={setSelectedTab}
             />

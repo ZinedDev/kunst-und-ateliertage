@@ -3,8 +3,7 @@ import {NavLink} from "react-router";
 import {AnimatePresence, motion} from "motion/react";
 import {Menu, X} from "lucide-react";
 import {navbarItems} from "../../data/NavData.ts";
-import Logo from "../../assets/images/logos/KuA-Logo_Schriftzug.png"
-//import Logo from "../../assets/images/logos/260317_kunst_ateliertage2026_logo_cmyk_kat_2026_logo_cmyk.jpg"
+import brandMark from "../../assets/images/logos/KuA-Logo_Inline.png?inline";
 import SocialMediaIcons from "../sub/SocialMediaIcons.tsx";
 
 export default function MobileNav() {
@@ -12,33 +11,24 @@ export default function MobileNav() {
 
     return (
         <>
-            <header className="fixed left-0 top-0 z-40 w-full border-b-2 border-zinc-800 px-2 sm:px-6 backdrop-blur-xl ">
+            <header className="fixed left-0 top-0 z-40 w-full border-b-2 border-zinc-800 px-2 backdrop-blur-xl sm:px-6">
                 <div className="flex items-center justify-between">
                     <NavLink
                         to="/"
-                        className="group"
+                        aria-label="Zur Startseite"
+                        className="group inline-flex h-14 items-center"
                         onClick={() => setIsOpen(false)}
                     >
-                    <div>
                         <img
-                            src={Logo}
-                            alt="Kunst- und Ateliertage Logo"
-                            className={""}
+                            src={brandMark}
+                            alt=""
+                            aria-hidden="true"
+                            className="h-12 w-auto transition-transform group-hover:scale-105"
                             height={50}
-                            width={50}
+                            width={48}
                         />
-                        {/*<span*/}
-                        {/*    className="block text-sm font-black leading-tight text-neutral-950 transition group-hover:text-blue-700">*/}
-                        {/*    14. Kunst- und Ateliertage*/}
-                        {/*    <p className="text-xs">*/}
-                        {/*        auf den Elbinseln*/}
-                        {/*    </p>*/}
-                        {/*</span>*/}
-                    </div>
                     </NavLink>
-                    <div
-                        key={"social-media-icons"}
-                    >
+                    <div>
                         <SocialMediaIcons />
                     </div>
                     <button
@@ -46,7 +36,7 @@ export default function MobileNav() {
                         onClick={() => setIsOpen((current) => !current)}
                         aria-label={isOpen ? "Menü schließen" : "Menü öffnen"}
                         aria-expanded={isOpen}
-                        className="inline-flex h-8 w-8 mr-2 ml-3 items-center justify-center rounded-xl border-2 border-zinc-800 bg-transparent text-zinc transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                        className="mr-2 ml-3 inline-flex h-8 w-8 items-center justify-center rounded-xl border-2 border-zinc-800 bg-transparent text-zinc transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                     >
                         {isOpen ? <X size={24}/> : <Menu size={18}/>}
                     </button>
@@ -54,7 +44,7 @@ export default function MobileNav() {
             </header>
             <AnimatePresence>
                 {isOpen && (
-                    <div>
+                    <>
                         <motion.button
                             type="button"
                             aria-label="Menü schließen"
@@ -96,7 +86,7 @@ export default function MobileNav() {
                                 ))}
                             </div>
                         </motion.nav>
-                    </div>
+                    </>
                 )}
             </AnimatePresence>
         </>

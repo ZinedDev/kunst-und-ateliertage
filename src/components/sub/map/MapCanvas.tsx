@@ -101,7 +101,9 @@ export default function MapCanvas({
                 <MapContainer
                     center={view.center}
                     zoom={view.zoom}
+                    zoomSnap={0.25}
                     scrollWheelZoom={false}
+                    trackResize={false}
                     style={{height: "100%", width: "100%"}}
                 >
                     <MapViewController view={view}/>
