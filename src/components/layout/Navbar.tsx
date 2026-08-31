@@ -6,7 +6,7 @@ import {navbarItems} from "../../data/NavData.ts";
 import brandMark from "../../assets/images/logos/KuA-Logo_Inline.png?inline";
 import SocialMediaIcons from "../sub/SocialMediaIcons.tsx";
 
-export default function MobileNav() {
+export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
 
     return (

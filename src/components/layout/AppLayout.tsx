@@ -1,5 +1,5 @@
 import type {ReactNode} from "react";
-import MobileNav from "./MobileNav";
+import Navbar from "./Navbar.tsx";
 
 type AppLayoutProps = {
     children: ReactNode;
@@ -16,7 +16,7 @@ export default function AppLayout({children}: AppLayoutProps) {
                 Zum Inhalt springen
             </a>
 
-            <MobileNav/>
+            <Navbar/>
 
             {/* Main content */}
             <main
