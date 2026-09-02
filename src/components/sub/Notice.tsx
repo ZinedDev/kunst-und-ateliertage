@@ -22,19 +22,13 @@ export default function Notice({ data }: NoticeProps) {
     };
 
     return (
-        <div className="mt-12 max-sm:mt-12 underline text-center font-bold flex max-sm:flex-col lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="mt-12 max-sm:mt-12 text-center font-bold flex max-sm:flex-col lg:grid-cols-[0.9fr_1.1fr]">
             <motion.aside
                 className="px-6 text-zinc-800 flex items-center gap-2"
                 initial={{opacity: 0, y: 24}}
                 animate={{opacity: 1, y: 0}}
                 transition={{duration: 0.35, delay: 0.1}}
             >
-                {/*{data.text && (*/}
-                {/*    <p className={`mt-2 text-base whitespace-pre-wrap ${data.textClassName || ""}`}>*/}
-                {/*        {data.text}*/}
-                {/*    </p>*/}
-                {/*)}*/}
-
                 {data.link && (
                     <>
                         <a
