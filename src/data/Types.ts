@@ -30,13 +30,6 @@ export interface ArtistEntry {
     website?: string;
 }
 
-export interface Location {
-    name: string;
-    adresse?: string | null;
-    lat?: number | null;
-    lng?: number | null;
-}
-
 
 export interface NeighborhoodData {
     name: string;

@@ -83,7 +83,6 @@ const LocationMarker = memo(function LocationMarker({
             eventHandlers={eventHandlers}
         >
             <Popup
-                keepInView
                 autoPanPadding={[16, 16]}
             >
                 <LocationPopup

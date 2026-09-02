@@ -34,10 +34,18 @@ function createInitialSelection(state: MapRouteState | null): MapSelection {
 
 function selectionReducer(selection: MapSelection, action: MapSelectionAction): MapSelection {
     if (action.type === "toggle-neighborhood") {
+        if (selection.currentNeighborhood === action.neighborhood) {
+            return {
+                currentNeighborhood: null,
+                focusedLocation: null,
+                selectedArtist: null,
+                selectedEventId: null,
+                selectedEvent: null,
+            };
+        }
+
         return {
-            currentNeighborhood: selection.currentNeighborhood === action.neighborhood
-                ? null
-                : action.neighborhood,
+            currentNeighborhood: action.neighborhood,
             focusedLocation: null,
             selectedArtist: null,
             selectedEventId: null,
@@ -67,9 +75,12 @@ function selectionReducer(selection: MapSelection, action: MapSelectionAction): 
 export function useMapSelection(routeState: MapRouteState | null) {
     const navigate = useNavigate();
     const [selection, dispatch] = useReducer(selectionReducer, routeState, createInitialSelection);
+    const initialView = useMemo(() => getMapView(null, null), []);
     const view = useMemo(
-        () => getMapView(selection.currentNeighborhood, selection.focusedLocation),
-        [selection.currentNeighborhood, selection.focusedLocation],
+        () => selection.currentNeighborhood === null && selection.focusedLocation === null
+            ? initialView
+            : getMapView(selection.currentNeighborhood, selection.focusedLocation),
+        [initialView, selection.currentNeighborhood, selection.focusedLocation],
     );
 
     const toggleNeighborhood = useCallback((neighborhood: string) => {

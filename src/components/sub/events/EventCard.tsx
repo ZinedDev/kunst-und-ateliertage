@@ -1,4 +1,4 @@
-import {useEffect, useRef} from "react";
+import {useEffect, useRef, useState, type MouseEvent} from "react";
 import {motion} from "motion/react";
 import {useNavigate} from "react-router";
 import {Calendar, MapPin, User} from "lucide-react";
@@ -43,6 +43,8 @@ export default function EventCard({
 }: EventCardProps) {
     const cardRef = useRef<HTMLDivElement>(null);
     const navigate = useNavigate();
+    const [isRevealed, setIsRevealed] = useState(false);
+    const isCardRevealed = isRevealed;
 
     useEffect(() => {
         if (!isFocused) return;
@@ -59,6 +61,10 @@ export default function EventCard({
         if (isFocused) {
             cardRef.current?.blur();
             onFocusDismiss?.();
+
+            if (!isRevealed) {
+                setIsRevealed(true);
+            }
             return;
         }
 
@@ -67,18 +73,10 @@ export default function EventCard({
             return;
         }
 
-        navigate("/karte", {
-            state: {
-                neighborhood: event.where.neighborhood.replace(/^HH-/, ""),
-                location: event.where.venue,
-                address: event.where.address,
-                eventId: event.id,
-                event: event.what,
-            },
-        });
+        setIsRevealed((prev) => !prev);
     };
 
-    const handleMapClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleMapClick = (e: MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
         navigate("/karte", {
             state: {
@@ -106,9 +104,9 @@ export default function EventCard({
                 whileInView={{opacity: 1, y: 0}}
                 viewport={{once: false}}
                 transition={{duration: 0.2, type: "spring", stiffness: 100, delay: index * 0.01, restDelta: 10}}
-                className={`flex flex-col items-start px-4 py-3 rounded-xl group text-left w-full h-auto min-h-26 justify-between hover:scale-[1.02] hover:shadow-lg transition-all duration-200 ${getCategoryBadgeStyle(event.category)} hover:border-2 ${
-                    isFocused
-                        ? "border-4 shadow-lg scale-[1.02]"
+                className={`relative flex flex-col items-start px-4 py-3 rounded-xl group text-left w-full h-auto min-h-26 justify-between hover:scale-[1.02] hover:shadow-lg transition-all duration-200 ${getCategoryBadgeStyle(event.category)} hover:border-2 ${
+                    isFocused || isRevealed
+                        ? "border-2 shadow-lg scale-[1.02]"
                         : ""
                 }`}
             >
@@ -134,6 +132,8 @@ export default function EventCard({
                             aria-label={`Auf der Karte anzeigen: ${event.where.venue}`}
                             title="Auf der Karte anzeigen"
                             onClick={handleMapClick}
+                            aria-hidden={isCardRevealed}
+                            inert={isCardRevealed}
                             className="flex items-start gap-1.5 text-left text-zinc-600 hover:text-blue-700 transition-colors cursor-pointer group/pin"
                         >
                             <MapPin className="w-4 h-4 text-zinc-400 group-hover/pin:text-blue-700 shrink-0 mt-0.5"/>
@@ -167,6 +167,52 @@ export default function EventCard({
                         </div>
                     </div>
                 </div>
+
+                {/* Event Description */}
+                <motion.div
+                    initial={{opacity: 0}}
+                    animate={{opacity: isCardRevealed ? 1 : 0}}
+                    aria-hidden={!isCardRevealed}
+                    inert={!isCardRevealed}
+                    className={`absolute inset-0 flex rounded-lg bg-white text-xs text-zinc-700 ${
+                        isCardRevealed ? "pointer-events-auto" : "pointer-events-none"
+                    }`}
+                >
+                    <div className="flex max-h-full w-full flex-col gap-1 overflow-y-auto py-3 px-3">
+
+                        <div className="grid gap-1.5 border-zinc-100 text-xs text-zinc-600">
+
+                            <p className="font-bold text-center mb-1">{event.what}</p>
+
+                            {event.age && (
+                                <div>
+                                    <span className="font-semibold text-zinc-800">Alter: </span>
+                                    {event.age}
+                                </div>
+                            )}
+                            {event.price && (
+                                <div>
+                                    <span className="font-semibold text-zinc-800">Preis: </span>
+                                    {event.price}
+                                </div>
+                            )}
+                            {event.registration && (
+                                <div>
+                                    <span className="font-semibold text-zinc-800">Anmeldung: </span>
+                                    {event.registration}
+                                </div>
+                            )}
+                            {event.accessibility && (
+                                <div>
+                                    <span className="font-semibold text-zinc-800">Barrierefreiheit: </span>
+                                    {event.accessibility}
+                                </div>
+                            )}
+
+                            <p>{event.description}</p>
+                        </div>
+                    </div>
+                </motion.div>
             </motion.div>
         </motion.div>
     );
