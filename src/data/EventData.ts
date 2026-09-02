@@ -216,7 +216,7 @@ export const performancesAndWorkshops: ProgramEntry[] = [
 
         category: "PERFORMANCE_WORKSHOP",
 
-        what: "Schnuppertöpfern für Kinder und Erwachsene",
+        what: "Schnuppertöpfern",
 
         who: "Anqi Lyu",
 
@@ -372,7 +372,7 @@ export const performancesAndWorkshops: ProgramEntry[] = [
 
         category: "PERFORMANCE_WORKSHOP",
 
-        what: "Tanzpräsentation verschiedenster Tanzklassen",
+        what: "Tanzpräsentation",
 
         who: "Scheinwerfer Dance Center | Kristin Strauß",
 
@@ -458,7 +458,7 @@ export const performancesAndWorkshops: ProgramEntry[] = [
 
         category: "PERFORMANCE_WORKSHOP",
 
-        what: "Stimm- & Sprechworkshop mit Paula Zamora",
+        what: "Stimm- & Sprechworkshop",
 
         who: "Paula Zamora | TAK Wilhelmsburg",
 
@@ -500,7 +500,7 @@ export const performancesAndWorkshops: ProgramEntry[] = [
 
         category: "PERFORMANCE_WORKSHOP",
 
-        what: "Community Dance Workshop - Inklusives Tanzen",
+        what: "Community Dance - Inklusives Tanzen",
 
         who: "Scheinwerfer Dance Center | Kristin Strauß",
 
