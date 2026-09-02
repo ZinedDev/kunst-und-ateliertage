@@ -3,7 +3,6 @@ import {NavLink} from "react-router";
 import {AnimatePresence, motion} from "motion/react";
 import {Menu, X} from "lucide-react";
 import {navbarItems} from "../../data/NavData.ts";
-import brandMark from "../../assets/images/logos/KuA-Logo_Inline.png?inline";
 import SocialMediaIcons from "../sub/SocialMediaIcons.tsx";
 
 export default function Navbar() {
@@ -20,7 +19,7 @@ export default function Navbar() {
                         onClick={() => setIsOpen(false)}
                     >
                         <img
-                            src={brandMark}
+                            src={"https://sa1np9c1c2.ufs.sh/f/xPMtTXbj0GDiQx9XP2vJfEeBshZi8Rq6opMyN4znYxTk1w0v"}
                             alt=""
                             aria-hidden="true"
                             className="h-12 w-auto transition-transform group-hover:scale-105"

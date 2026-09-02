@@ -1,7 +1,6 @@
 import PageTransition from "../components/layout/PageTransitions.tsx";
 import Header from "../components/layout/Header.tsx";
 import {motion} from "motion/react";
-import Logo from "../assets/images/logos/260317_kunst_ateliertage2026_logo_cmyk_kat_2026_logo_cmyk.jpg";
 import MainNav from "../components/sub/MainNav.tsx";
 import FlyerDownload from "../components/sub/FlyerDownload.tsx";
 import {flyerData} from "../data/ProgramData.ts";
@@ -9,6 +8,9 @@ import Notice from "../components/sub/Notice.tsx";
 import {contactNotice} from "../data/ContactData.ts";
 
 export default function Home() {
+
+    const Logo = "https://sa1np9c1c2.ufs.sh/f/xPMtTXbj0GDiflnHgtStRHWq1wx6Gy3nQsXpa2P5IOJhTkmE";
+
     return (
         <PageTransition>
             <section className="mt-8 max-sm:mt-4 flex flex-col items-center justify-center gap-y-6 max-sm:gap-y-1">

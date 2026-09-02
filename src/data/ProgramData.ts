@@ -1,5 +1,5 @@
 import type { NeighborhoodData, HeaderData, ArtistEntry } from "./Types.ts";
-import flyerPdf from "../assets/KuA_2026_Programmflyer.pdf";
+
 
 export type { ArtistEntry } from "./Types.ts";
 
@@ -911,6 +911,8 @@ export const neighborhoodData: NeighborhoodData[] = [
         ]
     }
 ];
+
+const flyerPdf = "https://sa1np9c1c2.ufs.sh/f/xPMtTXbj0GDiEuu0ZIDhMcKd0aoRBPXH1e2u9YlSANrpDTsx";
 
 export const flyerData = {
     label: "Programm/Flyer 2026",
