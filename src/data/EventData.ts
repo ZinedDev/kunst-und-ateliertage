@@ -750,13 +750,13 @@ export const programEntries: ProgramEntry[] = [
 export function getCategoryBadgeStyle(cat: ProgramCategory): string {
     switch (cat) {
         case "PERFORMANCE_WORKSHOP":
-            return "bg-blue-400/10 text-zinc-800 border-2 border-zinc-100";
+            return "bg-blue-400/10 text-zinc-800 border-zinc-100";
         case "BILDERBUCHKINO":
-            return "bg-amber-400/10 text-zinc-800 border-2 border-zinc-100";
+            return "bg-amber-400/10 text-zinc-800 border-zinc-100";
         case "CONCERT":
-            return "bg-purple-400/10 text-zinc-800 border-2 border-zinc-100";
+            return "bg-purple-400/10 text-zinc-800 border-zinc-100";
         default:
-            return "bg-orange-400/10 text-zinc-800 border-2 border-zinc-100";
+            return "bg-orange-400/10 text-zinc-800 border-zinc-100";
     }
 }
 
