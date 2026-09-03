@@ -140,7 +140,7 @@ export default function ArtistCard({
                             viewport={{once: false}}
                             aria-hidden={!isCardRevealed}
                             inert={!isCardRevealed}
-                            className={`absolute top-0 w-full h-full flex flex-col items-center justify-center gap-y-2 rounded-lg bg-white ${
+                            className={`absolute top-0 w-full h-full flex flex-col items-center justify-center gap-y-2 rounded-xl bg-white ${
                                 isCardRevealed ? "pointer-events-auto" : "pointer-events-none"
                             }`}
                         >

@@ -104,10 +104,10 @@ export default function EventCard({
                 whileInView={{opacity: 1, y: 0}}
                 viewport={{once: false}}
                 transition={{duration: 0.2, type: "spring", stiffness: 100, delay: index * 0.01, restDelta: 10}}
-                className={`relative flex flex-col items-start px-4 py-3 rounded-xl group text-left w-full h-auto min-h-26 justify-between hover:scale-[1.02] hover:shadow-lg transition-all duration-200 ${getCategoryBadgeStyle(event.category)} hover:border-2 ${
+                className={`relative flex flex-col items-start px-4 py-3 border-2 rounded-xl group text-left w-full h-auto min-h-26 justify-between hover:scale-[1.02] hover:shadow-lg transition-all duration-200 hover:border-blue-700 ${
                     isFocused || isRevealed
-                        ? "border-2 shadow-lg scale-[1.02]"
-                        : ""
+                        ? "border-orange-400 shadow-lg scale-[1.02] "
+                        : getCategoryBadgeStyle(event.category)
                 }`}
             >
 
@@ -117,7 +117,7 @@ export default function EventCard({
                 </h3>
 
                 {/* Details */}
-                <div className="w-full flex flex-col gap-2.5 pt-2 border-t border-zinc-100 text-xs text-zinc-600">
+                <div className="w-full flex flex-col gap-2.5 pt-2 text-xs text-zinc-600">
 
                     {/* Artist */}
                     <div className="flex items-center gap-1.5 text-sm font-medium text-zinc-600">
@@ -174,13 +174,13 @@ export default function EventCard({
                     animate={{opacity: isCardRevealed ? 1 : 0}}
                     aria-hidden={!isCardRevealed}
                     inert={!isCardRevealed}
-                    className={`absolute inset-0 flex rounded-lg bg-white text-xs text-zinc-700 ${
+                    className={`absolute inset-0 flex rounded-xl bg-white text-xs text-zinc-700 ${
                         isCardRevealed ? "pointer-events-auto" : "pointer-events-none"
                     }`}
                 >
                     <div className="flex max-h-full w-full flex-col gap-1 overflow-y-auto py-3 px-3">
 
-                        <div className="grid gap-1.5 border-zinc-100 text-xs text-zinc-600">
+                        <div className="grid gap-1.5 text-xs text-zinc-600">
 
                             <p className="font-bold text-center mb-1">{event.what}</p>
 
