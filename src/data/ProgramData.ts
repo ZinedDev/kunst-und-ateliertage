@@ -550,7 +550,7 @@ export const ulrichMertens: ArtistEntry = {
 export const valerieWagner: ArtistEntry = {
     artist: "Valerie Wagner",
     art: ["Fotografie", "Linoldruck"],
-    area: "Atelierhaus 23 | 2. Etage",
+    area: "Künstlerhaus Georgswerder",
     socialMedia: ["@valeriewagner_photography"]
 };
 
@@ -728,7 +728,8 @@ export const neighborhoodData: NeighborhoodData[] = [
                 lng: 10.019950,
                 artists: [
                     michaelEicks,
-                    petraHoppe
+                    petraHoppe,
+                    valerieWagner
                 ]
             },
             {
@@ -790,7 +791,6 @@ export const neighborhoodData: NeighborhoodData[] = [
                     elkeEhninger,
                     jannKaune,
                     ulrichMertens,
-                    valerieWagner,
                     katharinaBick,
                     claudiaEschborn,
                     stephanieKrengel,

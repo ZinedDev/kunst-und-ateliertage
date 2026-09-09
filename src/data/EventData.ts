@@ -656,7 +656,6 @@ export const bilderbuchkino: ProgramEntry[] = [
         accessibility: "Barrierefrei"
     },
 
-
     {
         id: "abenteuer-in-krabbelstadt",
 
@@ -736,16 +735,6 @@ export const concerts: ProgramEntry[] = [
 // ============================================================
 // COMPLETE PROGRAM
 // ============================================================
-
-// Use this array when your components/filter should operate
-// on all program entries regardless of category.
-
-export const programEntries: ProgramEntry[] = [
-    ...performancesAndWorkshops,
-    ...bilderbuchkino,
-    ...concerts
-];
-
 
 export function getCategoryBadgeStyle(cat: ProgramCategory): string {
     switch (cat) {
