@@ -650,6 +650,13 @@ export const capoeira: ArtistEntry = {
     socialMedia: ["@capoeira_angola_hamburg_sued"]
 };
 
+export const forro: ArtistEntry = {
+    artist: "Forro auf der Elbinsel",
+    art: ["Tanz"],
+    area: "Atelierhaus 23 | Erdgeschoss",
+    socialMedia: ["@forroelbinsel"]
+};
+
 export const martinGraf: ArtistEntry = {
     artist: "Martin Graf - edition8x8",
     art: ["Druckgrafik", "Bastelbögen", "Heftchen"],
@@ -802,6 +809,7 @@ export const neighborhoodData: NeighborhoodData[] = [
                     friederFalk,
                     sabineHahnNicol,
                     capoeira,
+                    forro,
                     martinGraf,
                     miriamElze,
                 ]

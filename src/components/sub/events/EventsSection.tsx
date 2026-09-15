@@ -15,6 +15,11 @@ const dateFilters = [
     {date: "2026-09-20", label: "So, 20.09."},
 ];
 
+const eventTitleCollator = new Intl.Collator("de-DE", {
+    sensitivity: "base",
+    ignorePunctuation: true,
+});
+
 interface EventsSectionProps {
     searchQuery: string;
     onResetSearch?: () => void;
@@ -66,7 +71,7 @@ export default function EventsSection({
             }
 
             return true;
-        });
+        }).sort((a, b) => eventTitleCollator.compare(a.what, b.what));
     }, [selectedCategory, selectedDate, searchQuery]);
 
     const handleResetFilters = () => {

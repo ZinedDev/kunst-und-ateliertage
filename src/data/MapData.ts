@@ -33,13 +33,8 @@ export interface MapRouteState {
     event?: string;
 }
 
-const defaultMapCenter: L.LatLngTuple = [53.505, 10.005];
-
-const neighborhoodCoordinates: Record<string, {lat: number; lon: number; zoom: number}> = {
-    Veddel: {lat: 53.522, lon: 10.020, zoom: 15},
-    "Kirchdorf / Georgswerder": {lat: 53.501, lon: 10.021, zoom: 15},
-    Wilhelmsburg: {lat: 53.510, lon: 9.985, zoom: 15},
-};
+export const defaultMapCenter: L.LatLngTuple = [53.515, 10.005];
+export const defaultMapZoom = 13;
 
 const mapLocations: MapLocation[] = neighborhoodData.flatMap(neighborhood =>
     neighborhood.locations.map(location => ({
@@ -131,35 +126,10 @@ export const locationEventsMap: Record<string, ProgramEntry[]> = (() => {
     return eventsByLocation;
 })();
 
-export function getMapView(currentNeighborhood: string | null, focusedLocation: string | null): MapView {
-    const currentLocations = currentNeighborhood
-        ? mapLocations.filter(location => location.neighborhood === currentNeighborhood)
-        : mapLocations;
-    const geocodedLocations = currentLocations.filter(
-        (location): location is GeocodedMapLocation => location.markerPosition !== null,
-    );
-
-    if (focusedLocation) {
-        const location = geocodedLocations.find(candidate => candidate.name === focusedLocation);
-        return location
-            ? {bounds: null, center: location.markerPosition, zoom: 17}
-            : {bounds: null, center: defaultMapCenter, zoom: 13};
-    }
-
-    let center = defaultMapCenter;
-    let zoom = 13;
-
-    if (currentNeighborhood) {
-        const coordinates = neighborhoodCoordinates[currentNeighborhood];
-        if (coordinates) {
-            center = [coordinates.lat, coordinates.lon];
-            zoom = coordinates.zoom;
-        }
-    }
-
-    const bounds = geocodedLocations.length > 0
-        ? L.latLngBounds(geocodedLocations.map(location => location.markerPosition))
+export function getMapView(): MapView {
+    const bounds = geocodedMapLocations.length > 0
+        ? L.latLngBounds(geocodedMapLocations.map(location => location.markerPosition))
         : null;
 
-    return {bounds, center, zoom};
+    return {bounds, center: defaultMapCenter, zoom: defaultMapZoom};
 }

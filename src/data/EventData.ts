@@ -205,9 +205,7 @@ export const performancesAndWorkshops: ProgramEntry[] = [
 
         age: "Ab 6 Jahren",
 
-        price: "Eintritt auf Spende",
-
-        registration: "Keine Anmeldung erforderlich. Komm spontan vorbei."
+        price: "Eintritt auf Spende"
     },
 
 
@@ -361,8 +359,6 @@ export const performancesAndWorkshops: ProgramEntry[] = [
         price:
             "Zwischen 20 € und 100 €, abhängig vom Umfang der Teilnahme von Freitag bis Sonntag",
 
-        registration: "Keine Anmeldung erforderlich. Komm spontan vorbei.",
-
         accessibility: "Barrierefrei"
     },
 
@@ -399,8 +395,6 @@ export const performancesAndWorkshops: ProgramEntry[] = [
         },
 
         price: "Eintritt frei zum Zuschauen",
-
-        registration: "Keine Anmeldung erforderlich.",
 
         accessibility: "Barrierefrei"
     },
@@ -566,8 +560,6 @@ export const performancesAndWorkshops: ProgramEntry[] = [
 
         price: "Eintritt auf Spende",
 
-        registration: "Keine Anmeldung erforderlich. Komm spontan vorbei.",
-
         accessibility: "Barrierefreier Zugang über den Hof möglich"
     },
 
@@ -612,6 +604,38 @@ export const performancesAndWorkshops: ProgramEntry[] = [
 
         registration:
             "Vorherige verbindliche Anmeldung mit vollständigem Namen und Alter per E-Mail an j.hecht@windmuehle-johanna.de erforderlich. Maximal 10 Personen pro Workshop. Mindestens 5 Teilnehmende."
+    },
+
+    {
+        id: "forro-session",
+
+        category: "PERFORMANCE_WORKSHOP",
+
+        what: "Forró - freies Tanzen & Schnupperkurs",
+
+        who: "Forró Elbinsel",
+
+        description: "Offene Tanz Session mit 30 minütigem Schnupperkurs um 16.00 Uhr.",
+
+        occurrences: [
+                {
+                    date: "2026-09-20",
+                    times: [
+                        {
+                            startTime: "15:00",
+                            endTime: "18:00"
+                        }
+                    ]
+                }
+            ],
+
+        where: {
+            venue: "Atelierhaus 23",
+            address: "Am Veringhof 23b",
+            neighborhood: "HH-Wilhelmsburg"
+        },
+
+        price: "Eintritt auf Spendenbasis"
     }
 ];
 

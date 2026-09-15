@@ -75,13 +75,7 @@ function selectionReducer(selection: MapSelection, action: MapSelectionAction): 
 export function useMapSelection(routeState: MapRouteState | null) {
     const navigate = useNavigate();
     const [selection, dispatch] = useReducer(selectionReducer, routeState, createInitialSelection);
-    const initialView = useMemo(() => getMapView(null, null), []);
-    const view = useMemo(
-        () => selection.currentNeighborhood === null && selection.focusedLocation === null
-            ? initialView
-            : getMapView(selection.currentNeighborhood, selection.focusedLocation),
-        [initialView, selection.currentNeighborhood, selection.focusedLocation],
-    );
+    const view = useMemo(() => getMapView(), []);
 
     const toggleNeighborhood = useCallback((neighborhood: string) => {
         dispatch({type: "toggle-neighborhood", neighborhood});

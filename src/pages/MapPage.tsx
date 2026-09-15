@@ -33,6 +33,7 @@ export default function MapPage() {
             />
             <MapCanvas
                 view={view}
+                selectedNeighborhood={selection.currentNeighborhood}
                 focusedLocation={selection.focusedLocation}
                 selectedArtist={selection.selectedArtist}
                 selectedEventId={selection.selectedEventId}

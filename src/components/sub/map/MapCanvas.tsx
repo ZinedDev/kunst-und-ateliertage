@@ -1,11 +1,14 @@
 import {useEffect, useRef} from "react";
 import L from "leaflet";
+import {LocateFixed} from "lucide-react";
 import {useIsPresent} from "motion/react";
 import {MapContainer, TileLayer, useMap} from "react-leaflet";
 import type {ProgramEntry} from "../../../data/EventData.ts";
 import "leaflet/dist/leaflet.css";
 import LocationMarker from "./LocationMarker.tsx";
 import {
+    defaultMapCenter,
+    defaultMapZoom,
     geocodedMapLocations,
     locationEventsMap,
     type MapLocation,
@@ -74,8 +77,39 @@ function MapViewController({view}: {view: MapView}) {
     return null;
 }
 
+function RecenterControl() {
+    const map = useMap();
+
+    const handleRecenter = () => {
+        map.setView(defaultMapCenter, defaultMapZoom, {animate: true});
+    };
+
+    return (
+        <div className="leaflet-top leaflet-right">
+            <div className="leaflet-control m-2.5">
+                <button
+                    type="button"
+                    onClick={event => {
+                        event.stopPropagation();
+                        handleRecenter();
+                    }}
+                    onDoubleClick={event => {
+                        event.stopPropagation();
+                    }}
+                    title="Karte zentrieren"
+                    aria-label="Karte auf Standardansicht zurücksetzen"
+                    className="bg-white hover:bg-zinc-100 text-zinc-700 hover:text-blue-700 p-2 rounded-md shadow-md border border-zinc-300 transition-colors cursor-pointer flex items-center justify-center"
+                >
+                    <LocateFixed className="w-4 h-4" />
+                </button>
+            </div>
+        </div>
+    );
+}
+
 interface MapCanvasProps {
     view: MapView;
+    selectedNeighborhood?: string | null;
     focusedLocation: string | null;
     selectedArtist: string | null;
     selectedEventId: string | null;
@@ -87,6 +121,7 @@ interface MapCanvasProps {
 
 export default function MapCanvas({
     view,
+    selectedNeighborhood,
     focusedLocation,
     selectedArtist,
     selectedEventId,
@@ -95,6 +130,10 @@ export default function MapCanvas({
     onArtistClick,
     onEventClick,
 }: MapCanvasProps) {
+    const visibleLocations = selectedNeighborhood
+        ? geocodedMapLocations.filter(location => location.neighborhood === selectedNeighborhood)
+        : geocodedMapLocations;
+
     return (
         <section className="w-full max-w-5xl mt-2 mx-auto">
             <div className="w-full h-125 max-sm:h-100 border-2 border-blue-700 rounded-lg overflow-hidden shadow-lg z-0 mx-auto">
@@ -107,6 +146,7 @@ export default function MapCanvas({
                     style={{height: "100%", width: "100%"}}
                 >
                     <MapViewController view={view}/>
+                    <RecenterControl/>
                     <TileLayer
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -114,7 +154,7 @@ export default function MapCanvas({
                         updateWhenIdle
                         updateWhenZooming={false}
                     />
-                    {geocodedMapLocations.map(location => {
+                    {visibleLocations.map(location => {
                         const isFocused = focusedLocation === location.name;
 
                         return (
