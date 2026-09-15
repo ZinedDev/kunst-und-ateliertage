@@ -16,13 +16,16 @@ export default function NeighborhoodLocationFilters({
     onLocationToggle,
 }: NeighborhoodLocationFiltersProps) {
     const neighborhoods = useMemo(() => neighborhoodData.map(neighborhood => neighborhood.name), []);
-    const locations = useMemo(() => {
-        if (!selectedNeighborhood) return [];
-
-        return neighborhoodData
-            .find(neighborhood => neighborhood.name === selectedNeighborhood)
-            ?.locations.map(location => location.name) || [];
-    }, [selectedNeighborhood]);
+    const allLocations = useMemo(
+        () =>
+            neighborhoodData.flatMap(neighborhood =>
+                neighborhood.locations.map(location => ({
+                    name: location.name,
+                    neighborhood: neighborhood.name,
+                }))
+            ),
+        []
+    );
 
     return (
         <>
@@ -32,10 +35,10 @@ export default function NeighborhoodLocationFilters({
                         type="button"
                         key={name}
                         onClick={() => onNeighborhoodToggle(name)}
-                        className={`px-3 py-1.5 rounded-lg border-2 text-base max-sm:text-xs font-bold transition-all duration-300 cursor-pointer ${
+                        className={`px-3 py-1.5 rounded-lg border-2 text-base max-sm:text-[11px] font-bold transition-all duration-300 cursor-pointer ${
                             selectedNeighborhood === name
-                                ? "border-2 border-orange-400 bg-orange-400/10 shadow-md shadow-blue-700/20"
-                                : "bg-white border-2 border-zinc-200 text-zinc-600 hover:border-blue-700 hover:text-blue-700"
+                                ? "border-orange-400 bg-orange-400/10 shadow-md shadow-blue-700/20"
+                                : "bg-white border-zinc-200 text-zinc-600 hover:border-blue-700 hover:text-blue-700"
                         }`}
                         aria-pressed={selectedNeighborhood === name}
                     >
@@ -45,28 +48,35 @@ export default function NeighborhoodLocationFilters({
             </div>
 
             <motion.div
-                key="neighborhood"
-                initial={{opacity: 0, height: 0}}
-                animate={{opacity: 1, height: "auto"}}
-                exit={{opacity: 0, height: 0}}
+                initial={{opacity: 0}}
+                animate={{opacity: 1}}
                 transition={{duration: 0.2}}
-                className="flex flex-wrap justify-center gap-1 mt-2 w-full max-w-5xl overflow-hidden mx-auto"
+                className="flex flex-wrap justify-center gap-1 mt-2 w-full max-w-5xl mx-auto"
             >
-                {locations.map(name => (
-                    <button
-                        type="button"
-                        key={name}
-                        onClick={() => onLocationToggle(name)}
-                        className={`px-2 py-1.5 rounded-md border-2 text-[10px] font-bold transition-all cursor-pointer ${
-                            selectedLocation === name
-                                ? "border-2 border-orange-400 bg-orange-400/10 shadow-md shadow-blue-700/20"
-                                : "bg-white border-2 border-zinc-200 text-zinc-600 hover:border-blue-700 hover:text-blue-700"
-                        }`}
-                        aria-pressed={selectedLocation === name}
-                    >
-                        {name}
-                    </button>
-                ))}
+                {allLocations.map(({name, neighborhood}) => {
+                    const isSelected = selectedLocation === name;
+                    const isMuted = Boolean(selectedNeighborhood && neighborhood !== selectedNeighborhood);
+
+                    return (
+                        <button
+                            type="button"
+                            key={name}
+                            onClick={() => !isMuted && onLocationToggle(name)}
+                            disabled={isMuted}
+                            aria-disabled={isMuted}
+                            aria-pressed={isSelected}
+                            className={`px-2 py-1.5 rounded-md border-2 text-[8px] font-bold transition-all ${
+                                isMuted
+                                    ? "bg-white border-zinc-200 text-zinc-400 opacity-40 cursor-not-allowed pointer-events-none"
+                                    : isSelected
+                                    ? "border-orange-400 bg-orange-400/10 shadow-md shadow-blue-700/20 cursor-pointer"
+                                    : "bg-white border-zinc-200 text-zinc-600 hover:border-blue-700 hover:text-blue-700 cursor-pointer"
+                            }`}
+                        >
+                            {name}
+                        </button>
+                    );
+                })}
             </motion.div>
         </>
     );

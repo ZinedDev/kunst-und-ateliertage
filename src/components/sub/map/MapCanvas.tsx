@@ -1,4 +1,4 @@
-import {useEffect, useRef} from "react";
+import {useCallback, useEffect, useRef} from "react";
 import L from "leaflet";
 import {LocateFixed} from "lucide-react";
 import {useIsPresent} from "motion/react";
@@ -77,12 +77,26 @@ function MapViewController({view}: {view: MapView}) {
     return null;
 }
 
-function RecenterControl() {
+function RecenterControl({selectedNeighborhood}: {selectedNeighborhood?: string | null}) {
     const map = useMap();
+    const isFirstRender = useRef(true);
 
-    const handleRecenter = () => {
+    const handleRecenter = useCallback(() => {
+        map.stop();
         map.setView(defaultMapCenter, defaultMapZoom, {animate: true});
-    };
+    }, [map]);
+
+    useEffect(() => {
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+            return;
+        }
+
+        if (!selectedNeighborhood) {
+            const animationFrame = window.requestAnimationFrame(handleRecenter);
+            return () => window.cancelAnimationFrame(animationFrame);
+        }
+    }, [handleRecenter, selectedNeighborhood]);
 
     return (
         <div className="leaflet-top leaflet-right">
@@ -146,7 +160,7 @@ export default function MapCanvas({
                     style={{height: "100%", width: "100%"}}
                 >
                     <MapViewController view={view}/>
-                    <RecenterControl/>
+                    <RecenterControl selectedNeighborhood={selectedNeighborhood}/>
                     <TileLayer
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
