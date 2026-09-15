@@ -141,7 +141,11 @@ function EventsList({
     return (
         <>
             <div className="flex flex-wrap items-center justify-center gap-1 mb-2">
-                {eventDateFilters.map(filter => (
+                {eventDateFilters
+                    .filter(filter => events.some(event =>
+                        event.occurrences.some(occurrence => occurrence.date === filter.date)
+                    ))
+                    .map(filter => (
                     <button
                         type="button"
                         key={filter.date}
