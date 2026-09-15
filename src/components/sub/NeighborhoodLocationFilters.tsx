@@ -65,7 +65,7 @@ export default function NeighborhoodLocationFilters({
                             disabled={isMuted}
                             aria-disabled={isMuted}
                             aria-pressed={isSelected}
-                            className={`px-2 py-1.5 rounded-md border-2 text-[8px] font-bold transition-all ${
+                            className={`px-2 py-1.5 rounded-md border-2 text-[10px] max-sm:text-[8px] font-bold transition-all ${
                                 isMuted
                                     ? "bg-white border-zinc-200 text-zinc-400 opacity-40 cursor-not-allowed pointer-events-none"
                                     : isSelected
