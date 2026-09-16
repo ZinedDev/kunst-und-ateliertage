@@ -27,12 +27,12 @@ export interface ArtistCardProps {
 }
 
 export default function ArtistCard({
-    artist,
-    index = 0,
-    onClick,
-    isFocused = false,
-    onFocusDismiss,
-}: ArtistCardProps) {
+                                       artist,
+                                       index = 0,
+                                       onClick,
+                                       isFocused = false,
+                                       onFocusDismiss,
+                                   }: ArtistCardProps) {
     const [isRevealed, setIsRevealed] = useState(false);
     const cardRef = useRef<HTMLDivElement>(null);
     const navigate = useNavigate();
@@ -58,8 +58,7 @@ export default function ArtistCard({
             cardRef.current?.blur();
             onFocusDismiss?.();
 
-            if (!isRevealed)
-            {
+            if (!isRevealed) {
                 setIsRevealed(true);
             }
             return;
@@ -87,17 +86,24 @@ export default function ArtistCard({
         <motion.div
             ref={cardRef}
             layout
-            transition={{layout: {duration: 0.2, type: "spring", stiffness: 100, damping: 20, ease: "easeInOut"}}}
+            initial={{opacity: 0, x: index % 2 ? 10 : -10}}
+            whileInView={{opacity: 1, x: 0}}
+            viewport={{once: false}}
+            transition={{
+                duration: 0.2,
+                type: "spring",
+                stiffness: 100,
+                delay: index * 0.001,
+                restDelta: 10,
+                layout: {duration: 0.2, type: "spring", stiffness: 100, damping: 20, ease: "easeInOut"}
+            }}
             onClick={handleClick}
             tabIndex={-1}
             aria-label={isFocused ? `${name}, ausgewählte Künstler*in` : undefined}
             className="cursor-pointer outline-none"
         >
-            <motion.div
-                initial={{opacity: 0, x: index % 2 ? 10 : -10}}
-                whileInView={{opacity: 1, x: 0}}
-                viewport={{once: false}}
-                transition={{duration: 0.2, type: "spring", stiffness: 100, delay: index * 0.001, restDelta: 10}}
+            <div
+
                 className={`flex flex-col items-start px-4 py-3 bg-white border-2 rounded-xl group text-left w-full h-auto min-h-26 justify-between hover:scale-[1.02] hover:border-blue-700 hover:shadow-lg transition-all duration-200  ${
                     isFocused || isRevealed
                         ? "border-orange-400 shadow-lg scale-[1.02]"
@@ -113,7 +119,8 @@ export default function ArtistCard({
                         </span>
 
                         {/* Artist Location */}
-                        <div className="flex items-center gap-0.5 text-[12px] text-zinc-500 uppercase tracking-wider font-medium">
+                        <div
+                            className="flex items-center gap-0.5 text-[12px] text-zinc-500 uppercase tracking-wider font-medium">
                             <button
                                 type="button"
                                 aria-label={`Auf der Karte anzeigen: ${location}`}
@@ -125,8 +132,8 @@ export default function ArtistCard({
                             >
                                 <div className="flex flex-col items-center justify-center">
                                     <MapPin className="text-blue-600 w-3 h-3"/>
-                                <span>{location}</span>
-                                <span className="text-blue-600 font-bold">
+                                    <span>{location}</span>
+                                    <span className="text-blue-600 font-bold">
                                 {neighborhood}
                                 </span>
                                 </div>
@@ -148,7 +155,7 @@ export default function ArtistCard({
                         </motion.div>
                     </div>
                 </AnimatePresence>
-            </motion.div>
+            </div>
         </motion.div>
     );
 }

@@ -121,11 +121,10 @@ export default function EventsSection({
 
             {/* Events Grid */}
             <div className="w-full mt-6 mb-8 max-sm:mb-2 columns-1 md:columns-2 lg:columns-3 gap-4 mx-auto">
-                {filteredEvents.map((event, index) => (
+                {filteredEvents.map(event => (
                     <EventCard
                         key={event.id}
                         event={event}
-                        index={index}
                         isFocused={
                             focusedEvent?.eventId
                                 ? event.id === focusedEvent.eventId
