@@ -651,7 +651,7 @@ export const capoeira: ArtistEntry = {
 };
 
 export const forro: ArtistEntry = {
-    artist: "Forro auf der Elbinsel",
+    artist: "Forró Elbinsel",
     art: ["Tanz"],
     area: "Atelierhaus 23 | Erdgeschoss",
     socialMedia: ["@forroelbinsel"]
