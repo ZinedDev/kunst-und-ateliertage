@@ -150,7 +150,7 @@ export default function MapCanvas({
 
     return (
         <section className="w-full max-w-5xl mt-2 mx-auto">
-            <div className="w-full h-125 max-sm:h-100 border-2 border-blue-700 rounded-lg overflow-hidden shadow-lg z-0 mx-auto">
+            <div className="relative z-0 w-full h-125 max-sm:h-100 border-2 border-blue-700 rounded-lg overflow-hidden shadow-lg mx-auto">
                 <MapContainer
                     center={view.center}
                     zoom={view.zoom}
