@@ -1,4 +1,4 @@
-import {useState, useMemo} from "react";
+import {useMemo} from "react";
 import {allEvents, getCategoryBadgeStyle, type ProgramCategory} from "../../../data/EventData.ts";
 import EventCard from "./EventCard.tsx";
 import ResetFiltersButton from "../ResetFiltersButton.tsx";
@@ -22,7 +22,11 @@ const eventTitleCollator = new Intl.Collator("de-DE", {
 
 interface EventsSectionProps {
     searchQuery: string;
-    onResetSearch?: () => void;
+    selectedCategory: ProgramCategory | "ALL";
+    selectedDate: string;
+    onCategoryToggle: (category: ProgramCategory | "ALL") => void;
+    onDateToggle: (date: string) => void;
+    onResetFilters: () => void;
     focusedEvent?: {
         eventId?: string;
         event?: string;
@@ -34,13 +38,14 @@ interface EventsSectionProps {
 
 export default function EventsSection({
                                           searchQuery,
-                                          onResetSearch,
+                                          selectedCategory,
+                                          selectedDate,
+                                          onCategoryToggle,
+                                          onDateToggle,
+                                          onResetFilters,
                                           focusedEvent,
                                           onFocusedEventDismiss,
                                       }: EventsSectionProps) {
-    const [selectedCategory, setSelectedCategory] = useState<ProgramCategory | "ALL">("ALL");
-    const [selectedDate, setSelectedDate] = useState<string>("ALL");
-
     const filteredEvents = useMemo(() => {
         const query = searchQuery.trim().toLowerCase();
 
@@ -74,12 +79,6 @@ export default function EventsSection({
         }).sort((a, b) => eventTitleCollator.compare(a.what, b.what));
     }, [selectedCategory, selectedDate, searchQuery]);
 
-    const handleResetFilters = () => {
-        onResetSearch?.();
-        setSelectedCategory("ALL");
-        setSelectedDate("ALL");
-    };
-
     return (
         <>
             {/* Event Category Filters */}
@@ -88,7 +87,7 @@ export default function EventsSection({
                 {categoryFilters.map(filter => (
                     <button
                         key={filter.key}
-                        onClick={() => setSelectedCategory(selectedCategory === filter.key ? "ALL" : filter.key)}
+                        onClick={() => onCategoryToggle(filter.key)}
                         className={`px-3 py-1.5 rounded-lg border-2 text-xs font-bold transition-all duration-200 cursor-pointer ${
                             selectedCategory === filter.key
                                 ? `${getCategoryBadgeStyle(filter.key as ProgramCategory)} shadow-md shadow-blue-700/20`
@@ -105,7 +104,7 @@ export default function EventsSection({
                 {dateFilters.map(filter => (
                     <button
                         key={filter.date}
-                        onClick={() => setSelectedDate(selectedDate === filter.date ? "ALL" : filter.date)}
+                        onClick={() => onDateToggle(filter.date)}
                         className={`px-2.5 py-1 rounded-md border text-[10px] font-semibold transition-all duration-200 cursor-pointer ${
                             selectedDate === filter.date
                                 ? "border-2 border-orange-400 bg-orange-400/10 shadow-md shadow-blue-700/20"
@@ -117,7 +116,7 @@ export default function EventsSection({
                 ))}
             </div>
 
-            <ResetFiltersButton onClick={handleResetFilters}/>
+            <ResetFiltersButton onClick={onResetFilters}/>
 
             {/* Events Grid */}
             <div className="w-full mt-6 mb-8 max-sm:mb-2 columns-1 md:columns-2 lg:columns-3 gap-4 mx-auto">

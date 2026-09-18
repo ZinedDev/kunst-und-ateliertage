@@ -1,6 +1,6 @@
 import {useEffect, useId, useRef, useState, type MouseEvent} from "react";
 import {motion} from "motion/react";
-import {useNavigate} from "react-router";
+import {useLocation, useNavigate} from "react-router";
 import {Calendar, MapPin, Menu, User, X} from "lucide-react";
 import type {ProgramEntry} from "../../../data/EventData.ts";
 import {getCategoryBadgeStyle} from "../../../data/EventData.ts";
@@ -41,6 +41,7 @@ export default function EventCard({
                                   }: EventCardProps) {
     const cardRef = useRef<HTMLDivElement>(null);
     const navigate = useNavigate();
+    const currentRoute = useLocation();
     const [isRevealed, setIsRevealed] = useState(false);
     const detailsId = useId();
     const isCardRevealed = isRevealed;
@@ -87,6 +88,7 @@ export default function EventCard({
                 address: event.where.address,
                 eventId: event.id,
                 event: event.what,
+                returnSearch: currentRoute.search,
             },
         });
     };

@@ -31,6 +31,7 @@ export interface MapRouteState {
     artist?: string;
     eventId?: string;
     event?: string;
+    returnSearch?: string;
 }
 
 export const defaultMapCenter: L.LatLngTuple = [53.515, 10.005];

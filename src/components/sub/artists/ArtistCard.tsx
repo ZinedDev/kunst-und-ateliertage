@@ -1,6 +1,6 @@
 import {useEffect, useId, useRef, useState, type MouseEvent} from "react";
 import {motion, AnimatePresence} from "motion/react";
-import {useNavigate} from "react-router";
+import {useLocation, useNavigate} from "react-router";
 //import {Globe, AtSign, Mail} from "lucide-react";
 import type {ArtistEntry} from "../../../data/Types.ts";
 import {MapPin, Menu, X} from "lucide-react";
@@ -35,6 +35,7 @@ export default function ArtistCard({
     const detailsId = useId();
     const cardRef = useRef<HTMLDivElement>(null);
     const navigate = useNavigate();
+    const currentRoute = useLocation();
 
     const name = artist.artist || artist.name || "";
     const location = artist.location || artist.area || "";
@@ -80,6 +81,7 @@ export default function ArtistCard({
                 neighborhood,
                 location,
                 artist: name,
+                returnSearch: currentRoute.search,
             },
         });
     };

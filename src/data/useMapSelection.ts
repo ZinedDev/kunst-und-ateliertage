@@ -17,8 +17,8 @@ interface MapSelection {
 }
 
 type MapSelectionAction =
-    | {type: "toggle-neighborhood"; neighborhood: string}
-    | {type: "toggle-location"; location: MapLocation};
+    | { type: "toggle-neighborhood"; neighborhood: string }
+    | { type: "toggle-location"; location: MapLocation };
 
 function createInitialSelection(state: MapRouteState | null): MapSelection {
     const initialLocation = resolveMapLocation(state);
@@ -74,6 +74,7 @@ function selectionReducer(selection: MapSelection, action: MapSelectionAction): 
 
 export function useMapSelection(routeState: MapRouteState | null) {
     const navigate = useNavigate();
+    const returnSearch = routeState?.returnSearch || "";
     const [selection, dispatch] = useReducer(selectionReducer, routeState, createInitialSelection);
     const view = useMemo(() => getMapView(), []);
 
@@ -95,7 +96,7 @@ export function useMapSelection(routeState: MapRouteState | null) {
     }, [selection.currentNeighborhood]);
 
     const openArtist = useCallback((location: MapLocation, artist: string) => {
-        navigate("/programm", {
+        navigate({pathname: "/programm", search: returnSearch}, {
             state: {
                 artist,
                 location: location.name,
@@ -103,10 +104,10 @@ export function useMapSelection(routeState: MapRouteState | null) {
                 viewMode: "artists",
             },
         });
-    }, [navigate]);
+    }, [navigate, returnSearch]);
 
     const openEvent = useCallback((location: MapLocation, event: ProgramEntry) => {
-        navigate("/programm", {
+        navigate({pathname: "/programm", search: returnSearch}, {
             state: {
                 eventId: event.id,
                 event: event.what,
@@ -115,7 +116,7 @@ export function useMapSelection(routeState: MapRouteState | null) {
                 viewMode: "events",
             },
         });
-    }, [navigate]);
+    }, [navigate, returnSearch]);
 
     return {
         selection,
