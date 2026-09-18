@@ -104,7 +104,7 @@ export default function ProgramPage() {
                 </div>
             </div>
 
-            <section className="grid w-full max-w-5xl mb-8 mx-auto px-4 lg:px-0">
+            <section className="grid grid-cols-1 w-full max-w-5xl mb-8 mx-auto px-4 lg:px-0">
                 {/* Both panels stay mounted so their local state is preserved. */}
                 <motion.div
                     className={`col-start-1 row-start-1 w-full ${viewMode === "artists" ? "" : "hidden"}`}

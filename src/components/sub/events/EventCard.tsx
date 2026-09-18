@@ -108,7 +108,7 @@ export default function EventCard({
                 whileInView={{opacity: 1, y: 0}}
                 viewport={{once: false}}
                 transition={{duration: 0.2, type: "spring", stiffness: 100, delay: index * 0.01, restDelta: 10}}
-                className={`relative flex flex-col items-start px-4 py-3 border-2 rounded-xl group text-left w-full h-auto min-h-26 justify-between hover:scale-[1.02] hover:shadow-lg transition-all duration-200 hover:border-blue-700 ${
+                className={`relative flex flex-col items-start px-4 py-3 border-2 rounded-xl group text-left h-auto min-h-26 justify-between hover:scale-[1.02] hover:shadow-lg transition-all duration-200 hover:border-blue-700 ${
                     isFocused || isRevealed
                         ? "border-orange-400 shadow-lg scale-[1.02] "
                         : getCategoryBadgeStyle(event.category)
@@ -131,7 +131,7 @@ export default function EventCard({
                 </h3>
 
                 {/* Details */}
-                <div className="w-full flex flex-col gap-2.5 pt-2 text-xs text-zinc-600">
+                <div className="flex flex-col gap-2.5 pt-2 text-xs text-zinc-600">
 
                     {/* Artist */}
                     <div className="flex items-center gap-1.5 text-sm font-medium text-zinc-600">

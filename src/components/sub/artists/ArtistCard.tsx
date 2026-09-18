@@ -128,7 +128,7 @@ export default function ArtistCard({
                     <div className="flex flex-col items-center justify-center w-full">
 
                         {/* Artist Name */}
-                        <span title={name} className="border-b mx-3 mb-3 max-w-[calc(100%_-_1.5rem)] truncate text-lg font-bold text-zinc-900">
+                        <span title={name} className="border-b mx-3 mb-3 max-w-[calc(100%-1.5rem)] truncate text-lg font-bold text-zinc-900">
                             {name}
                         </span>
 
