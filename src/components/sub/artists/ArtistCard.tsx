@@ -1,9 +1,9 @@
-import {useEffect, useRef, useState, type MouseEvent} from "react";
+import {useEffect, useId, useRef, useState, type MouseEvent} from "react";
 import {motion, AnimatePresence} from "motion/react";
 import {useNavigate} from "react-router";
 //import {Globe, AtSign, Mail} from "lucide-react";
 import type {ArtistEntry} from "../../../data/Types.ts";
-import {MapPin} from "lucide-react";
+import {MapPin, Menu, X} from "lucide-react";
 import ArtistCardDetails from "./ArtistCardDetails.tsx";
 
 export type ArtistCardEntry = (ArtistEntry | { name: string; location: string; neighborhood: string }) & {
@@ -34,6 +34,7 @@ export default function ArtistCard({
                                        onFocusDismiss,
                                    }: ArtistCardProps) {
     const [isRevealed, setIsRevealed] = useState(false);
+    const detailsId = useId();
     const cardRef = useRef<HTMLDivElement>(null);
     const navigate = useNavigate();
 
@@ -57,16 +58,19 @@ export default function ArtistCard({
         if (isFocused) {
             cardRef.current?.blur();
             onFocusDismiss?.();
-
-            if (!isRevealed) {
-                setIsRevealed(true);
-            }
             return;
         }
 
         if (onClick) {
             onClick();
             return;
+        }
+    };
+
+    const handleDetailsClick = (event: MouseEvent<HTMLButtonElement>) => {
+        event.stopPropagation();
+        if (isFocused) {
+            onFocusDismiss?.();
         }
         setIsRevealed((prev) => !prev);
     };
@@ -100,21 +104,31 @@ export default function ArtistCard({
             onClick={handleClick}
             tabIndex={-1}
             aria-label={isFocused ? `${name}, ausgewählte Künstler*in` : undefined}
-            className="cursor-pointer outline-none"
+            className="outline-none"
         >
             <div
 
-                className={`flex flex-col items-start px-4 py-3 bg-white border-2 rounded-xl group text-left w-full h-auto min-h-26 justify-between hover:scale-[1.02] hover:border-blue-700 hover:shadow-lg transition-all duration-200  ${
+                className={`relative flex flex-col items-start px-4 py-3 bg-white border-2 rounded-xl group text-left w-full h-auto min-h-26 justify-between hover:scale-[1.02] hover:border-blue-700 hover:shadow-lg transition-all duration-200  ${
                     isFocused || isRevealed
                         ? "border-orange-400 shadow-lg scale-[1.02]"
                         : "border-zinc-100"
                 }`}
             >
+                <button
+                    type="button"
+                    onClick={handleDetailsClick}
+                    aria-label={isRevealed ? "Details schließen" : "Details öffnen"}
+                    aria-expanded={isRevealed}
+                    aria-controls={detailsId}
+                    className="absolute right-2 top-2 z-10 inline-flex h-4 w-4 items-center justify-center rounded border border-zinc-800/20 bg-transparent text-zinc cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400/50 focus-visible:ring-offset-1 [-webkit-tap-highlight-color:transparent]"
+                >
+                    {isRevealed ? <X size={12} className="opacity-70"/> : <Menu size={10} className="opacity-70"/>}
+                </button>
                 <AnimatePresence mode="wait" initial={false}>
                     <div className="flex flex-col items-center justify-center w-full">
 
                         {/* Artist Name */}
-                        <span className="border-b mb-3 text-lg font-bold text-zinc-900">
+                        <span title={name} className="border-b mx-3 mb-3 max-w-[calc(100%_-_1.5rem)] truncate text-lg font-bold text-zinc-900">
                             {name}
                         </span>
 
@@ -142,12 +156,13 @@ export default function ArtistCard({
 
                         {/* Artist Details Container */}
                         <motion.div
+                            id={detailsId}
                             initial={{opacity: 0}}
                             animate={{opacity: isCardRevealed ? 1 : 0}}
                             viewport={{once: false}}
                             aria-hidden={!isCardRevealed}
                             inert={!isCardRevealed}
-                            className={`absolute top-0 w-full h-full flex flex-col items-center justify-center gap-y-2 rounded-xl bg-white ${
+                            className={`absolute inset-0 flex flex-col items-center justify-center gap-y-2 rounded-xl bg-white px-12 py-3 overflow-y-auto ${
                                 isCardRevealed ? "pointer-events-auto" : "pointer-events-none"
                             }`}
                         >

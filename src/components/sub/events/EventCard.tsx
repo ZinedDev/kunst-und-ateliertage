@@ -1,7 +1,7 @@
-import {useEffect, useRef, useState, type MouseEvent} from "react";
+import {useEffect, useId, useRef, useState, type MouseEvent} from "react";
 import {motion} from "motion/react";
 import {useNavigate} from "react-router";
-import {Calendar, MapPin, User} from "lucide-react";
+import {Calendar, MapPin, Menu, User, X} from "lucide-react";
 import type {ProgramEntry} from "../../../data/EventData.ts";
 import {getCategoryBadgeStyle} from "../../../data/EventData.ts";
 
@@ -44,6 +44,7 @@ export default function EventCard({
     const cardRef = useRef<HTMLDivElement>(null);
     const navigate = useNavigate();
     const [isRevealed, setIsRevealed] = useState(false);
+    const detailsId = useId();
     const isCardRevealed = isRevealed;
 
     useEffect(() => {
@@ -61,10 +62,6 @@ export default function EventCard({
         if (isFocused) {
             cardRef.current?.blur();
             onFocusDismiss?.();
-
-            if (!isRevealed) {
-                setIsRevealed(true);
-            }
             return;
         }
 
@@ -73,6 +70,13 @@ export default function EventCard({
             return;
         }
 
+    };
+
+    const handleDetailsClick = (event: MouseEvent<HTMLButtonElement>) => {
+        event.stopPropagation();
+        if (isFocused) {
+            onFocusDismiss?.();
+        }
         setIsRevealed((prev) => !prev);
     };
 
@@ -97,7 +101,7 @@ export default function EventCard({
             onClick={handleClick}
             tabIndex={-1}
             aria-label={isFocused ? `${event.what}, ausgewähltes Event` : undefined}
-            className="cursor-pointer break-inside-avoid mb-4 outline-none"
+            className="break-inside-avoid mb-4 outline-none"
         >
             <motion.div
                 initial={{opacity: 0, y: index % 2 ? 10 : -10}}
@@ -110,9 +114,19 @@ export default function EventCard({
                         : getCategoryBadgeStyle(event.category)
                 }`}
             >
+                <button
+                    type="button"
+                    onClick={handleDetailsClick}
+                    aria-label={isRevealed ? "Details schließen" : "Details öffnen"}
+                    aria-expanded={isRevealed}
+                    aria-controls={detailsId}
+                    className="absolute right-2 top-2 z-10 inline-flex h-4 w-4 items-center justify-center rounded border border-zinc-800/20 bg-transparent text-zinc cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400/50 focus-visible:ring-offset-1 [-webkit-tap-highlight-color:transparent]"
+                >
+                    {isRevealed ? <X size={12} className="opacity-70"/> : <Menu size={10} className="opacity-70"/>}
+                </button>
 
                 {/* Topic */}
-                <h3 className="text-lg font-bold text-zinc-900 group-hover:text-blue-700 transition-colors leading-snug">
+                <h3 title={event.what} className="w-full pr-3 truncate text-lg font-bold text-zinc-900 group-hover:text-blue-700 transition-colors leading-snug">
                     {event.what}
                 </h3>
 
@@ -170,6 +184,7 @@ export default function EventCard({
 
                 {/* Event Description */}
                 <motion.div
+                    id={detailsId}
                     initial={{opacity: 0}}
                     animate={{opacity: isCardRevealed ? 1 : 0}}
                     aria-hidden={!isCardRevealed}
@@ -178,7 +193,7 @@ export default function EventCard({
                         isCardRevealed ? "pointer-events-auto" : "pointer-events-none"
                     }`}
                 >
-                    <div className="flex max-h-full w-full flex-col gap-1 overflow-y-auto py-3 px-3">
+                    <div className="flex max-h-full w-full flex-col gap-1 overflow-y-auto py-3 pl-3 pr-14">
 
                         <div className="grid gap-1.5 text-xs text-zinc-600">
 
