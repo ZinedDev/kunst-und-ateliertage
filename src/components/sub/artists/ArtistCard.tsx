@@ -20,7 +20,6 @@ export type ArtistCardEntry = (ArtistEntry | { name: string; location: string; n
 
 export interface ArtistCardProps {
     artist: ArtistCardEntry;
-    index?: number;
     onClick?: () => void;
     isFocused?: boolean;
     onFocusDismiss?: () => void;
@@ -28,7 +27,6 @@ export interface ArtistCardProps {
 
 export default function ArtistCard({
                                        artist,
-                                       index = 0,
                                        onClick,
                                        isFocused = false,
                                        onFocusDismiss,
@@ -90,16 +88,8 @@ export default function ArtistCard({
         <motion.div
             ref={cardRef}
             layout
-            initial={{opacity: 0, x: index % 2 ? 10 : -10}}
-            whileInView={{opacity: 1, x: 0}}
-            viewport={{once: false}}
             transition={{
-                duration: 0.2,
-                type: "spring",
-                stiffness: 100,
-                delay: index * 0.001,
-                restDelta: 10,
-                layout: {duration: 0.2, type: "spring", stiffness: 100, damping: 20, ease: "easeInOut"}
+                layout: {duration: 0.2, type: "tween", ease: "easeInOut"}
             }}
             onClick={handleClick}
             tabIndex={-1}
@@ -108,7 +98,7 @@ export default function ArtistCard({
         >
             <div
 
-                className={`relative flex flex-col items-start px-4 py-3 bg-white border-2 rounded-xl group text-left w-full h-auto min-h-26 justify-between hover:scale-[1.02] hover:border-blue-700 hover:shadow-lg transition-all duration-200  ${
+                className={`relative flex flex-col items-start px-4 py-3 bg-white border-2 rounded-xl group text-left w-full h-auto min-h-26 justify-between hover:scale-[1.02] hover:border-blue-700 hover:shadow-lg transition-[transform,border-color,box-shadow] duration-200  ${
                     isFocused || isRevealed
                         ? "border-orange-400 shadow-lg scale-[1.02]"
                         : "border-zinc-100"
@@ -128,7 +118,8 @@ export default function ArtistCard({
                     <div className="flex flex-col items-center justify-center w-full">
 
                         {/* Artist Name */}
-                        <span title={name} className="border-b mx-3 mb-3 max-w-[calc(100%-1.5rem)] truncate text-lg font-bold text-zinc-900">
+                        <span title={name}
+                              className="border-b mx-3 mb-3 max-w-[calc(100%-1.5rem)] truncate text-lg font-bold text-zinc-900">
                             {name}
                         </span>
 

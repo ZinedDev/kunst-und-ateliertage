@@ -28,19 +28,17 @@ function formatTimeRange(time: { startTime: string; endTime?: string }): string 
 
 export interface EventCardProps {
     event: ProgramEntry;
-    index?: number;
     onClick?: () => void;
     isFocused?: boolean;
     onFocusDismiss?: () => void;
 }
 
 export default function EventCard({
-    event,
-    index = 0,
-    onClick,
-    isFocused = false,
-    onFocusDismiss,
-}: EventCardProps) {
+                                      event,
+                                      onClick,
+                                      isFocused = false,
+                                      onFocusDismiss,
+                                  }: EventCardProps) {
     const cardRef = useRef<HTMLDivElement>(null);
     const navigate = useNavigate();
     const [isRevealed, setIsRevealed] = useState(false);
@@ -97,18 +95,14 @@ export default function EventCard({
         <motion.div
             ref={cardRef}
             layout
-            transition={{layout: {duration: 0.2, type: "spring", stiffness: 100, damping: 20, ease: "easeInOut"}}}
+            transition={{layout: {duration: 0.2, type: "tween", ease: "easeInOut"}}}
             onClick={handleClick}
             tabIndex={-1}
             aria-label={isFocused ? `${event.what}, ausgewähltes Event` : undefined}
             className="break-inside-avoid mb-4 outline-none"
         >
-            <motion.div
-                initial={{opacity: 0, y: index % 2 ? 10 : -10}}
-                whileInView={{opacity: 1, y: 0}}
-                viewport={{once: false}}
-                transition={{duration: 0.2, type: "spring", stiffness: 100, delay: index * 0.01, restDelta: 10}}
-                className={`relative flex flex-col items-start px-4 py-3 border-2 rounded-xl group text-left h-auto min-h-26 justify-between hover:scale-[1.02] hover:shadow-lg transition-all duration-200 hover:border-blue-700 ${
+            <div
+                className={`relative flex flex-col items-start px-4 py-3 border-2 rounded-xl group text-left h-auto min-h-26 justify-between hover:scale-[1.02] hover:shadow-lg transition-[transform,border-color,box-shadow] duration-200 hover:border-blue-700 ${
                     isFocused || isRevealed
                         ? "border-orange-400 shadow-lg scale-[1.02] "
                         : getCategoryBadgeStyle(event.category)
@@ -126,7 +120,8 @@ export default function EventCard({
                 </button>
 
                 {/* Topic */}
-                <h3 title={event.what} className="w-full pr-3 truncate text-lg font-bold text-zinc-900 group-hover:text-blue-700 transition-colors leading-snug">
+                <h3 title={event.what}
+                    className="w-full pr-3 truncate text-lg font-bold text-zinc-900 group-hover:text-blue-700 transition-colors leading-snug">
                     {event.what}
                 </h3>
 
@@ -152,9 +147,11 @@ export default function EventCard({
                         >
                             <MapPin className="w-4 h-4 text-zinc-400 group-hover/pin:text-blue-700 shrink-0 mt-0.5"/>
                             <div>
-                                <span className="font-semibold text-zinc-800 group-hover/pin:text-blue-700">{event.where.venue}</span>
+                                <span
+                                    className="font-semibold text-zinc-800 group-hover/pin:text-blue-700">{event.where.venue}</span>
                                 {event.where.room && <span className="text-zinc-500"> ({event.where.room})</span>}
-                                <div className="text-zinc-400 group-hover/pin:text-blue-700">{event.where.address}, {event.where.neighborhood}</div>
+                                <div
+                                    className="text-zinc-400 group-hover/pin:text-blue-700">{event.where.address}, {event.where.neighborhood}</div>
                             </div>
                         </button>
                     </div>
@@ -228,7 +225,7 @@ export default function EventCard({
                         </div>
                     </div>
                 </motion.div>
-            </motion.div>
+            </div>
         </motion.div>
     );
 }
